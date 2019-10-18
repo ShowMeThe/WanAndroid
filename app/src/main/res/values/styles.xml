@@ -1,0 +1,99 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="MaterialTheme" parent="Theme.MaterialComponents.NoActionBar.Bridge">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
+        <item name="android:colorControlHighlight">@color/colorPrimaryDark</item>
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
+        <item name="android:colorControlActivated">@color/colorPrimaryDark</item>
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
+        <item name="android:colorControlNormal">@color/colorPrimaryDark</item>
+        <item name="android:statusBarColor">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorPrimaryDark</item>
+        <item name="popupMenuStyle">@style/popMenu</item>
+        <item name="colorSurface">@color/transparent</item>
+        <item name="android:textAppearanceSmallPopupMenu">@style/popMenuText</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/popMenuText</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowSharedElementReenterTransition">@transition/transition_change_bound</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/transition_change_bound</item>
+        <item name="android:windowSharedElementExitTransition">@transition/transition_change_bound</item>
+        <item name="android:windowSharedElementReturnTransition">@transition/transition_change_bound</item>
+    </style>
+
+    <!-- TranslucentTheme-->
+    <style name="TranslucentTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:statusBarColor">@color/transparent</item>
+    </style>
+
+
+    <style name="line">
+        <item name="android:background">@color/diver_dcdcdc</item>
+        <item name="android:layout_height">@dimen/px1dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <!--popMenu的Style-->
+    <style name="popMenu" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@color/white</item><!-- popMenu的背景色-->
+    </style>
+
+    <style name="popMenuText">
+        <item name="android:textColor">@color/text_666666</item>
+        <item name="android:textSize">@dimen/px43dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
+    <!-- CardView-->
+    <style name="CutCardViewTheme" parent="MaterialTheme">
+        <item name="materialCardViewStyle">@style/CutCardViewStyle</item>
+    </style>
+
+    <style name="CutCardViewStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/MediumComponent</item>
+    </style>
+    <style name="MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+
+    <style name="CutLeftViewStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/MediumComponentLeft</item>
+    </style>
+
+    <style name="MediumComponentLeft" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamilyTopLeft">cut</item>
+        <item name="cornerFamilyBottomLeft">cut</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+    </style>
+
+
+    <style name="ExpandText">
+        <item name="android:textSize">@dimen/px62dp</item>
+    </style>
+
+    <style name="CollapsedText">
+        <item name="android:textSize">@dimen/px43dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ToolbarTheme">
+        <item name="colorControlHighlight">@color/color_b388ff</item>
+        <item name="android:colorControlHighlight">@color/color_b388ff</item>
+    </style>
+
+</resources>

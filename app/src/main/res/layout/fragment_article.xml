@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="Article"
+            type="com.showmethe.wanandroid.ui.account.fragment.ArticleFragment" />
+    </data>
+
+    <showmethe.github.core.widget.common.SmartRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/smrl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        contentState="@{Article.contentState}"
+        >
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/refresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                onRefresh="@{Article::loadRefresh}"
+                refreshing="@{Article.refreshing}"
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="@dimen/px40dp"
+                android:layout_marginBottom="@dimen/px30dp"
+                android:backgroundTint="@color/color_ff4081"
+                android:src="@mipmap/baseline_arrow_upward_white_24dp"
+                app:fabSize="auto"
+                app:layout_behavior="showmethe.github.core.util.widget.ScrollAwareFABBehavior"
+                app:rippleColor="@color/color_82b1ff"
+                android:onClick="@{Article::onFabClick}"
+                />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </showmethe.github.core.widget.common.SmartRelativeLayout>
+</layout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.showmethe.galley">
+
+    <application
+        >
+        <activity android:name=".ui.home.GalleyMainActivity"
+            android:theme="@style/MaterialDarkTheme"
+            >
+
+        </activity>
+    </application>
+
+</manifest>

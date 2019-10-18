@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tabHome"
+        android:icon="@drawable/ic_store_black_18dp"
+        android:title="首页"/>
+
+    <item
+        android:id="@+id/tabArea"
+        android:icon="@drawable/ic_track_changes_black_18dp"
+        android:title="公众号"/>
+
+    <item
+        android:id="@+id/tabNav"
+        android:icon="@drawable/ic_turned_in_black_18dp"
+        android:title="知识体系"/>
+
+    <item
+        android:id="@+id/tabPro"
+        android:icon="@drawable/ic_view_quilt_black_18dp"
+        android:title="项目"/>
+
+</menu>

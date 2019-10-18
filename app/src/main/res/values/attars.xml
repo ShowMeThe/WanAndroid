@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TextJumpAnim">
+        <attr name="txSize" format="dimension"/>
+        <attr name="gaps" format="dimension"/>
+    </declare-styleable>
+
+
+
+</resources>

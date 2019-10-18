@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.home.GalleyMainActivity">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <RelativeLayout
+                    android:id="@+id/layout"
+                    android:background="@color/colorAccent"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <com.google.android.material.circularreveal.CircularRevealFrameLayout
+                        android:id="@+id/inner"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignBottom="@+id/tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </androidx.appcompat.widget.Toolbar>
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/px140dp"
+                        app:tabIndicatorColor="@color/white"
+                        app:tabGravity="fill"
+                        android:layout_below="@+id/toolbar"
+                        app:tabRippleColor="@color/white_85"
+                        app:tabInlineLabel="true"
+                        app:layout_collapseMode="pin"
+                        app:tabIndicatorHeight="@dimen/px7dp"
+                        app:tabIndicatorFullWidth="false"
+                        app:tabIconTintMode="src_in"
+                        app:tabIconTint="@color/white"
+                        >
+                    </com.google.android.material.tabs.TabLayout>
+
+
+                </RelativeLayout>
+
+
+                <FrameLayout
+                    android:id="@+id/frameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.bottomappbar.BottomAppBar
+                android:id="@+id/bottomBar"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px130dp"
+                app:backgroundTint="@color/colorPrimary"
+                app:fabCradleMargin="@dimen/px13dp"
+                app:fabAlignmentMode="end"
+                app:hideOnScroll="true"
+                >
+            </com.google.android.material.bottomappbar.BottomAppBar>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:src="@mipmap/add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:rippleColor="@color/color_ffab91"
+                app:layout_anchor="@id/bottomBar"
+                app:fabSize="normal"
+                app:fabCustomSize="@dimen/px150dp"
+                app:backgroundTint="@color/color_ff6e00"
+                />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</layout>

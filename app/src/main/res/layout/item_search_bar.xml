@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="search"
+            type="com.showmethe.wanandroid.entity.Search" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rlSearch"
+        android:transitionName="search"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px120dp">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edSearch"
+            android:text="@={search.keyWord}"
+            android:textSize="@dimen/px43dp"
+            android:textColor="@color/white"
+            android:layout_marginStart="@dimen/px30dp"
+            android:layout_marginEnd="@dimen/px30dp"
+            android:paddingStart="@dimen/px30dp"
+            android:paddingEnd="@dimen/px30dp"
+            android:layout_width="match_parent"
+            android:layout_centerVertical="true"
+            android:hint="搜索"
+            android:textColorHint="@color/white"
+            android:maxLines="1"
+            android:inputType="text"
+            android:gravity="center|start"
+            android:imeOptions="actionSearch"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_rect_search"
+            android:layout_height="@dimen/px80dp"
+            />
+
+        <View
+            android:layout_alignParentBottom="true"
+            style="@style/line"/>
+
+    </RelativeLayout>
+</layout>

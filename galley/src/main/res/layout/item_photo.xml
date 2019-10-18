@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	
+	<data>
+		<variable
+			name="bean"
+			type="com.showmethe.galley.database.dto.PhotoWallDto" />
+	</data>
+	
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:orientation="vertical"
+		android:background="@color/white"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+
+		<com.google.android.material.card.MaterialCardView
+			android:id="@+id/cardView"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/px140dp"
+			android:layout_marginBottom="@dimen/px10dp"
+			android:layout_marginStart="@dimen/px10dp"
+			android:layout_marginEnd="@dimen/px10dp"
+			app:cardCornerRadius="@dimen/px35dp"
+			app:cardPreventCornerOverlap="true"
+			app:cardElevation="@dimen/px5dp"
+			app:cardBackgroundColor="@color/white"
+			app:rippleColor="@color/colorPrimaryDark"
+			app:strokeColor="@color/color_7986cb"
+			app:strokeWidth="@dimen/px1dp"
+			>
+			
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+				
+				<showmethe.github.core.widget.banner.Banner
+					android:id="@+id/banner"
+					android:transitionName="photo"
+					android:background="@color/color_212121"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:autoPlay="false"
+					app:showIndicator="false"
+					app:imageMaxHeight="@dimen/px1600dp"
+					app:imageMinHeight="@dimen/px800dp"
+					app:transformer="Parallax"
+					>
+				</showmethe.github.core.widget.banner.Banner>
+				
+				<TextView
+					android:id="@+id/tvSelect"
+					android:textColor="@color/white"
+					android:textSize="@dimen/px43dp"
+					android:gravity="center"
+					android:textStyle="italic|bold"
+					android:layout_alignParentEnd="true"
+					android:layout_marginTop="@dimen/px30dp"
+					android:layout_marginEnd="@dimen/px30dp"
+					android:background="@drawable/shape_rect_white__85"
+					android:layout_width="@dimen/px120dp"
+					android:layout_height="@dimen/px70dp" />
+			
+				
+			</RelativeLayout>
+		</com.google.android.material.card.MaterialCardView>
+		
+		
+		<ImageView
+			android:id="@+id/ivAvatar"
+			circle="@{bean.avatar}"
+			android:elevation="@dimen/px10dp"
+			android:background="@drawable/shape_circle_bg"
+			android:layout_gravity="center|start"
+			android:layout_marginTop="@dimen/px40dp"
+			android:layout_marginStart="@dimen/px50dp"
+			android:layout_width="@dimen/px180dp"
+			android:layout_height="@dimen/px180dp" />
+		
+		<TextView
+			android:id="@+id/tvName"
+			android:text="@{bean.username}"
+			android:textSize="@dimen/px43dp"
+			android:textStyle="bold"
+			android:layout_alignTop="@+id/ivAvatar"
+			android:layout_toEndOf="@+id/ivAvatar"
+			android:textColor="@color/text_333333"
+			android:layout_marginStart="@dimen/px50dp"
+			android:layout_gravity="center"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+
+
+		<showmethe.github.core.widget.common.LikeView
+			android:id="@+id/like"
+			app:like_state="false"
+			android:layout_below="@id/cardView"
+			android:layout_marginEnd="@dimen/px30dp"
+			android:layout_alignParentEnd="true"
+			android:layout_width="@dimen/px150dp"
+			android:layout_height="@dimen/px150dp" />
+
+		
+	</RelativeLayout>
+</layout>

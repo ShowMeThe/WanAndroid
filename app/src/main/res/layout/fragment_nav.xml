@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_b388ff" />
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/barLayout"
+                android:background="@color/color_6200ea"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px350dp"
+                app:elevation="0dp"
+                >
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+                    app:title="知识体系"
+                    app:expandedTitleGravity="bottom"
+                    app:expandedTitleTextAppearance="@style/ExpandText"
+                    app:collapsedTitleTextAppearance="@style/CollapsedText"
+                    app:collapsedTitleGravity="start|center"
+                    >
+
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/bar"
+                        android:backgroundTint="@color/color_6200ea"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/px150dp"
+                        app:layout_collapseMode="pin"
+                        app:title="知识体系"
+                        app:navigationIcon="@mipmap/baseline_search_white_24"
+                        android:theme="@style/ToolbarTheme"
+                        >
+
+                    </androidx.appcompat.widget.Toolbar>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="@dimen/px40dp"
+                android:layout_marginBottom="@dimen/px30dp"
+                android:backgroundTint="@color/color_6200ea"
+                android:src="@mipmap/baseline_arrow_upward_white_24dp"
+                app:elevation="@dimen/px25dp"
+                app:fabSize="auto"
+                app:layout_behavior="showmethe.github.core.util.widget.ScrollAwareFABBehavior"
+                app:rippleColor="@color/color_b388ff" />
+
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/refresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+                <showmethe.github.core.widget.common.AutoRecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
+</layout>

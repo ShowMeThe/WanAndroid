@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="bean"
+            type="com.showmethe.wanandroid.entity.Tree" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:cardBackgroundColor="@color/white"
+            android:layout_margin="@dimen/px30dp"
+            style="@style/CutCardViewStyle"
+            app:strokeColor="@color/color_6200ea"
+            app:strokeWidth="@dimen/px2dp"
+            app:cardElevation="@dimen/px15dp"
+            app:rippleColor="@color/color_b388ff"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvTit"
+                    android:textStyle="bold"
+                    android:text="@{bean.name}"
+                    android:maxEms="14"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/px43dp"
+                    android:textColor="@color/text_333333"
+                    android:layout_marginTop="@dimen/px25dp"
+                    android:layout_marginStart="@dimen/px35dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/btnExpand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/px25dp"
+                    android:src="@mipmap/ic_chevron_right_black_18dp"
+                    android:tint="@color/color_b388ff"
+                    android:backgroundTint="@color/white"
+                    />
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flex"
+                    android:layout_marginTop="@dimen/px15dp"
+                    android:layout_alignStart="@+id/tvTit"
+                    android:layout_toStartOf="@+id/btnExpand"
+                    android:layout_below="@+id/tvTit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:flexWrap="wrap"
+                    app:alignItems="flex_start"
+                    />
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </androidx.viewpager2.widget.ViewPager2>
+
+    <RelativeLayout
+        android:id="@+id/rlIndicator"
+        android:layout_alignBottom="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px130dp">
+
+
+        <showmethe.github.core.widget.banner.DotTabView
+            android:id="@+id/dot"
+            android:visibility="gone"
+            android:layout_marginStart="@dimen/px30dp"
+            android:layout_marginEnd="@dimen/px30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </showmethe.github.core.widget.banner.DotTabView>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

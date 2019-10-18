@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	
+	<data>
+		<variable
+			name="Bean"
+			type="com.showmethe.wanandroid.entity.RegisterBean" />
+	</data>
+	
+	<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:background="@color/transparent"
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		
+		
+		<androidx.core.widget.NestedScrollView
+			android:background="@drawable/shape_rect_top"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+			
+			<LinearLayout
+				android:orientation="vertical"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+				
+				
+				<com.google.android.material.button.MaterialButton
+					android:id="@+id/ivBack"
+					android:layout_marginTop="@dimen/px10dp"
+					android:layout_marginStart="@dimen/px20dp"
+					android:layout_width="@dimen/px150dp"
+					android:layout_height="@dimen/px130dp"
+					app:icon="@mipmap/ic_chevron_left_black_48dp"
+					app:backgroundTint="@color/white"
+					app:iconTint="@color/colorAccent"
+					app:iconSize="@dimen/px120dp"
+					app:rippleColor="@color/colorPrimary"
+					/>
+				
+				
+				<com.google.android.material.textfield.TextInputLayout
+					android:layout_marginTop="@dimen/px20dp"
+					android:layout_marginStart="@dimen/px30dp"
+					android:layout_marginEnd="@dimen/px30dp"
+					android:textColorHint="@color/colorAccent"
+					app:hintTextColor="@color/colorAccent"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content">
+					<EditText
+						android:id="@+id/edName"
+						android:hint="请输入账户名字"
+						android:maxLines="1"
+						android:inputType="text"
+						android:text="@={Bean.account}"
+						android:imeOptions="actionNext"
+						android:textColorHint="@color/colorPrimaryDark"
+						android:textColor="@color/colorPrimaryDark"
+						android:textSize="@dimen/px43dp"
+						android:layout_width="match_parent"
+						android:layout_height="@dimen/px110dp" />
+				</com.google.android.material.textfield.TextInputLayout>
+				
+				
+				<com.google.android.material.textfield.TextInputLayout
+					android:layout_margin="@dimen/px30dp"
+					android:textColorHint="@color/colorAccent"
+					app:hintTextColor="@color/colorAccent"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:passwordToggleEnabled="true"
+					>
+					<EditText
+						android:id="@+id/edPassword"
+						android:hint="请输入密码"
+						android:maxLines="1"
+						android:text="@={Bean.password}"
+						android:imeOptions="actionNext"
+						android:inputType="textPassword"
+						android:textColor="@color/colorPrimaryDark"
+						android:textColorHint="@color/colorPrimaryDark"
+						android:textSize="@dimen/px43dp"
+						android:layout_width="match_parent"
+						android:layout_height="@dimen/px110dp" />
+				</com.google.android.material.textfield.TextInputLayout>
+				
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content">
+					
+					<com.google.android.material.textfield.TextInputLayout
+						android:layout_margin="@dimen/px30dp"
+						android:layout_width="0dp"
+						android:textColorHint="@color/colorAccent"
+						app:hintTextColor="@color/colorAccent"
+						android:layout_weight="1"
+						android:layout_height="wrap_content"
+						>
+						<EditText
+							android:id="@+id/edCode"
+							android:hint="请输入验证码"
+							android:maxLines="1"
+							android:text="@={Bean.code}"
+							android:textColorHint="@color/colorAccent"
+							android:imeOptions="actionDone"
+							android:inputType="number"
+							android:textColor="@color/colorAccent"
+							android:textSize="@dimen/px43dp"
+							android:layout_width="match_parent"
+							android:layout_height="@dimen/px110dp" />
+					</com.google.android.material.textfield.TextInputLayout>
+					
+					<TextView
+						android:id="@+id/tvCode"
+						android:text="获取验证码"
+						android:textStyle="bold"
+						android:gravity="center"
+						android:textSize="@dimen/px43dp"
+						android:layout_marginEnd="@dimen/px30dp"
+						android:textColor="@color/colorAccent"
+						android:layout_width="@dimen/px250dp"
+						android:layout_height="wrap_content" />
+				
+				</LinearLayout>
+				
+				<com.google.android.material.button.MaterialButton
+					android:id="@+id/btnReg"
+					android:text="注册"
+					android:textColor="@color/white"
+					android:layout_margin="@dimen/px30dp"
+					android:textSize="@dimen/px43dp"
+					android:gravity="center"
+					android:layout_width="match_parent"
+					android:layout_height="@dimen/px150dp"
+					android:elevation="@dimen/px15dp"
+					app:backgroundTint="@color/colorAccent"
+					/>
+			
+			</LinearLayout>
+		
+		</androidx.core.widget.NestedScrollView>
+	
+	
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

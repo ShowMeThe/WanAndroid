@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="bean"
+            type="com.showmethe.wanandroid.entity.CateBean.DatasBean" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:cardBackgroundColor="@color/white"
+            android:layout_margin="@dimen/px30dp"
+            style="@style/CutCardViewStyle"
+            app:strokeColor="@color/color_f4511e"
+            app:strokeWidth="@dimen/px2dp"
+            app:cardElevation="@dimen/px15dp"
+            app:rippleColor="@color/color_ff8a80"
+            >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvTit"
+                android:textStyle="bold"
+                android:text="@{bean.title}"
+                android:maxEms="14"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="@dimen/px43dp"
+                android:textColor="@color/text_333333"
+                android:layout_marginTop="@dimen/px35dp"
+                android:layout_marginStart="@dimen/px35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:text="@{`分类:` + bean.superChapterName}"
+                android:gravity="end|center"
+                android:maxLines="1"
+                android:layout_toEndOf="@+id/tvTit"
+                android:layout_marginEnd="@dimen/px32dp"
+                android:layout_alignParentEnd="true"
+                android:textSize="@dimen/px35dp"
+                android:textColor="@color/color_f4511e"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tvAuthor"
+                android:textSize="@dimen/px40dp"
+                android:textColor="@color/text_999999"
+                android:layout_alignStart="@+id/tvTit"
+                android:layout_below="@+id/tvTit"
+                android:text="@{@string/author +`:`+ bean.author}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:layout_marginTop="@dimen/px20dp"
+                android:layout_alignStart="@+id/tvAuthor"
+                android:layout_below="@+id/tvAuthor"
+                android:layout_marginStart="@dimen/px20dp"
+                android:layout_marginBottom="@dimen/px20dp"
+                android:layout_marginEnd="@dimen/px20dp"
+                android:layout_width="@dimen/px550dp"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:layout_height="wrap_content"
+                />
+
+
+            <TextView
+                android:id="@+id/tvTime"
+                dataTime="@{bean.publishTime}"
+                android:textSize="@dimen/px30dp"
+                android:layout_below="@+id/ivLogo"
+                android:textColor="@color/text_999999"
+                android:layout_marginTop="@dimen/px35dp"
+                android:layout_marginStart="@dimen/px35dp"
+                android:layout_marginBottom="@dimen/px20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <showmethe.github.core.widget.common.LikeView
+                android:id="@+id/like"
+                android:layout_marginEnd="@dimen/px20dp"
+                android:layout_alignTop="@+id/tvTime"
+                android:layout_alignParentEnd="true"
+                android:layout_width="@dimen/px90dp"
+                android:layout_height="@dimen/px90dp"/>
+
+
+        </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+</layout>

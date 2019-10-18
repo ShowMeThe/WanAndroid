@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="Home"
+            type="com.showmethe.wanandroid.ui.home.fragment.HomeFragment" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    >
+
+                    <showmethe.github.core.widget.banner.Banner
+                        android:id="@+id/banner"
+                        android:transitionName="photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:autoPlay="true"
+                        app:imageMaxHeight="@dimen/px700dp"
+                        app:imageMinHeight="@dimen/px700dp"
+                        app:imageScaleType="centerCrop"
+                        app:unselected_color="@color/color_a100"
+                        app:selected_color="@color/color_304ffe"
+                        app:indicator_gravity="CENTER"
+                        app:scrollType="INFINITE"
+                        app:dotWith="@dimen/px35dp"
+                        app:dotType="RECTANGLE"
+                        app:dotDistant="@dimen/px5dp"
+                        />
+
+
+                    <ImageView
+                        android:id="@+id/ivCover"
+                        android:alpha="0"
+                        android:background="@color/colorAccent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorAccent"
+                        android:alpha="0"
+                        android:elevation="0dp"
+                        app:layout_collapseMode="pin"
+                        >
+                    </androidx.appcompat.widget.Toolbar>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+                <include
+                    layout="@layout/include_main_title"
+                    app:layout_scrollFlags="exitUntilCollapsed" />
+
+                <View style="@style/line" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/refresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                onRefresh="@{Home::loadRefresh}"
+                refreshing="@{Home.refreshing}"
+                >
+
+
+                <showmethe.github.core.widget.common.AutoRecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:requiresFadingEdge="vertical"
+                    android:fadingEdge="vertical"
+                    android:fadingEdgeLength="@dimen/px20dp"
+                    loadMore="@{Home::loadMore}"
+                    />
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_marginBottom="@dimen/px30dp"
+                android:layout_marginEnd="@dimen/px40dp"
+                android:layout_gravity="bottom|end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/baseline_arrow_upward_white_24dp"
+                app:fabSize="auto"
+                app:rippleColor="@color/color_a100"
+                android:backgroundTint="@color/colorAccent"
+                app:layout_behavior="showmethe.github.core.util.widget.ScrollAwareFABBehavior"
+                android:onClick="@{Home::onFabClick}"
+                />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </LinearLayout>
+</layout>

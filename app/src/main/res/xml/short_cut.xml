@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="gotomain"
+        android:enabled="true"
+        android:icon="@drawable/ic_store_black_18dp"
+        android:shortcutShortLabel="@string/main"
+        android:shortcutLongLabel="@string/main"
+        >
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.ken.materialwanandroid"
+            android:targetClass="com.showmethe.wanandroid.ui.main.MainActivity" />
+
+    </shortcut>
+
+
+    <shortcut
+        android:shortcutId="gotocollect"
+        android:enabled="true"
+        android:icon="@drawable/ic_turned_in_black_18dp"
+        android:shortcutShortLabel="@string/collect"
+        android:shortcutLongLabel="@string/collect"
+        >
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.ken.materialwanandroid"
+            android:targetClass="com.showmethe.wanandroid.ui.main.CollectActivity" />
+
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="gotoArticle"
+        android:enabled="true"
+        android:icon="@drawable/ic_track_changes_black_18dp"
+        android:shortcutShortLabel="@string/article"
+        android:shortcutLongLabel="@string/article"
+        >
+
+        <intent
+            android:action="GoToArticle"
+            android:targetPackage="com.ken.materialwanandroid"
+            android:targetClass="com.showmethe.wanandroid.ui.main.MainActivity" />
+
+    </shortcut>
+
+</shortcuts>
+

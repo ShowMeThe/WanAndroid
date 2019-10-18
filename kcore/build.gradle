@@ -1,0 +1,150 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion Versions.compileSdkVersion
+    buildToolsVersion Versions.buildToolsVersion
+
+    dataBinding {
+        enabled = true
+    }
+
+    defaultConfig {
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
+
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        packagingOptions {
+            exclude 'META-INF/proguard/androidx-annotations.pro'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
+}
+
+configurations{
+    all{
+        resolutionStrategy{
+            eachDependency{  DependencyResolveDetails details ->
+                if(details.requested.name == 'rxjava'){
+                    details.useTarget group: 'io.reactivex.rxjava2',name:'rxjava',version:"${LibV.rxjava}"
+                }else if(details.requested.name == 'lifecycle-livedata'){
+                    details.useTarget group: 'androidx.lifecycle',name:'lifecycle-livedata',version:"${LibV.lifecycle}"
+                }else if(details.requested.name == 'okhttp'){
+                    details.useTarget group: 'com.squareup.okhttp3',name:'okhttp',version:"${LibV.okhttp3}"
+                }
+            }
+        }
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.3.0-alpha02'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha02'
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+    //Base
+    api "androidx.constraintlayout:constraintlayout:1.1.3"
+    api "androidx.appcompat:appcompat:1.1.0"
+    api "androidx.cardview:cardview:1.0.0"
+    api "androidx.legacy:legacy-support-v4:1.0.0"
+    api "androidx.recyclerview:recyclerview:${LibV.recyclerview}"
+    api 'com.google.android.material:material:1.1.0-beta01'
+    api 'androidx.multidex:multidex:2.0.1'
+    api 'androidx.gridlayout:gridlayout:1.0.0'
+    api "androidx.work:work-runtime:${LibV.work_runtime}"
+    api "androidx.work:work-runtime-ktx:${LibV.work_runtime}"
+
+
+    //rx
+    api "com.trello.rxlifecycle3:rxlifecycle:${LibV.rxlifecycle3}"
+    api "com.trello.rxlifecycle3:rxlifecycle-components:${LibV.rxlifecycle3}"
+    api "com.trello.rxlifecycle3:rxlifecycle-android:${LibV.rxlifecycle3}"
+    api "com.trello.rxlifecycle3:rxlifecycle-android-lifecycle:${LibV.rxlifecycle3}"
+    api "com.trello.rxlifecycle3:rxlifecycle-kotlin:${LibV.rxlifecycle3}"
+    api "com.trello.rxlifecycle3:rxlifecycle-android-lifecycle-kotlin:${LibV.rxlifecycle3}"
+
+    api 'com.github.tbruyelle:rxpermissions:0.10.2'
+    api "io.reactivex.rxjava2:rxjava:${LibV.rxjava}"
+    api "io.reactivex.rxjava2:rxandroid:${LibV.rxandroid}"
+    api "io.reactivex.rxjava2:rxkotlin:${LibV.rxkotlin}"
+
+    //json
+    api "com.google.code.gson:gson:${LibV.gson}"
+
+    //图片加载器
+    api "com.github.bumptech.glide:glide:${LibV.glide}"
+    kapt "com.github.bumptech.glide:compiler:${LibV.glide}"
+    api "com.github.bumptech.glide:okhttp3-integration:${LibV.glide}"
+
+    //viewpager2
+    api 'androidx.viewpager2:viewpager2:1.0.0-beta05'
+
+    //高斯模糊
+    api 'com.github.Commit451:NativeStackBlur:1.0.5'
+
+    //网络加载库  包括共有两种网络请求框架，可供选择，具体自己选择
+    api "com.squareup.retrofit2:retrofit:${LibV.retrofit}"
+    api 'com.squareup.retrofit2:converter-gson:2.6.2'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    api 'com.squareup.retrofit2:converter-scalars:2.4.0'
+    api "com.squareup.okhttp3:okhttp:${LibV.okhttp3}"
+    api "com.squareup.okhttp3:logging-interceptor:${LibV.okhttp3}"
+
+    //recycleLife
+    api "androidx.lifecycle:lifecycle-viewmodel:${LibV.lifecycle}"
+    api "androidx.lifecycle:lifecycle-extensions:${LibV.lifecycle}"
+    api "androidx.lifecycle:lifecycle-common-java8:${LibV.lifecycle}"
+    api "androidx.lifecycle:lifecycle-livedata:${LibV.lifecycle}"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibV.lifecycle}"
+    api "androidx.lifecycle:lifecycle-runtime-ktx:${LibV.lifecycle}"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:${LibV.lifecycle}"
+    api "com.jeremyliao:live-event-bus-x:1.5.1"
+
+
+    //zixing
+    api 'com.google.zxing:core:3.4.0'
+
+    //room
+    api "androidx.room:room-runtime:${LibV.room}"
+    kapt "androidx.room:room-compiler:${LibV.room}"
+    api "androidx.room:room-ktx:${LibV.room}"
+    //coroutines
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2'
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2'
+
+    //flexboxlayout
+    api 'com.google.android:flexbox:1.1.0'
+
+    //palette
+    api 'androidx.palette:palette:1.0.0'
+
+    //camera
+    api 'androidx.camera:camera-core:1.0.0-alpha06'
+    api 'androidx.camera:camera-camera2:1.0.0-alpha06'
+    api "androidx.camera:camera-view:1.0.0-alpha03"
+    // If you to use Camera Extensions
+    api "androidx.camera:camera-extensions:1.0.0-alpha03"
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="Collect"
+            type="com.showmethe.wanandroid.ui.main.CollectActivity" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.main.CollectActivity">
+
+        <showmethe.github.core.widget.common.TitleBarView
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@mipmap/ic_chevron_left_black_48dp"
+            app:navigationTint="@color/white"
+            app:navigationIconSize="@dimen/px38dp"
+            app:title="收藏"
+            app:titleTxColor="@color/white"
+            app:titleTxSize="@dimen/px43dp"
+            />
+
+        <showmethe.github.core.widget.common.SmartRelativeLayout
+            android:id="@+id/smrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/refresh"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                onRefresh="@{Collect::loadRefresh}"
+                refreshing="@{Collect.refreshing}"
+                >
+
+                <showmethe.github.core.widget.common.AutoRecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    loadMore="@{Collect::loadMore}"
+                    />
+
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </showmethe.github.core.widget.common.SmartRelativeLayout>
+
+
+    </LinearLayout>
+</layout>

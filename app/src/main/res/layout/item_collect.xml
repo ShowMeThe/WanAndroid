@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="bean"
+            type="com.showmethe.wanandroid.entity.Collect.DatasBean" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="@dimen/px25dp"
+            app:rippleColor="@color/color_ff8a80"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvTit"
+                    android:textStyle="bold"
+                    android:maxEms="14"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/px43dp"
+                    android:textColor="@color/text_333333"
+                    android:layout_marginTop="@dimen/px35dp"
+                    android:layout_marginStart="@dimen/px35dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+                <TextView
+                    android:id="@+id/tvAuthor"
+                    android:textSize="@dimen/px40dp"
+                    android:textColor="@color/text_999999"
+                    android:layout_alignStart="@+id/tvTit"
+                    android:layout_below="@+id/tvTit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+                <ImageView
+                    android:id="@+id/ivLogo"
+                    android:layout_marginTop="@dimen/px20dp"
+                    android:layout_alignStart="@+id/tvAuthor"
+                    android:layout_below="@+id/tvAuthor"
+                    android:layout_marginStart="@dimen/px20dp"
+                    android:layout_marginBottom="@dimen/px20dp"
+                    android:layout_marginEnd="@dimen/px20dp"
+                    android:layout_width="@dimen/px550dp"
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
+                    android:layout_height="wrap_content"
+                    />
+
+
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:textSize="@dimen/px30dp"
+                    android:layout_below="@+id/ivLogo"
+                    android:textColor="@color/text_999999"
+                    android:layout_marginTop="@dimen/px35dp"
+                    android:layout_marginStart="@dimen/px35dp"
+                    android:layout_marginBottom="@dimen/px20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+</layout>

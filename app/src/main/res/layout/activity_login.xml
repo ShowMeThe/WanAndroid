@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="Login"
+            type="com.showmethe.wanandroid.ui.auth.LoginActivity" />
+
+        <variable
+            name="bean"
+            type="com.showmethe.wanandroid.entity.Login" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.auth.LoginActivity">
+
+
+        <showmethe.github.core.widget.animView.RectScaleAnim
+            android:id="@+id/rect"
+            android:transitionName="rect"
+            android:layout_marginTop="@dimen/px240dp"
+            android:layout_centerHorizontal="true"
+            app:rectColor="@color/white"
+            app:rectWidth="@dimen/px80dp"
+            android:background="@color/white"
+            android:layout_width="@dimen/px240dp"
+            android:layout_height="@dimen/px240dp" />
+
+
+        <com.google.android.material.circularreveal.CircularRevealLinearLayout
+            android:id="@+id/llLogin"
+            android:orientation="vertical"
+            android:elevation="@dimen/px15dp"
+            android:background="@drawable/shape_white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px30dp"
+            android:layout_marginStart="@dimen/px150dp"
+            android:layout_marginEnd="@dimen/px150dp"
+            android:layout_centerInParent="true"
+            android:padding="@dimen/px5dp"
+            >
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="@dimen/px30dp"
+                android:layout_marginStart="@dimen/px30dp"
+                android:layout_marginEnd="@dimen/px30dp"
+                android:textColorHint="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edName"
+                    android:hint="用户名"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:text="@={bean.account}"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/px43dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px110dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_margin="@dimen/px30dp"
+                android:textColorHint="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorAccent"
+                >
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edPassword"
+                    android:hint="密码"
+                    android:maxLines="1"
+                    android:text="@={bean.password}"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/px43dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px110dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvReg"
+                android:layout_gravity="center"
+                android:text="尚未有账号，请注册"
+                android:padding="@dimen/px10dp"
+                android:onClick="@{()->Login.showReg()}"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:text="登录"
+                android:gravity="center"
+                android:background="@drawable/selector_btn_enable"
+                android:onClick="@{()->Login.login(bean.account,bean.password)}"
+                android:enabled="@{bean.enable}"
+                android:textColor="@color/white"
+                android:layout_margin="@dimen/px30dp"
+                android:textSize="@dimen/px43dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px110dp"
+                android:elevation="@dimen/px20dp"
+                />
+
+        </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+
+
+
+    </RelativeLayout>
+</layout>

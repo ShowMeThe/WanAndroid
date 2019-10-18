@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container_dialog"
+    android:layout_width="@dimen/px250dp"
+    android:layout_height="@dimen/px250dp">
+
+    <showmethe.github.core.widget.animView.BallRotationProgressBar
+        android:id="@+id/progressbar"
+        android:layout_centerInParent="true"
+        app:firstBallColor="@color/colorAccent"
+        app:secondBallColor="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!--<example.ken.com.library.widget.TextJumpAnim
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />-->
+
+ <!--   <showmethe.github.core.widget.animView.RectScaleAnim
+      android:layout_centerInParent="true"
+        app:rectColor="@color/colorAccent"
+        android:id="@+id/progressbar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />-->
+
+</RelativeLayout>

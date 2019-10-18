@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".ui.main.MainActivity">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                >
+
+
+            </androidx.viewpager.widget.ViewPager>
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:itemIconTint = "@color/tab_color"
+                app:itemTextColor="@color/tab_color"
+                app:menu="@menu/tab_menu"
+                app:itemRippleColor="@color/color_a100"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:clickable="true"
+            android:id="@+id/container"
+            android:background="@color/white"
+            android:layout_width="@dimen/px650dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:orientation="vertical"
+            >
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <RelativeLayout
+                    android:background="@color/color_a100"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/topBg"
+                        android:backgroundTint="@color/colorAccent"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/px400dp">
+
+                        <ImageView
+                            android:id="@+id/ivHead"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/px40dp"
+                            android:layout_width="@dimen/px155dp"
+                            android:layout_height="@dimen/px155dp"
+                            android:src="@mipmap/baseline_person_black_48"
+                            android:tint="@color/white"
+                            />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tvLogin"
+                            android:textSize="@dimen/px75dp"
+                            android:textColor="@color/white"
+                            android:text="Login"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/px40dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:fontFamily="@font/font"
+                            />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_below="@id/topBg"
+                        android:background="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tvCollect"
+                            android:textSize="@dimen/px43dp"
+                            android:textColor="@color/color_a100"
+                            android:text="收藏"
+                            android:gravity="center|start"
+                            android:layout_gravity="center_vertical"
+                            android:drawablePadding="@dimen/px35dp"
+                            android:paddingStart="@dimen/px40dp"
+                            android:paddingEnd="@dimen/px10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/px120dp"
+                            app:drawableTint="@color/color_a100"
+                            app:drawableStartCompat="@mipmap/ic_wrap_text_black_24dp"
+                            android:background="@drawable/ripple_color1"
+                            />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tvGalley"
+                            android:textSize="@dimen/px43dp"
+                            android:textColor="@color/color_a100"
+                            android:text="图片墙"
+                            android:gravity="center|start"
+                            android:layout_gravity="center_vertical"
+                            android:drawablePadding="@dimen/px35dp"
+                            android:paddingStart="@dimen/px40dp"
+                            android:paddingEnd="@dimen/px10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/px120dp"
+                            app:drawableTint="@color/color_a100"
+                            app:drawableStartCompat="@mipmap/ic_wrap_text_black_24dp"
+                            android:background="@drawable/ripple_color1"
+                            />
+
+                    </LinearLayout>
+
+                    <View style="@style/line"/>
+
+
+                </RelativeLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <RelativeLayout
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px200dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvLogout"
+                    android:text="注销"
+                    android:gravity="center"
+                    android:textSize="@dimen/px43dp"
+                    android:textColor="@color/colorAccent"
+                    android:layout_gravity="center"
+                    android:layout_width="@dimen/px200dp"
+                    android:layout_height="@dimen/px200dp"
+                    android:layout_centerInParent="true"
+                    android:drawablePadding="@dimen/px15dp"
+                    app:drawableTint="@color/colorAccent"
+                    app:drawableStartCompat="@mipmap/baseline_power_settings_new_black_36dp"
+                    />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+</layout>

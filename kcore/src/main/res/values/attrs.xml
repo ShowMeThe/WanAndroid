@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="Banner">
+        <attr name="selected_color" format="color|reference"/>
+        <attr name="unselected_color" format="color|reference"/>
+        <attr name="indicator_distant" format="dimension"/>
+        <attr name="autoPlay" format="boolean"/>
+        <attr name="select_radius" format="dimension"/>
+        <attr name="unSelect_radius" format="dimension"/>
+        <attr name="dotWith" format="dimension"/>
+        <attr name="dotDistant" format="dimension"/>
+        <attr name="dotType" format="enum">
+            <enum name="OVAL" value="0"/>
+            <enum name="RECTANGLE" value="1"/>
+        </attr>
+        <attr name="delayTime" format="integer"/>
+        <attr name="pageOrientation" format="enum">
+            <enum name="HORIZONTAL" value="0"/>
+        </attr>
+        <attr name="transformer" format="enum">
+            <enum name="Parallax" value="0"/>
+            <enum name="Spinner" value="1"/>
+            <enum name="AlphaScale" value="2"/>
+        </attr>
+        <attr name="imageScaleType" format="enum">
+            <enum name="fitXY" value="0"/>
+            <enum name="centerCrop" value="1"/>
+        </attr>
+        <attr name="showIndicator" format="boolean"/>
+        <attr name="imageMinHeight" format="dimension"/>
+        <attr name="imageMaxHeight" format="dimension"/>
+        <attr name="indicator_gravity" format="enum">
+            <enum name="CENTER" value="0"/>
+            <enum name="START" value="1"/>
+            <enum name="END" value="2"/>
+        </attr>
+        <attr name="scrollType" format="enum">
+            <enum name="REPEAT" value="3"/>
+            <enum name="INFINITE" value="4"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="RefreshLayout">
+        <attr name="direction">
+            <enum name="top" value="0" />
+            <enum name="bottom" value="1" />
+            <enum name="both" value="2" />
+        </attr>
+    </declare-styleable>
+    
+    <declare-styleable name="LikeView">
+        <attr name="like_state" format="boolean"/>
+        <attr name="like" format="reference"/>
+        <attr name="unLike" format="reference"/>
+    </declare-styleable>
+
+    <style name="TabLayoutTextStyle">
+        <item name="android:textSize">@dimen/px43dp</item>
+    </style>
+
+
+
+    <declare-styleable name="RectScaleAnim">
+        <attr name="rectWidth" format="dimension"/>
+        <attr name="rectColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="PasswordInputView">
+        <attr name="passwordLength" format="integer"/>
+        <attr name="passwordInputType" format="enum">
+            <enum name="number" value="0"/>
+            <enum name="none" value="1"/>
+        </attr>
+        <attr name="passwordRectColor" format="color|reference"/>
+    </declare-styleable>
+
+
+
+    <style name="selfProgressWeb" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/self_progress_web</item>
+        <item name="android:minHeight">2dp</item>
+        <item name="android:maxHeight">2dp</item>
+    </style>
+
+    <declare-styleable name="BallRotationProgressBar">
+        <attr name="firstBallColor" format="color"/>
+        <attr name="secondBallColor" format="color"/>
+    </declare-styleable>
+    
+
+    
+    <declare-styleable name="WheelPicker">
+        <attr name="text_selected_color" format="color|reference"/>
+        <attr name="text_unSelected_color" format="color|reference"/>
+        <attr name="text_shadow" format="boolean"/>
+        <attr name="text_shadow_color" format="color|reference"/>
+        <attr name="text_shadow_radius" format="dimension"/>
+        <attr name="line_start" format="color|reference"/>
+        <attr name="line_end" format="color|reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="BubbleLayout">
+        <attr name="backgroundColor" format="color"/>
+        <attr name="shadow" format="dimension"/>
+        <attr name="shadowColor" format="color"/>
+        <attr name="radius" format="dimension"/>
+        <attr name="offset" format="dimension"/>
+        <attr name="aroundPadding" format="dimension"/>
+        <attr name="distance" format="dimension"/>
+        <attr name="directions" format="enum">
+            <enum name="left" value="1" />
+            <enum name="top" value="2" />
+            <enum name="right" value="3" />
+            <enum name="bottom" value="4" />
+        </attr>
+    </declare-styleable>
+    
+    <declare-styleable name="AutoRecyclerView">
+        <attr name="autoFix" format="boolean"/>
+    </declare-styleable>
+
+
+
+    <declare-styleable name="TitleBarView">
+        <attr name="navigationIcon" format="reference"/>
+        <attr name="navigationTint" format="reference"/>
+        <attr name="navigationIconSize" format="dimension"/>
+        <attr name="navMarginStart" format="dimension"/>
+        <attr name="navContent" format="string"/>
+        <attr name="navContentMarginStart" format="dimension"/>
+        <attr name="navContentTextSize" format="dimension"/>
+        <attr name="navContentTextColor" format="reference"/>
+        <attr name="title" format="string"/>
+        <attr name="titleTxSize" format="dimension"/>
+        <attr name="titleTxColor" format="reference"/>
+        <attr name="titleStyle" format="enum">
+            <enum name="Normal" value="0"/>
+            <enum name="Bold" value="1"/>
+            <enum name="Italic" value="2"/>
+            <enum name="Middle_Line" value="3"/>
+            <enum name="Under_Line" value="4"/>
+        </attr>
+        <attr name="menuIcon" format="reference"/>
+        <attr name="menuIconPadding" format="dimension"/>
+        <attr name="menuIconTint" format="reference"/>
+        <attr name="menuMarginEnd" format="dimension"/>
+        <attr name="menuContent" format="string"/>
+        <attr name="menuContentColor" format="reference"/>
+        <attr name="menuContentSize" format="dimension"/>
+        <attr name="menuContentStyle" format="enum">
+            <enum name="Normal" value="0"/>
+            <enum name="Bold" value="1"/>
+            <enum name="Italic" value="2"/>
+            <enum name="Middle_Line" value="3"/>
+            <enum name="Under_Line" value="4"/>
+        </attr>
+    </declare-styleable>
+
+</resources>

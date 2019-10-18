@@ -1,0 +1,8 @@
+<resources>
+	<string name="app_name">Core</string>
+	<string name="loadingSucceed">Successful</string>
+	<string name="loading">Loading…</string>
+	<string name="loadingFailed">Loading Over Time</string>
+	<string name="no_more_data_to_read">No more data to read</string>
+	<string name="appbar_scrolling_view_behavior">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+</resources>

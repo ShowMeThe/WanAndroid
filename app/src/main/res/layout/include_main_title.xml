@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlSearch"
+    android:transitionName="search"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/px135dp">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/profile"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/px35dp"
+        app:icon="@mipmap/ic_view_list_black_48dp"
+        app:iconSize="@dimen/px85dp"
+        app:iconTint="@color/colorPrimaryDark"
+        app:backgroundTint="@color/white"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/edSearch"
+        android:textSize="@dimen/px43dp"
+        android:transitionName="search"
+        android:textColor="@color/white"
+        android:layout_marginStart="@dimen/px30dp"
+        android:layout_marginEnd="@dimen/px30dp"
+        android:paddingStart="@dimen/px30dp"
+        android:paddingEnd="@dimen/px30dp"
+        android:layout_width="match_parent"
+        android:layout_toEndOf="@+id/profile"
+        android:layout_centerVertical="true"
+        android:text="搜索"
+        android:gravity="center|start"
+        android:imeOptions="actionSearch"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_rect_search"
+        android:layout_height="@dimen/px80dp"
+        />
+
+    <View
+        android:layout_alignParentBottom="true"
+        style="@style/line"/>
+
+</RelativeLayout>

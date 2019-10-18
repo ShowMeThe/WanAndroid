@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="bean"
+            type="com.showmethe.wanandroid.entity.CateTab" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_marginStart="@dimen/px45dp"
+        android:layout_marginEnd="@dimen/px45dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px110dp">
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/px40dp"
+            android:textColor="@color/color_f4511e"
+            android:text="@{bean.name}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+</layout>

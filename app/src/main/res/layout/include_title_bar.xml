@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlSearch"
+    android:transitionName="search"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimaryDark"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/px130dp">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ivBack"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/px35dp"
+        app:icon="@mipmap/ic_chevron_left_black_48dp"
+        app:iconSize="@dimen/px85dp"
+        app:iconTint="@color/white"
+        app:backgroundTint="@color/colorPrimaryDark"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvTitle"
+        android:textSize="@dimen/px43dp"
+        android:textColor="@color/white"
+        android:layout_marginStart="@dimen/px30dp"
+        android:layout_marginEnd="@dimen/px30dp"
+        android:paddingStart="@dimen/px30dp"
+        android:paddingEnd="@dimen/px30dp"
+        android:layout_width="wrap_content"
+        android:gravity="center|start"
+        android:imeOptions="actionSearch"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/tvBack"
+        android:layout_centerInParent="true"
+        android:layout_height="@dimen/px80dp"
+        />
+
+    <View
+        android:layout_alignParentBottom="true"
+        style="@style/line"/>
+
+</RelativeLayout>

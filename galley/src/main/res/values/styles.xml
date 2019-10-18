@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+	
+	
+	<!-- Base application theme. -->
+	<style name="MaterialDarkTheme" parent="Theme.MaterialComponents.NoActionBar.Bridge">
+		<!-- Customize your theme here. -->
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorAccent">@color/colorPrimary</item>
+		<item name="colorControlHighlight">@color/colorPrimaryDark</item>
+		<item name="android:colorControlHighlight">@color/colorPrimaryDark</item>
+		<item name="colorControlActivated">@color/colorPrimaryDark</item>
+		<item name="colorControlNormal">@color/colorPrimaryDark</item>
+		<item name="android:statusBarColor">@color/colorPrimary</item>
+		<item name="android:windowBackground">@color/white</item>
+		<item name="popupMenuStyle">@style/popMenu</item>
+		<item name="colorSurface">@color/transparent</item>
+		<item name="android:textAppearanceSmallPopupMenu">@style/popMenuText</item>
+		<item name="android:textAppearanceLargePopupMenu">@style/popMenuText</item>
+		<item name="android:windowContentTransitions">true</item>
+		<item name="android:windowSharedElementReenterTransition">@transition/change</item>
+		<item name="android:windowSharedElementEnterTransition">@transition/change</item>
+		<item name="android:windowSharedElementExitTransition">@transition/change</item>
+		<item name="android:windowSharedElementReturnTransition">@transition/change</item>
+	</style>
+	
+
+
+	
+	<!-- CardView-->
+	<style name="CutCardViewTheme" parent="MaterialTheme">
+		<item name="materialCardViewStyle">@style/CutCardViewStyle</item>
+	</style>
+	
+	<style name="CutCardViewStyle" parent="Widget.MaterialComponents.CardView">
+		<item name="shapeAppearanceOverlay">@style/MediumComponent</item>
+	</style>
+	<style name="MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+		<item name="cornerFamily">cut</item>
+		<item name="cornerSize">10dp</item>
+	</style>
+	
+	
+	<!--popMenu的Style-->
+	<style name="popMenu" parent="@android:style/Widget.PopupMenu">
+		<item name="android:popupBackground">@color/white</item><!-- popMenu的背景色-->
+	</style>
+	
+	<style name="popMenuText">
+		<item name="android:textColor">@color/text_666666</item>
+		<item name="android:textSize">@dimen/px43dp</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:gravity">center</item>
+	</style>
+	
+	
+	<style name="LeftRightAnim">
+		<item name="android:windowEnterAnimation">@anim/anim_right_in</item>
+		<item name="android:windowExitAnimation">@anim/anim_left_out</item>
+	</style>
+	
+
+	
+	<style name="line_999">
+		<item name="android:background">@color/text_999999</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/px1dp</item>
+	</style>
+	
+
+	
+	<style name="line_7c4dff">
+		<item name="android:background">@color/colorPrimaryDark</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/px1dp</item>
+	</style>
+	
+	<style name="CalendarTextStyle">
+		<item name="android:textSize">@dimen/px45dp</item>
+		<item name="android:textColor">@color/colorAccent</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+	
+	<style name="TabLayoutTextStyle">
+		<item name="android:textSize">@dimen/px65dp</item>
+		<item name="android:textColor">@color/colorPrimaryDark</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+	
+	<declare-styleable name="CircleProgressBar">
+		<attr name="defaultColor" format="color|reference"/>
+		<attr name="runningColor" format="color|reference"/>
+		<attr name="strokeWidth" format="dimension"/>
+	</declare-styleable>
+</resources>

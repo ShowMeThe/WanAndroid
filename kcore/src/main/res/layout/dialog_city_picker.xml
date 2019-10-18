@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px150dp">
+
+        <TextView
+            android:id="@+id/tvCancel"
+            android:text="取消"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/text_666666"
+            android:textSize="@dimen/px43dp"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/px50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:text="选择地区"
+            android:textColor="@color/text_333333"
+            android:textSize="@dimen/px43dp"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvConfirm"
+            android:text="确定"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/px43dp"
+            android:gravity="center"
+            android:layout_marginEnd="@dimen/px50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/rg"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px130dp">
+
+        <RadioButton
+            android:id="@+id/rb1"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:text="请选择"
+            android:gravity="center"
+            android:drawableBottom="@drawable/selector_indicator"
+            android:textSize="@dimen/px43dp"
+            android:textColor="@color/selector_text_color_tab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <RadioButton
+            android:id="@+id/rb2"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:drawableBottom="@drawable/selector_indicator"
+            android:textSize="@dimen/px43dp"
+            android:textColor="@color/selector_text_color_tab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <RadioButton
+            android:id="@+id/rb3"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:drawableBottom="@drawable/selector_indicator"
+            android:textSize="@dimen/px43dp"
+            android:textColor="@color/selector_text_color_tab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </RadioGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px600dp">
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+</LinearLayout>
