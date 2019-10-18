@@ -9,6 +9,7 @@ import com.ken.materialwanandroid.ui.auth.vm.AuthViewModel
 import com.showmethe.galley.database.DataSourceBuilder
 import com.showmethe.galley.database.Source
 import com.showmethe.galley.database.dto.PhotoWallDto
+import com.showmethe.galley.ui.home.WelcomeActivity
 
 
 import com.showmethe.wanandroid.R
@@ -45,7 +46,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
 
     @SuppressLint("CheckResult")
     override fun init(savedInstanceState: Bundle?) {
-        initData();
+        initData()
         startToMain()
     }
 
@@ -53,7 +54,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
     private fun startToMain(){
         rect.bindLifecyle(this)
         GlobalScope.launch(Dispatchers.Main) {
-            delay(3150)
+            delay(3000)
             startActivity<MainActivity>(null)
             finishAfterTransition()
         }
@@ -63,7 +64,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
     private fun initData(){
         if(!RDEN.get(INIT_DATA,false)){
             GlobalScope.launch (Dispatchers.Main) {
-                source.init();
                 initPhotoWall()
 
             }

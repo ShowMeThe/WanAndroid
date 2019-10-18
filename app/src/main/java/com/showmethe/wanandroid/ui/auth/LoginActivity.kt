@@ -101,7 +101,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
 
         dialog.setOnRegisterGetListener {
             if (it.code.toInt() == num) {
-                viewModel.register(it.account, it.password)
+                router.toTarget("register",it.account, it.password)
             } else {
                 showToast("请输入正确的验证码")
             }
@@ -117,7 +117,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
 
 
     fun login(account:String,password:String){
-        viewModel.login(account,password)
+        router.toTarget("login",account,password)
     }
 
 

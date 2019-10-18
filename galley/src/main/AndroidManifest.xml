@@ -2,16 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.showmethe.galley">
 
-    <application
-        >
-        <activity android:name=".ui.home.GalleyMainActivity"
-            android:theme="@style/MaterialDarkTheme"
-          />
-
-        <activity android:name=".ui.home.ImageShowActivity"
-            android:theme="@style/TranslucentTheme"
-            />
-
+    <application>
+        <activity android:name=".ui.home.WelcomeActivity"></activity>
+        <activity
+            android:name=".ui.home.GalleyMainActivity"
+            android:theme="@style/MaterialDarkTheme" />
+        <activity
+            android:name=".ui.home.ImageShowActivity"
+            android:theme="@style/TranslucentTheme" />
     </application>
 
 </manifest>

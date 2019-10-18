@@ -272,7 +272,7 @@ abstract class BaseActivity<V : ViewDataBinding,VM : BaseViewModel> : AppCompatA
     /**
      * startActivity，加入切换动画
      */
-    inline fun <reified T>startActivity(bundle: Bundle?) {
+    inline fun <reified T>startActivity(bundle: Bundle? = null) {
         val intent = Intent(this, T::class.java)
         if (bundle != null) {
             intent.putExtras(bundle)

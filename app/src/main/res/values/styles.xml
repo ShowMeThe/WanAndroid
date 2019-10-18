@@ -15,7 +15,7 @@
         <item name="android:statusBarColor">@color/colorAccent</item>
         <item name="android:windowBackground">@color/colorPrimaryDark</item>
         <item name="popupMenuStyle">@style/popMenu</item>
-        <item name="colorSurface">@color/transparent</item>
+        <item name="colorSurface">@color/colorAccent</item>
         <item name="android:textAppearanceSmallPopupMenu">@style/popMenuText</item>
         <item name="android:textAppearanceLargePopupMenu">@style/popMenuText</item>
         <item name="android:windowContentTransitions">true</item>

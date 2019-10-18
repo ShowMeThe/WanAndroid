@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 import com.showmethe.galley.ui.home.GalleyMainActivity
+import com.showmethe.galley.ui.home.WelcomeActivity
 
 import com.showmethe.wanandroid.R
 
@@ -18,6 +19,7 @@ import com.showmethe.wanandroid.constant.HAS_LOGIN
 import com.showmethe.wanandroid.databinding.ActivityMainBinding
 import com.showmethe.wanandroid.offline
 import com.showmethe.wanandroid.ui.account.fragment.AccountFragment
+import com.showmethe.wanandroid.ui.auth.SplashActivity
 import com.showmethe.wanandroid.ui.home.fragment.HomeFragment
 import com.showmethe.wanandroid.ui.main.adapter.MainAdapter
 import com.showmethe.wanandroid.ui.main.vm.MainViewModel
@@ -28,6 +30,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import showmethe.github.core.base.AppManager
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.http.RetroHttp
 import showmethe.github.core.util.extras.SimpleAnimatorListener
@@ -77,6 +80,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
 
     override fun init(savedInstanceState: Bundle?) {
+
 
         colors.add(resources.getColorStateList(R.color.tab_color,null))
         colors.add(resources.getColorStateList(R.color.tab_color_1,null))
@@ -158,7 +162,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         }
 
         tvGalley.setOnClickListener {
-            startActivity<GalleyMainActivity>(null)
+           if(RDEN.get(HAS_LOGIN,false)){
+               startActivity<WelcomeActivity>()
+           }else{
+               startActivity<GalleyMainActivity>()
+           }
         }
 
     }

@@ -3,6 +3,7 @@ package com.showmethe.galley.database
 import android.content.Context
 import androidx.room.Room
 import com.showmethe.galley.database.dao.PhotoWallDao
+import com.showmethe.galley.database.dao.UserDataDao
 
 /**
  * Author: showMeThe
@@ -23,6 +24,10 @@ class DataSourceBuilder {
 
         fun getPhotoWall() : PhotoWallDao {
             return  creator.getPhotoDao()
+        }
+
+        fun getUser() : UserDataDao {
+            return  creator.getUserDao()
         }
 
     }

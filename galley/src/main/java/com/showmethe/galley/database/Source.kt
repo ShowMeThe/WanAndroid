@@ -22,7 +22,7 @@ class Source{
     private val userName =  ArrayList<String>()
     private val content = ArrayList<String>()
 
-    fun init(){
+    init{
         bannerSource.apply {
             add("http://image1.xyzs.com/upload/a6/1c/1450580015244844/20151224/145089874795426_0.jpg")
             add("http://image2.xyzs.com/upload/9f/f3/1449368181406009/20151209/144960051320867_0.jpg")

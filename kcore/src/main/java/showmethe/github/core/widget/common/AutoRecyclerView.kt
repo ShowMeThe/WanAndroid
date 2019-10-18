@@ -82,7 +82,7 @@ class AutoRecyclerView @JvmOverloads constructor(
         when (layoutManager) {
             is GridLayoutManager -> {
                 layoutManagerType = TYPE_GRID_LAYOUT
-                lastPosition = layoutManager.findLastVisibleItemPosition()
+                lastPosition = layoutManager.findLastCompletelyVisibleItemPosition()
             }
             is LinearLayoutManager -> {
                 layoutManagerType = TYPE_LINEAR_LAYOUT

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="Login"
+            type="com.showmethe.galley.ui.home.WelcomeActivity" />
+
+        <variable
+            name="Bean"
+            type="com.showmethe.galley.entity.LoginBean" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.WelcomeActivity">
+
+        <com.showmethe.galley.widget.ScrollRecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/px30dp"
+            android:orientation="vertical"
+            android:elevation="@dimen/px15dp"
+            android:layout_marginStart="@dimen/px150dp"
+            android:layout_marginEnd="@dimen/px150dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/shape_white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="@dimen/px20dp"
+                android:layout_marginStart="@dimen/px30dp"
+                android:layout_marginEnd="@dimen/px30dp"
+                android:textColorHint="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edName"
+                    android:hint="Account"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:text="@={Bean.account}"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/px43dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px110dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_margin="@dimen/px30dp"
+                android:textColorHint="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorAccent"
+                >
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edPassword"
+                    android:hint="Password"
+                    android:maxLines="1"
+                    android:text="@={Bean.password}"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/px43dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px110dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:text="LOGIN"
+                android:textColor="@color/white"
+                android:layout_margin="@dimen/px30dp"
+                android:textSize="@dimen/px43dp"
+                android:elevation="@dimen/px10dp"
+                android:background="@drawable/shape_rect_ff6e00"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px150dp"
+                android:onClick="@{Login::login}"
+                />
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+</layout>

@@ -8,6 +8,7 @@ import com.ken.materialwanandroid.entity.Empty
 import com.showmethe.wanandroid.ui.auth.repository.AuthRepository
 import showmethe.github.core.base.BaseViewModel
 import showmethe.github.core.base.InjectOwner
+import showmethe.github.core.base.vmpath.VMPath
 import showmethe.github.core.http.coroutines.Result
 
 
@@ -27,6 +28,7 @@ class AuthViewModel(application: Application) : BaseViewModel(application) {
     /**
      * 登录
      */
+    @VMPath("login")
     fun login(username:String,password:String){
         repository.login(username, password, auth)
     }
@@ -34,6 +36,7 @@ class AuthViewModel(application: Application) : BaseViewModel(application) {
     /**
      * 注册
      */
+    @VMPath("register")
     fun register(username:String,password:String){
         repository.register(username, password, register)
     }
