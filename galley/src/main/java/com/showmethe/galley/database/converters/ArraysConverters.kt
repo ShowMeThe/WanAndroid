@@ -1,5 +1,6 @@
 package com.example.database.source.converters
 
+import androidx.databinding.ObservableArrayList
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -12,14 +13,14 @@ import com.google.gson.reflect.TypeToken
 class ArraysConverters {
 
     @TypeConverter
-    fun stringToObject(value: String): ArrayList<String>{
-        val listType = object : TypeToken<ArrayList<String>>() {
+    fun stringToObject(value: String): ObservableArrayList<String>{
+        val listType = object : TypeToken<ObservableArrayList<String>>() {
         }.type
         return  Gson().fromJson(value, listType)
     }
 
     @TypeConverter
-    fun objectToString(list: ArrayList<String>): String {
+    fun objectToString(list: ObservableArrayList<String>): String {
         val gson = Gson()
         return gson.toJson(list)
     }

@@ -1,6 +1,7 @@
 package com.showmethe.galley.database.dto;
 
 
+import androidx.databinding.ObservableArrayList;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
@@ -16,7 +17,7 @@ public class PhotoWallDto {
     @PrimaryKey
     private int id = 0;
     private int selectPosition = 0;
-    private ArrayList<String> imageList;
+    private ObservableArrayList<String> imageList;
     private String  avatar = "";
     private String userName = "";
     protected boolean like = false;
@@ -37,11 +38,11 @@ public class PhotoWallDto {
         this.id = id;
     }
 
-    public ArrayList<String> getImageList() {
+    public ObservableArrayList<String> getImageList() {
         return imageList;
     }
 
-    public void setImageList(ArrayList<String> imageList) {
+    public void setImageList(ObservableArrayList<String> imageList) {
         this.imageList = imageList;
     }
 

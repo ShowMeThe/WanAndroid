@@ -3,6 +3,7 @@ package com.showmethe.wanandroid.ui.auth
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import androidx.databinding.ObservableArrayList
 
 import com.ken.materialwanandroid.ui.auth.vm.AuthViewModel
 import com.showmethe.galley.database.DataSourceBuilder
@@ -61,7 +62,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
     private val source by lazy {  Source.get() }
     private fun initData(){
         if(!RDEN.get(INIT_DATA,false)){
-            GlobalScope.launch {
+            GlobalScope.launch (Dispatchers.Main) {
                 source.init();
                 initPhotoWall()
 
@@ -73,7 +74,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
         val random = Random(System.currentTimeMillis())
         for(i in 0..random.nextInt(15,25)){
             val bean = PhotoWallDto()
-            val list = ArrayList<String>()
+            val list = ObservableArrayList<String>()
             for(a in 0..random.nextInt(1,5)){
                 list.add(source.getBanner()[(random.nextInt(0,28))])
             }

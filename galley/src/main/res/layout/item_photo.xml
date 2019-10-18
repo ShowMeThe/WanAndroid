@@ -36,19 +36,13 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent">
 				
-				<showmethe.github.core.widget.banner.Banner
-					android:id="@+id/banner"
-					android:transitionName="photo"
-					android:background="@color/color_212121"
+				<androidx.viewpager2.widget.ViewPager2
+					android:id="@+id/vp2"
+					android:orientation="horizontal"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					app:autoPlay="false"
-					app:showIndicator="false"
-					app:imageMaxHeight="@dimen/px1600dp"
-					app:imageMinHeight="@dimen/px800dp"
-					app:transformer="Parallax"
-					>
-				</showmethe.github.core.widget.banner.Banner>
+					android:transitionName="photo"
+					/>
 				
 				<TextView
 					android:id="@+id/tvSelect"
@@ -81,7 +75,7 @@
 		
 		<TextView
 			android:id="@+id/tvName"
-			android:text="@{bean.username}"
+			android:text="@{bean.userName}"
 			android:textSize="@dimen/px43dp"
 			android:textStyle="bold"
 			android:layout_alignTop="@+id/ivAvatar"

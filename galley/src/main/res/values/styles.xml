@@ -25,12 +25,21 @@
 		<item name="android:windowSharedElementExitTransition">@transition/change</item>
 		<item name="android:windowSharedElementReturnTransition">@transition/change</item>
 	</style>
-	
 
+
+	<!-- TranslucentTheme-->
+	<style name="TranslucentTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+		<item name="android:windowBackground">@color/transparent</item>
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowFullscreen">false</item>
+		<item name="android:colorBackgroundCacheHint">@null</item>
+		<item name="android:statusBarColor">@color/transparent</item>
+	</style>
 
 	
 	<!-- CardView-->
-	<style name="CutCardViewTheme" parent="MaterialTheme">
+	<style name="CutCardViewTheme" parent="MaterialDarkTheme">
 		<item name="materialCardViewStyle">@style/CutCardViewStyle</item>
 	</style>
 	

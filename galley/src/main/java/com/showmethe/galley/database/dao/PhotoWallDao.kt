@@ -1,6 +1,7 @@
 package com.showmethe.galley.database.dao
 
 import androidx.lifecycle.LiveData
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -11,6 +12,7 @@ import com.showmethe.galley.database.dto.PhotoWallDto
  * Update Time: 2019/10/18 14:28
  * Package Name:com.showmethe.galley.database.dao
  */
+@Dao
 interface PhotoWallDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

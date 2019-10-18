@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.showmethe.galley.R
 import com.showmethe.galley.database.dto.PhotoWallDto
 import com.showmethe.galley.databinding.FragmentPhotoBinding
+import com.showmethe.galley.ui.home.ImageShowActivity
 import com.showmethe.galley.ui.home.adapter.PhotoAdapter
+import com.showmethe.galley.ui.home.openImage
 import com.showmethe.galley.ui.home.vm.MainViewModel
 import kotlinx.android.synthetic.main.fragment_photo.*
 
@@ -22,7 +24,6 @@ import showmethe.github.core.divider.RecycleViewDivider
 
 
 class PhotoFragment : BaseFragment<FragmentPhotoBinding, MainViewModel>() {
-
 
 
     val list = ObservableArrayList<PhotoWallDto>()
@@ -35,7 +36,14 @@ class PhotoFragment : BaseFragment<FragmentPhotoBinding, MainViewModel>() {
 
     override fun observerUI() {
 
-
+        viewModel.bean.observe(this, Observer {
+            it?.apply {
+                smrl.showContent()
+                list.clear()
+                list.addAll(this)
+                refresh.isRefreshing = false;
+            }
+        })
 
     }
 
@@ -47,15 +55,19 @@ class PhotoFragment : BaseFragment<FragmentPhotoBinding, MainViewModel>() {
         adapter = PhotoAdapter(context,list)
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
-        rv.addItemDecoration(RecycleViewDivider(RecyclerView.VERTICAL,1,ContextCompat.getColor(context,R.color.colorPrimaryDark)))
+        rv.addItemDecoration(RecycleViewDivider(RecyclerView.HORIZONTAL,1,ContextCompat.getColor(context,R.color.color_ff6e00)))
         rv.hideWhenScrolling(refresh)
 
 
+        router.toTarget("getHomePhoto")
 
     }
 
     override fun initListener() {
 
+        adapter.setOnViewClickListener { view, url ->
+            context.openImage(url,view)
+        }
 
 
     }

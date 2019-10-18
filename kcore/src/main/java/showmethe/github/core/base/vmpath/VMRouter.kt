@@ -23,7 +23,7 @@ class VMRouter(private var viewModel: ViewModel) {
 
     fun toTarget(path: String,vararg args: Any?){
         if(callMap["${viewModel.javaClass.name}/${path}"] == null){
-            viewModel.viewModelScope.launch(Dispatchers.IO) {
+            viewModel.viewModelScope.launch(Dispatchers.Main) {
                 try {
                     kotlin.run breaking@{
                         viewModel::class.members.forEach { call->
@@ -35,14 +35,14 @@ class VMRouter(private var viewModel: ViewModel) {
                                     }else{
                                         call.call(viewModel)
                                     }
-                                    callMap["${viewModel.javaClass.name}/${this.path}"] = call
+                                    callMap["${viewModel.javaClass.name}/${path}"] = call
                                     return@breaking
                                 }
                             }
                         }
                     }
                 }catch (e:Exception){
-                    Log.e("ViewModel","Exception : ${e.message}")
+                    Log.e("ViewModel","Exception  : ${e.message}")
                 }
             }
         }else{
@@ -55,7 +55,7 @@ class VMRouter(private var viewModel: ViewModel) {
                     }
                 }
             }catch (e:Exception){
-                Log.e("ViewModel","Exception : ${e.message}")
+                Log.e("ViewModel","Exception  call : ${e.message}")
             }
         }
     }

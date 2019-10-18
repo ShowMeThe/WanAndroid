@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="bean"
+            type="String" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/iv"
+            noCrop = "@{bean}"
+            android:scaleType="fitXY"
+            android:transitionName="photo"
+            android:adjustViewBounds="true"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/px800dp"
+            android:maxHeight="@dimen/px2000dp"
+            />
+
+    </RelativeLayout>
+</layout>

@@ -6,9 +6,12 @@
         >
         <activity android:name=".ui.home.GalleyMainActivity"
             android:theme="@style/MaterialDarkTheme"
-            >
+          />
 
-        </activity>
+        <activity android:name=".ui.home.ImageShowActivity"
+            android:theme="@style/TranslucentTheme"
+            />
+
     </application>
 
 </manifest>

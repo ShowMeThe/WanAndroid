@@ -40,4 +40,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation project(":kcore")
+    kapt "androidx.room:room-compiler:${LibV.room}"
+    implementation "androidx.room:room-ktx:${LibV.room}"
+
 }
