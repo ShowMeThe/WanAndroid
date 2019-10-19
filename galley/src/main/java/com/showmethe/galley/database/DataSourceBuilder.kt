@@ -2,6 +2,7 @@ package com.showmethe.galley.database
 
 import android.content.Context
 import androidx.room.Room
+import com.showmethe.galley.database.dao.GoodsListDao
 import com.showmethe.galley.database.dao.PhotoWallDao
 import com.showmethe.galley.database.dao.UserDataDao
 
@@ -28,6 +29,10 @@ class DataSourceBuilder {
 
         fun getUser() : UserDataDao {
             return  creator.getUserDao()
+        }
+
+        fun getGoods() : GoodsListDao {
+            return  creator.getGoodsDao()
         }
 
     }

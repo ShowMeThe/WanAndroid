@@ -8,16 +8,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
-import com.showmethe.wanandroid.ui.home.adapter.SearchAdapter
 import com.ken.materialwanandroid.ui.home.vm.SearchViewModel
-
 import com.showmethe.wanandroid.R
 import com.showmethe.wanandroid.databinding.ActivitySearchBinding
 import com.showmethe.wanandroid.entity.HomeArticle
 import com.showmethe.wanandroid.entity.Search
+import com.showmethe.wanandroid.ui.home.adapter.SearchAdapter
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.include_main_title.*
+import kotlinx.android.synthetic.main.item_search_bar.*
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.http.coroutines.Result
 

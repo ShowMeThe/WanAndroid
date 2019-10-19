@@ -179,9 +179,9 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
         })
 
 
-        edSearch.setOnClickListener {
+        tvSearch.setOnClickListener {
             context. startActivity(null,
-                SearchActivity::class.java,android.util.Pair(edSearch,edSearch.transitionName))
+                SearchActivity::class.java,android.util.Pair(tvSearch,tvSearch.transitionName))
         }
 
 

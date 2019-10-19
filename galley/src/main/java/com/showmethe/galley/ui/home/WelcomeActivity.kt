@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.showmethe.galley.R
 import com.showmethe.galley.database.Source
+import com.showmethe.galley.databinding.ActivityWelcomeBinding
 import com.showmethe.galley.entity.LoginBean
 import com.showmethe.galley.ui.home.adapter.VerticalAdapter
 import com.showmethe.galley.ui.home.vm.MainViewModel
@@ -20,7 +21,7 @@ import showmethe.github.core.util.rden.RDEN
 import showmethe.github.core.util.widget.StatusBarUtil
 
 
-class WelcomeActivity : BaseActivity<ViewDataBinding,MainViewModel>() {
+class WelcomeActivity : BaseActivity<ActivityWelcomeBinding,MainViewModel>() {
 
 
     private val login = LoginBean()
@@ -44,6 +45,7 @@ class WelcomeActivity : BaseActivity<ViewDataBinding,MainViewModel>() {
                 if(this.password == login.password){
                     showToast("登录成功")
                     startActivity<GalleyMainActivity>()
+                    finishAfterTransition()
                 }else{
                     showToast("密码错误")
                 }
@@ -56,8 +58,12 @@ class WelcomeActivity : BaseActivity<ViewDataBinding,MainViewModel>() {
 
         initAdapter()
 
-
-
+        login.account = RDEN.get("ACCOUNT","")
+        binding?.apply {
+            bean = this@WelcomeActivity.login
+            login = this@WelcomeActivity
+            executePendingBindings()
+        }
 
 
     }

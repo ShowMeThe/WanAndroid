@@ -19,7 +19,7 @@
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/edSearch"
+        android:id="@+id/tvSearch"
         android:textSize="@dimen/px43dp"
         android:transitionName="search"
         android:textColor="@color/white"

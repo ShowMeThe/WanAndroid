@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:ap="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="Bean"
+            type="com.showmethe.galley.database.dto.GoodsListDto" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px30dp"
+        android:layout_marginStart="@dimen/px15dp"
+        android:layout_marginEnd="@dimen/px15dp"
+        android:layout_marginBottom="@dimen/px15dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="@dimen/px30dp"
+        app:rippleColor="@color/color_ffab91"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="@dimen/px14dp"
+        app:cardPreventCornerOverlap="true"
+        app:strokeColor="@color/colorPrimaryDark"
+        app:strokeWidth="@dimen/px2dp"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:transitionName="ivLogo"
+                crop="@{Bean.coverImg}"
+                android:scaleType="centerCrop"
+                android:background="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px700dp" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:transitionName="tvName"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:textSize="@dimen/px43dp"
+                android:maxLines="2"
+                android:text="@{Bean.goodsName}"
+                android:ellipsize="end"
+                android:layout_margin="@dimen/px30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvDes"
+                android:transitionName="tvDes"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/px43dp"
+                android:maxLines="2"
+                android:text="@{Bean.goodDes}"
+                android:ellipsize="end"
+                android:layout_margin="@dimen/px20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBuy"
+                android:transitionName="btnBuy"
+                android:layout_marginStart="@dimen/px30dp"
+                android:layout_marginEnd="@dimen/px30dp"
+                android:layout_marginTop="@dimen/px30dp"
+                android:layout_gravity="end"
+                android:textColor="@color/white"
+                android:text='@{`￥` + Bean.price}'
+                android:gravity="center"
+                android:padding="@dimen/px15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/px30dp"
+                android:elevation="@dimen/px15dp"
+                app:elevation="@dimen/px15dp"
+                app:icon="@mipmap/cart"
+                app:iconGravity="textStart"
+                app:iconTint="@color/white"
+                app:rippleColor="@color/color_ffab91"
+                app:cornerRadius="@dimen/px10dp"
+                app:backgroundTint="@color/color_ff6e00"
+                />
+
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+</layout>

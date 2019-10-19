@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+		<variable
+			name="photo"
+			type="com.showmethe.galley.ui.home.fragment.PhotoFragment" />
+	</data>
 	
 	<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:orientation="vertical"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		>
@@ -11,14 +16,7 @@
 		android:id="@+id/smrl"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
-		
-		<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-			android:id="@+id/refresh"
-			app:layout_dodgeInsetEdges="bottom"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content">
 
-		
 				
 				<showmethe.github.core.widget.common.AutoRecyclerView
 					android:id="@+id/rv"
@@ -29,9 +27,8 @@
 					android:fadingEdgeLength="@dimen/px20dp"
 					>
 				</showmethe.github.core.widget.common.AutoRecyclerView>
-			
-		</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-		
+
+
 		</showmethe.github.core.widget.common.SmartRelativeLayout>
 		
 	</androidx.coordinatorlayout.widget.CoordinatorLayout>

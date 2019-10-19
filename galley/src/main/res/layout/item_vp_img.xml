@@ -14,7 +14,7 @@
 
         <ImageView
             android:id="@+id/iv"
-            noCrop = "@{bean}"
+            noCropReveal = "@{bean}"
             android:scaleType="fitXY"
             android:transitionName="photo"
             android:adjustViewBounds="true"

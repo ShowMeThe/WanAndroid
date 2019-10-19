@@ -46,7 +46,7 @@ import kotlin.math.hypot
 abstract class BaseActivity<V : ViewDataBinding,VM : BaseViewModel> : AppCompatActivity() {
 
     lateinit var router : VMRouter
-    private val loadingDialog  =  lazy {  DialogLoading() }
+    private val loadingDialog  by  lazy {  DialogLoading() }
     var screenWidth = 0
     var screenHeight = 0
     lateinit var context: BaseActivity<*,*>
@@ -160,14 +160,15 @@ abstract class BaseActivity<V : ViewDataBinding,VM : BaseViewModel> : AppCompatA
     }
 
     fun showLoading(){
-        supportFragmentManager.executePendingTransactions()
-        if(!loadingDialog.value.isAdded){
-            loadingDialog.value.show(supportFragmentManager,"")
+        if(!loadingDialog.isAdded){
+            loadingDialog.show(supportFragmentManager,"")
         }
     }
 
     fun dismissLoading(){
-        loadingDialog.value.dismissAllowingStateLoss()
+        if(loadingDialog.isAdded){
+            loadingDialog.dismissAllowingStateLoss()
+        }
     }
 
     fun showToast(message : String){
@@ -344,9 +345,7 @@ abstract class BaseActivity<V : ViewDataBinding,VM : BaseViewModel> : AppCompatA
     override fun onDestroy() {
         super.onDestroy()
         AppManager.get().removeActivity(this)
-        if(loadingDialog.isInitialized()){
-            loadingDialog.value.dismiss()
-        }
+        dismissLoading()
         lifecycle.removeObserver(viewModel)
         LiveEventBus.get("LiveData", LiveBusHelper::class.java).removeObserver(observer)
         if(resultMap.isInitialized()){

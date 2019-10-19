@@ -121,7 +121,7 @@ dependencies {
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibV.lifecycle}"
     api "androidx.lifecycle:lifecycle-runtime-ktx:${LibV.lifecycle}"
     api "androidx.lifecycle:lifecycle-livedata-ktx:${LibV.lifecycle}"
-    api "com.jeremyliao:live-event-bus-x:1.5.1"
+    api "com.jeremyliao:live-event-bus-x:1.5.4"
 
 
     //zixing

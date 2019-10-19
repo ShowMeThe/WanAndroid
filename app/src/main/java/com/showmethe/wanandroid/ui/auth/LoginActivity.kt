@@ -138,6 +138,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
 
 
     private fun initAnim() {
+        rect.bindLifecyle(this)
         rect.stopAnim()
         rect.postDelayed({
             rect.background = null

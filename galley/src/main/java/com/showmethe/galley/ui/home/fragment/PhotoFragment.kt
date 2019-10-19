@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -41,7 +42,6 @@ class PhotoFragment : BaseFragment<FragmentPhotoBinding, MainViewModel>() {
                 smrl.showContent()
                 list.clear()
                 list.addAll(this)
-                refresh.isRefreshing = false;
             }
         })
 
@@ -49,19 +49,20 @@ class PhotoFragment : BaseFragment<FragmentPhotoBinding, MainViewModel>() {
 
 
     override fun init(savedInstanceState: Bundle?) {
-        refresh.setColorSchemeResources(R.color.colorPrimaryDark)
 
 
         adapter = PhotoAdapter(context,list)
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
         rv.addItemDecoration(RecycleViewDivider(RecyclerView.HORIZONTAL,1,ContextCompat.getColor(context,R.color.color_ff6e00)))
-        rv.hideWhenScrolling(refresh)
 
 
         router.toTarget("getHomePhoto")
 
     }
+
+    
+
 
     override fun initListener() {
 

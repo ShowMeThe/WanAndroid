@@ -9,6 +9,7 @@ import com.google.android.material.tabs.TabLayout
 import com.showmethe.galley.R
 import com.showmethe.galley.databinding.ActivityGalleyMainBinding
 import com.showmethe.galley.ui.home.fragment.PhotoFragment
+import com.showmethe.galley.ui.home.fragment.ShoppingFragment
 import com.showmethe.galley.ui.home.vm.MainViewModel
 import kotlinx.android.synthetic.main.activity_galley_main.*
 import showmethe.github.core.base.BaseActivity
@@ -70,6 +71,9 @@ class GalleyMainActivity : BaseActivity<ActivityGalleyMainBinding, MainViewModel
         when (position) {
             0 -> {
                 replaceFragment(PhotoFragment::class.java.name)
+            }
+            1 ->{
+                replaceFragment(ShoppingFragment::class.java.name)
             }
         }
     }

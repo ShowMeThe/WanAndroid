@@ -3,6 +3,8 @@ package com.showmethe.galley.database.dto;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * com.showmethe.galley.database.dto
  * 2019/10/18
@@ -12,18 +14,12 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "UserDto")
 public class UserDto {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id = 0;
+
+    @PrimaryKey
+    @NotNull
     private String userName =  "";
     private String  password =  "";
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUserName() {
         return userName;

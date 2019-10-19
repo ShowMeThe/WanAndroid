@@ -162,11 +162,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         }
 
         tvGalley.setOnClickListener {
-           if(RDEN.get(HAS_LOGIN,false)){
-               startActivity<WelcomeActivity>()
-           }else{
-               startActivity<GalleyMainActivity>()
-           }
+            startActivity<WelcomeActivity>()
         }
 
     }

@@ -4,6 +4,7 @@ import android.app.Application
 import android.service.autofill.UserData
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
+import com.showmethe.galley.database.dto.GoodsListDto
 import com.showmethe.galley.database.dto.PhotoWallDto
 import com.showmethe.galley.database.dto.UserDto
 import com.showmethe.galley.entity.LoginBean
@@ -25,6 +26,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     val user = MutableLiveData<UserDto>()
     val bean  = MutableLiveData<List<PhotoWallDto>>()
+    val goods = MutableLiveData<List<GoodsListDto>>()
 
     override fun onViewModelCreated(owner: LifecycleOwner) {
 
@@ -41,6 +43,11 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     @VMPath(path = "getUserByName")
     fun getUserByName(userName : String){
         repository.getUserByName(userName,user)
+    }
+
+    @VMPath(path = "findByPage")
+    fun findByPage(page : Int){
+        repository.findByPage(page,goods)
     }
 
 }
