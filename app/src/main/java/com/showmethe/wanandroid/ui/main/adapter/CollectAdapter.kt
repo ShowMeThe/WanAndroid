@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.item_collect.view.*
 import showmethe.github.core.adapter.slideAdapter.SlideAdapter
 import showmethe.github.core.adapter.slideAdapter.SlideViewHolder
 import showmethe.github.core.glide.TGlide
+import showmethe.github.core.glide.loadRevealNoCrop
+import showmethe.github.core.glide.loadScaleNoCrop
 
 
 class CollectAdapter(mContext: Context, mData: ObservableArrayList<Collect.DatasBean>) :
@@ -23,7 +25,7 @@ class CollectAdapter(mContext: Context, mData: ObservableArrayList<Collect.Datas
         holder.itemView.apply {
             if(item.envelopePic.isNotEmpty()){
                 ivLogo.visibility = View.VISIBLE
-                TGlide.loadRevealNoCrop(item.envelopePic,ivLogo)
+                ivLogo.loadRevealNoCrop(item.envelopePic)
             }else{
                 ivLogo.visibility = View.GONE
             }

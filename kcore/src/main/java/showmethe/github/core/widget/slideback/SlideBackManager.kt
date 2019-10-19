@@ -250,6 +250,7 @@ class SlideBackManager  constructor(activity: Activity) {
                         // 是从边缘开始滑动 且 抬起点的X轴坐标大于某值(默认3倍最大滑动长度) 且 回调不为空
                         if ((isSideSlideLeft || isSideSlideRight) && moveXLength / dragRate >= maxSlideLength && null != callBack) {
                             // 区分左右
+                            callBack?.invoke()
                             callBackWithState?.invoke(if (isSideSlideLeft) EDGE_LEFT else EDGE_RIGHT)
                         }
 

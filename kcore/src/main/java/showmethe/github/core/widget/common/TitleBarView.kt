@@ -333,7 +333,7 @@ class TitleBarView @JvmOverloads constructor(
             navButton?.layoutParams = lp
             addView(navButton)
         }
-        val size = dp2px(context,navIconSize.toFloat())
+        val size = dp2px(context, navIconSize).toInt()
         drawable.setBounds(0,0,size,size)
         navButton?.setImageDrawable(drawable)
         navButton?.layoutParams?.width  = size
