@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.showmethe.galley.database.DataSourceBuilder
 
 import showmethe.github.core.base.BaseApplication
+import showmethe.github.core.widget.slideback.SlideBackRegister
 
 
 /**
@@ -24,7 +25,7 @@ class WanApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
         DataSourceBuilder.build(this)
-
+        registerActivityLifecycleCallbacks(SlideBackRegister())
     }
 
 }

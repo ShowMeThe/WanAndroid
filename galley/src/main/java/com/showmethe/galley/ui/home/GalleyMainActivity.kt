@@ -14,7 +14,9 @@ import com.showmethe.galley.ui.home.vm.MainViewModel
 import kotlinx.android.synthetic.main.activity_galley_main.*
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.util.widget.StatusBarUtil
+import showmethe.github.core.widget.slideback.annotation.SlideBackBinder
 
+@SlideBackBinder
 class GalleyMainActivity : BaseActivity<ActivityGalleyMainBinding, MainViewModel>() {
 
 

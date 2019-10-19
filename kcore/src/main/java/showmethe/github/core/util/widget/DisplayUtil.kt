@@ -29,8 +29,8 @@ fun dip2px(context: Context, dipValue: Float): Int {
 }
 
 
-fun dp2px(context: Context, dipValue: Float): Int {
-    return (context.resources.displayMetrics.density * dipValue).roundToInt()
+fun dp2px(context: Context, dipValue: Float): Float {
+    return (context.resources.displayMetrics.density * dipValue)
 }
 
 

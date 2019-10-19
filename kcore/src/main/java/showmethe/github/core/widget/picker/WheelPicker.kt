@@ -258,11 +258,11 @@ class WheelPicker @JvmOverloads constructor(
 
         if (paint == null) {
             paint = Paint()
-            paint!!.isAntiAlias = true
-            paint!!.strokeWidth = dp2px(context, 0.3f).toFloat()
-            paint!!.style = Paint.Style.STROKE
+            paint?.isAntiAlias = true
+            paint?.strokeWidth = dp2px(context, 0.3f)
+            paint?.style = Paint.Style.STROKE
             val lg = LinearGradient(0f, 0f, 100f, 100f, lineStart, lineEnd, Shader.TileMode.MIRROR)
-            paint!!.shader = lg
+            paint?.shader = lg
         }
         canvas.drawLine(center.right.toFloat()/3,center.top.toFloat(),center.right.toFloat()*(2f/3f),center.top.toFloat(),paint!!)
         canvas.drawLine(center.right.toFloat()/3,center.bottom.toFloat(),center.right.toFloat()*(2f/3f),center.bottom.toFloat(),paint!!)

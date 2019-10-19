@@ -21,8 +21,9 @@ import showmethe.github.core.adapter.slideAdapter.SlideAdapter
 import showmethe.github.core.adapter.slideAdapter.SlideCreator
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.divider.RecycleViewDivider
+import showmethe.github.core.widget.slideback.annotation.SlideBackBinder
 
-
+@SlideBackBinder
 class CollectActivity : BaseActivity<ActivityCollectBinding, CollectViewModel>() {
 
     val refreshing = MutableLiveData<Boolean>()
