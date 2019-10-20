@@ -1,6 +1,7 @@
 package com.showmethe.wanandroid.ui.main
 
 import android.animation.Animator
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
@@ -199,6 +200,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             tvLogin.visibility = View.VISIBLE
             ivHead.visibility  = View.INVISIBLE
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_MAIN
+        intent.addCategory(Intent.CATEGORY_HOME)
+        startActivity(intent)
     }
 
 

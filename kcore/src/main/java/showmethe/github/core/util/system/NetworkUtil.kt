@@ -2,11 +2,14 @@ package showmethe.github.core.util.system
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.util.Log
 import androidx.work.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Retrofit
+import showmethe.github.core.http.RetroHttp
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.CoroutineContext
 
@@ -71,7 +74,10 @@ class Network{
     private fun startCheck(){
        if(requestTime%15 == 0){
            GlobalScope.launch(Dispatchers.IO){
-               pingIP(this.coroutineContext,"www.wanandroid.com")
+               pingIP(this.coroutineContext,RetroHttp.baseUrl
+                   .substringAfter("http://")
+                   .substringAfter("https://")
+                   .substringBefore("/"))
            }
        }
     }
@@ -82,6 +88,7 @@ class Network{
          try {
              val process = Runtime.getRuntime().exec("/system/bin/ping -c 1 -w 1 $address")
              val status = process.waitFor()
+             Log.e(NetworkWork::class.java.name,"ping for network for status =  ${status == 0}")
              Network.get().networkState = status == 0
              status == 0
          }catch (e : Exception){
