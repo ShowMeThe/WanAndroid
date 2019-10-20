@@ -36,6 +36,7 @@ fun startLocalForIp(context: Context){
     val constraints = Constraints.Builder()
         .setRequiresBatteryNotLow(true) // 非电池低电量
         .setRequiredNetworkType(NetworkType.CONNECTED) // 网络连接的情况
+        .setRequiresCharging(true) //充电时
         .setRequiresStorageNotLow(true) // 存储空间足
         .build()
     val workBuilder = PeriodicWorkRequest.Builder(NetworkWork::class.java,15L,TimeUnit.MINUTES,5,TimeUnit.SECONDS)
