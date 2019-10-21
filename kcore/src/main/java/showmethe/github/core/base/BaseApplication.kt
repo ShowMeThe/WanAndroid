@@ -38,8 +38,8 @@ open class BaseApplication : Application() {
             TGlide.init(this@BaseApplication)
             RetroHttp.get()
             RDEN.build(this@BaseApplication)
+            CrashHandler.get(this@BaseApplication)
         }
-        CrashHandler.get(this)
         registerActivityLifecycleCallbacks(object : SimpleLifecycleCallbacks(){
             override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
                 if(activity is AppCompatActivity){
