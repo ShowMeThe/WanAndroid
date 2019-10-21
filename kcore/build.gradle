@@ -124,9 +124,6 @@ dependencies {
     api "com.jeremyliao:live-event-bus-x:1.5.4"
 
 
-    //zixing
-    api 'com.google.zxing:core:3.4.0'
-
     //room
     api "androidx.room:room-runtime:${LibV.room}"
     kapt "androidx.room:room-compiler:${LibV.room}"
@@ -140,11 +137,5 @@ dependencies {
 
     //palette
     api 'androidx.palette:palette:1.0.0'
-
-    //camera
-    api 'androidx.camera:camera-core:1.0.0-alpha06'
-    api 'androidx.camera:camera-camera2:1.0.0-alpha06'
-    api "androidx.camera:camera-view:1.0.0-alpha03"
-    // If you to use Camera Extensions
-    api "androidx.camera:camera-extensions:1.0.0-alpha03"
+    
 }
