@@ -84,8 +84,6 @@ class RetroHttp  private constructor() : SessionObservable{
     companion object {
        var baseUrl = "https://www.wanandroid.com/"
 
-        //var baseUrl = "http://192.168.42.86:8081"
-
         private val CONNECT_TIMEOUT = 30
         private val READ_TIMEOUT = 30
         private val WRITE_TIMEOUT = 30
