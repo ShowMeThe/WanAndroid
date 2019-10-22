@@ -20,12 +20,12 @@ import java.io.*
 import java.util.HashMap
 
 /**
- * Author: showMeThe
- * Update Time: 2019/10/22 9:06
- * Package Name:showmethe.github.core.glide
- */
+ * showmethe.github.core.glide
+ *
+ * 2019/1/10
+ **/
 class TGlide private constructor(private var context: Context) {
-    private val requestManager  by lazy (mode = LazyThreadSafetyMode.SYNCHRONIZED){  GlideApp.with(context.applicationContext)}
+    private val requestManager : RequestManager = GlideApp.with(context.applicationContext)
     private var options = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
     private var transitionOptions = DrawableTransitionOptions()
         .crossFade()
