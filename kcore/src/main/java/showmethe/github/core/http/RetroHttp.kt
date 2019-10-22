@@ -24,12 +24,10 @@ import showmethe.github.core.http.interceptor.RequestLogInterceptor
 import showmethe.github.core.util.rden.RDEN
 
 /**
- *
- * Author : jiaqi Ye
- * Date : 2018/5/7
- * Time : 14:54
+ * Author: showMeThe
+ * Update Time: 2019/10/22 9:06
+ * Package Name:showmethe.github.core.http
  */
-
 class RetroHttp  private constructor() : SessionObservable{
 
     override fun notify(session: String) {
