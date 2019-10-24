@@ -71,5 +71,9 @@ class PhotoFragment : BaseFragment<FragmentPhotoBinding, MainViewModel>() {
         }
 
 
+        adapter.setOnLikeClickListener { id, like ->
+            router.toTarget("setPhotoLike",id,like)
+        }
+
     }
 }

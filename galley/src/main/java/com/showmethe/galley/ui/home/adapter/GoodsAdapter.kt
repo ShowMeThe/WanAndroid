@@ -45,8 +45,19 @@ class GoodsAdapter(context: Context, data: ObservableArrayList<GoodsListDto>) :
                 btnBuy.setBackgroundColor(item.vibrantColor)
             }
 
+            btnBuy.setOnClickListener {
+                onBuyClick?.invoke(item.id)
+            }
+
         }
+
     }
+
+    private var onBuyClick : ((id:Int)->Unit)? = null
+    fun  setOnBuyClickListener( onBuyClick  : ((id:Int)->Unit)){
+        this.onBuyClick  = onBuyClick
+    }
+
 
     override fun getItemLayout(): Int  = R.layout.item_goods_list
 

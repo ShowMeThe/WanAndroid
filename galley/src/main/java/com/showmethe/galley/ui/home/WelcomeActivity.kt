@@ -77,7 +77,6 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding,MainViewModel>() {
 
 
     fun login(view: View){
-        showLoading()
         router.toTarget("getUserByName",login.account)
     }
 

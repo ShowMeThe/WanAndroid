@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
     <shortcut
-        android:shortcutId="gotomain"
+        android:shortcutId="main"
         android:enabled="true"
         android:icon="@drawable/ic_store_black_18dp"
         android:shortcutShortLabel="@string/main"
@@ -10,14 +10,14 @@
 
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetPackage="com.ken.materialwanandroid"
+            android:targetPackage="com.showmethe.wanandroid"
             android:targetClass="com.showmethe.wanandroid.ui.main.MainActivity" />
 
     </shortcut>
 
 
     <shortcut
-        android:shortcutId="gotocollect"
+        android:shortcutId="collect"
         android:enabled="true"
         android:icon="@drawable/ic_turned_in_black_18dp"
         android:shortcutShortLabel="@string/collect"
@@ -26,13 +26,13 @@
 
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetPackage="com.ken.materialwanandroid"
+            android:targetPackage="com.showmethe.wanandroid"
             android:targetClass="com.showmethe.wanandroid.ui.main.CollectActivity" />
 
     </shortcut>
 
     <shortcut
-        android:shortcutId="gotoArticle"
+        android:shortcutId="article"
         android:enabled="true"
         android:icon="@drawable/ic_track_changes_black_18dp"
         android:shortcutShortLabel="@string/article"
@@ -41,7 +41,7 @@
 
         <intent
             android:action="GoToArticle"
-            android:targetPackage="com.ken.materialwanandroid"
+            android:targetPackage="com.showmethe.wanandroid"
             android:targetClass="com.showmethe.wanandroid.ui.main.MainActivity" />
 
     </shortcut>

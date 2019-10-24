@@ -9,6 +9,7 @@ import com.showmethe.galley.database.dto.GoodsListDto
 import com.showmethe.galley.database.dto.PhotoWallDto
 import com.showmethe.galley.database.dto.UserDto
 import showmethe.github.core.base.BaseRepository
+import java.sql.RowId
 
 /**
  * Author: showMeThe
@@ -30,8 +31,16 @@ class MainRepository : BaseRepository() {
         })
     }
 
+
+    fun setPhotoLike(id: Int,like:Boolean){
+        photoDao.setIdLike(id,like)
+    }
+
+
     fun getUserByName(userName : String,bean : MutableLiveData<UserDto>){
+        showLoading()
         userDao.getUserByName(userName).observe(owner!!, Observer {
+            dismissLoading()
             if(it == null){
                 showToast("请在WanAndroid端登录一次")
             }else{

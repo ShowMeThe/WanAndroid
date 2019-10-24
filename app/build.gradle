@@ -18,7 +18,7 @@ android {
     compileSdkVersion Versions.compileSdkVersion
     buildToolsVersion Versions.buildToolsVersion
     defaultConfig {
-        applicationId "com.showMeThe.wanAndroid"
+        applicationId "com.showmethe.wanandroid"
         minSdkVersion Versions.minSdkVersion
         targetSdkVersion Versions.targetSdkVersion
         versionCode 2

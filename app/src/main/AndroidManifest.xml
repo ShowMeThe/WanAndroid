@@ -49,6 +49,7 @@
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/short_cut" />
+
         </activity>
         <activity
             android:name="com.showmethe.wanandroid.ui.main.MainActivity"

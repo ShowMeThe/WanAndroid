@@ -38,6 +38,14 @@ class PhotoAdapter(context: Context, data: ObservableArrayList<PhotoWallDto>) :
                     holder.list.clear()
                     holder.list.addAll(item.imageList)
                 }
+
+                like.setLike(item.isLike,false)
+                like.setOnClickListener {
+                    item.isLike = !item.isLike
+                    like.setLike(item.isLike,true)
+                    onPhotoLike?.invoke(item.id,item.isLike)
+                }
+
                 vp2.adapter = adapter
                 vp2.setCurrentItem(item.selectPosition,true)
                 tvSelect.text = "${item.selectPosition + 1}/${item.imageList.size}"
@@ -56,6 +64,12 @@ class PhotoAdapter(context: Context, data: ObservableArrayList<PhotoWallDto>) :
 
         }
     }
+
+    private var onPhotoLike :((id : Int,like:Boolean)->Unit)? = null
+    fun setOnPhotoLikeListener(onPhotoLike :((id : Int,like:Boolean)->Unit)){
+        this.onPhotoLike = onPhotoLike
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = DataBindingUtil.bind<ItemPhotoBinding>(inflateItemView(parent,R.layout.item_photo))

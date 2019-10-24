@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">MaterialWanAndroid</string>
+    <string name="app_name">WanAndroid</string>
     <string name="author">作者</string>
     <string name="main">主页</string>
     <string name="collect">收藏</string>
     <string name="article">文章</string>
+    <string name="packageName">com.showmethe.wanandroid</string>
 </resources>

@@ -32,7 +32,10 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     }
 
-
+    @VMPath(path = "setPhotoLike")
+    fun setPhotoLike(id: Int,like:Boolean){
+        repository.setPhotoLike(id,like)
+    }
 
     @VMPath(path = "getHomePhoto")
     fun getHomePhoto(){
