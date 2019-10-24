@@ -39,6 +39,9 @@ class MainRepository  : BaseRepository() {
         CallResult<HomeArticle>(owner)
             .success { result, message ->
                 call.value = result
+            }.outTime {
+                //增加一处超时
+                call.value = it
             }.hold {
                 api.getHomeArticle(pager)
             }

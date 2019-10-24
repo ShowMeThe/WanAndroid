@@ -30,6 +30,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.include_main_title.*
 import showmethe.github.core.base.LazyFragment
 import showmethe.github.core.glide.TGlide
+import showmethe.github.core.http.coroutines.Result.Companion.OutTime
 import showmethe.github.core.http.coroutines.Result.Companion.Success
 import showmethe.github.core.livebus.LiveBusHelper
 import showmethe.github.core.util.widget.StatusBarUtil
@@ -75,13 +76,21 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
 
         viewModel.article.observe(this, Observer {
             it?.apply {
-                response?.apply {
-                    if(pagerNumber.value!! == 1){
-                        list.clear()
+                when(status){
+                    Success ->{
+                        response?.apply {
+                            if(pagerNumber.value!! == 1){
+                                list.clear()
+                            }
+                            this.datas?.apply {
+                                list.addAll(this)
+                                onLoadSize(size)
+                            }
+                        }
                     }
-                    this.datas?.apply {
-                        list.addAll(this)
-                        onLoadSize(size)
+                    OutTime-> {  //增加一处超时
+                        rv.finishLoading()
+                        refreshing.value = false
                     }
                 }
             }
