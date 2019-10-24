@@ -63,7 +63,11 @@ ___
   图片加载采用: Glide  
   消息总线采用了：live-event-bus github：https://github.com/JeremyLiao/LiveEventBus  
   使用到了SlideBack的返回动画,fork后我进行进修改,原项目github:https://github.com/ParfoisMeng/SlideBack  
-  其中照片墙部分不属于玩安卓的内容，是我本人自行加上，属于本地内容，利用Room数据库完成基本的数据获取。 
+  其中照片墙部分不属于玩安卓的内容，是我本人自行加上，属于本地内容，利用Room数据库完成基本的数据获取。
+  #### 超时处理
+  首页的文章图片新增了超时处理的代码，但由于有缓冲和wanandroid Api反应快，效果不明显，测试起来比较麻烦，直接看日志或者打断点比较好校验，
+  也可以自己在电脑起一个接口，设置等待时长来测试。至于网络不好，超时后重新提交的设计暂时不加入。不过这个功能在传统的Rxjava2+Retrofit实现起来很方便的。
+ 
   
    
     
