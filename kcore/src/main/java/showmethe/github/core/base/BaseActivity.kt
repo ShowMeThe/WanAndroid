@@ -46,7 +46,7 @@ import kotlin.math.hypot
 abstract class BaseActivity<V : ViewDataBinding,VM : BaseViewModel> : AppCompatActivity() {
 
     lateinit var router : VMRouter
-    private val loadingDialog  by  lazy {  DialogLoading() }
+    private val loadingDialog = DialogLoading()
     var screenWidth = 0
     var screenHeight = 0
     lateinit var context: BaseActivity<*,*>

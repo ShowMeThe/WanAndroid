@@ -1,6 +1,7 @@
 package com.showmethe.wanandroid.ui.main.adapter
 
 import android.content.Context
+import android.util.Log
 import androidx.databinding.ObservableArrayList
 
 
@@ -18,7 +19,8 @@ class ImageViewAdapter(context: Context, data: ObservableArrayList<String>) :
     override fun bindItems(binding: ItemImageViewBinding?, item: String, position: Int) {
         binding?.apply {
             bean = item
-            
+            executePendingBindings()
+
 
             image.setOnExitListener { view, translateX, translateY, w, h ->
                 onFinish?.invoke()

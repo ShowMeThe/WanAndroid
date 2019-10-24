@@ -48,7 +48,7 @@ class ImageShowActivity : BaseActivity<ViewDataBinding, MainViewModel>() {
     private lateinit var adapter: ImageViewAdapter
     private val list = ObservableArrayList<String>()
 
-    override fun getViewId(): Int = R.layout.activity_image
+    override fun getViewId(): Int = R.layout.activity_image_show
     override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
 
     override fun onBundle(bundle: Bundle) {

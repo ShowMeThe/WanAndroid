@@ -25,7 +25,7 @@ import java.util.HashMap
  * 2019/1/10
  **/
 class TGlide private constructor(private var context: Context) {
-    private var requestManager : RequestManager = GlideApp.with(context.applicationContext)
+    private val requestManager : RequestManager = GlideApp.with(context.applicationContext)
     private var options = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
     private var transitionOptions = DrawableTransitionOptions()
         .crossFade()
@@ -40,9 +40,7 @@ class TGlide private constructor(private var context: Context) {
         private lateinit var INSTANT: TGlide
 
         fun init(context: Context) {
-            synchronized(TGlide::class) {
-                INSTANT = TGlide(context)
-            }
+            INSTANT = TGlide(context)
         }
 
 

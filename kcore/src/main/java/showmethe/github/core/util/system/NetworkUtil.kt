@@ -52,7 +52,10 @@ class  NetworkWork(context: Context, workerParams: WorkerParameters) :
     Worker(context, workerParams) {
     override fun doWork(): Result {
         GlobalScope.launch(Dispatchers.IO){
-            pingIP(this.coroutineContext,"www.wanandroid.com")
+            pingIP(this.coroutineContext,RetroHttp.baseUrl
+                .substringAfter("http://")
+                .substringAfter("https://")
+                .substringBefore("/"))
         }
         return Result.success()
     }
@@ -60,7 +63,7 @@ class  NetworkWork(context: Context, workerParams: WorkerParameters) :
 
 class Network{
     var networkState = true
-    private var requestTime = 0
+    private var requestTime = 1
     companion object{
         private val instant : Network by lazy { Network() }
         fun get() = instant
