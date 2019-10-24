@@ -195,7 +195,7 @@ private constructor() : Thread.UncaughtExceptionHandler {
                 infos["android version"] = Build.VERSION.RELEASE
                 infos["phoneType"] = Build.BRAND + "  " + Build.MODEL
             }
-        } catch (e: PackageManager.NameNotFoundException) {
+        } catch (e: Exception) {
             Log.e(TAG, "an error occured when collect package info", e)
         }
 
