@@ -7,6 +7,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.core.view.ViewCompat
 import androidx.core.view.ViewPropertyAnimatorListener
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
@@ -17,59 +18,56 @@ import android.view.animation.LinearInterpolator
  * Package Name:showmethe.github.core.util.widget
  */
 
-class ScrollAwareFABBehavior(context: Context, attrs: AttributeSet) : FloatingActionButton.Behavior() {
+class ScrollAwareFABBehavior(context: Context, attrs: AttributeSet) :
+    ScrollAwareFab(context, attrs) {
     private var mIsAnimatingOut = false
 
-
-    override fun onStartNestedScroll(
-        coordinatorLayout: CoordinatorLayout,
-        child: FloatingActionButton,
-        directTargetChild: View,
-        target: View,
-        axes: Int,
-        type: Int
-    ): Boolean {
-        return axes == ViewCompat.SCROLL_AXIS_VERTICAL || super.onStartNestedScroll(
-            coordinatorLayout,
-            child,
-            directTargetChild,
-            target,
-            axes,
-            type
-        )
-    }
-
-    override fun onNestedScroll(
+    override fun onScrollDown(
         coordinatorLayout: CoordinatorLayout,
         child: FloatingActionButton,
         target: View,
         dxConsumed: Int,
         dyConsumed: Int,
         dxUnconsumed: Int,
-        dyUnconsumed: Int,
-        type: Int,
-        consumed: IntArray
+        dyUnconsumed: Int
     ) {
-        super.onNestedScroll(
+        super.onScrollDown(
             coordinatorLayout,
             child,
             target,
             dxConsumed,
             dyConsumed,
             dxUnconsumed,
-            dyUnconsumed,
-            type,
-            consumed
+            dyUnconsumed
         )
-        if (dyConsumed > 0 && !this.mIsAnimatingOut && child.visibility == View.VISIBLE) {
-            // User scrolled down and the FAB is currently visible -> hide the FAB
+        if(!mIsAnimatingOut  && child.visibility == View.VISIBLE){
             animateOut(child)
-        } else if (dyConsumed < 0 && child.visibility == View.INVISIBLE) {
-            // User scrolled up and the FAB is currently not visible -> show the FAB
+        }
+    }
 
+
+    override fun onScrollUp(
+        coordinatorLayout: CoordinatorLayout,
+        child: FloatingActionButton,
+        target: View,
+        dxConsumed: Int,
+        dyConsumed: Int,
+        dxUnconsumed: Int,
+        dyUnconsumed: Int
+    ) {
+        super.onScrollUp(
+            coordinatorLayout,
+            child,
+            target,
+            dxConsumed,
+            dyConsumed,
+            dxUnconsumed,
+            dyUnconsumed
+        )
+
+        if(child.visibility == View.INVISIBLE){
             animateIn(child)
         }
-
     }
 
 

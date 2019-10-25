@@ -14,15 +14,14 @@
 
         <ImageView
             android:id="@+id/iv"
-            noCropReveal = "@{bean}"
             android:scaleType="fitXY"
+            noCrop="@{bean}"
             android:transitionName="photo"
             android:adjustViewBounds="true"
             android:layout_centerInParent="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/px800dp"
-            android:maxHeight="@dimen/px2000dp"
+            android:minHeight="@dimen/px1200dp"
             />
 
     </RelativeLayout>

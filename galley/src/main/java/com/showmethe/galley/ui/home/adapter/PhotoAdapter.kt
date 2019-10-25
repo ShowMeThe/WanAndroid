@@ -47,7 +47,7 @@ class PhotoAdapter(context: Context, data: ObservableArrayList<PhotoWallDto>) :
                 }
 
                 vp2.adapter = adapter
-                vp2.setCurrentItem(item.selectPosition,true)
+                vp2.setCurrentItem(item.selectPosition,false)
                 tvSelect.text = "${item.selectPosition + 1}/${item.imageList.size}"
                 vp2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
                     override fun onPageSelected(position: Int) {

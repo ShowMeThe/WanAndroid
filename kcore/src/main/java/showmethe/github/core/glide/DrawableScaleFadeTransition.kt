@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.TransitionDrawable
 import android.view.View
 import android.view.ViewAnimationUtils
+import android.view.ViewPropertyAnimator
 
 import com.bumptech.glide.request.transition.Transition
 
@@ -32,21 +33,26 @@ class DrawableScaleFadeTransition(
         transitionDrawable.startTransition(duration)
         adapter.setDrawable(transitionDrawable)
         val view = adapter.view
-        if (view.visibility == View.VISIBLE && view.isAttachedToWindow && isReveal) {
-            val maxRadius = Math.max(view.height, view.width)
-            val animation = ViewAnimationUtils.createCircularReveal(
-                view,
-                transitionDrawable.intrinsicWidth / 2,
-                transitionDrawable.intrinsicHeight / 2,
-                0f,
-                maxRadius.toFloat()
-            )
-            animation.duration = duration.toLong()
-            animation.start()
+        if (view.visibility == View.VISIBLE && view.isAttachedToWindow ) {
+            if(isReveal){
+                val maxRadius = view.height.coerceAtLeast(view.width)
+                val animation = ViewAnimationUtils.createCircularReveal(
+                    view,
+                    transitionDrawable.intrinsicWidth / 2,
+                    transitionDrawable.intrinsicHeight / 2,
+                    0f,
+                    maxRadius.toFloat()
+                )
+                animation.duration = duration.toLong()
+                animation.start()
+            }
+            view.scaleX = 1.2f
+            view.scaleY = 1.2f
+            view.animate().scaleX(1.0f).scaleY(1.0f).setDuration(duration.toLong()).start()
+        }else{
+            view.scaleX = 1.0f
+            view.scaleY = 1.0f
         }
-        view.scaleX = 1.2f
-        view.scaleY = 1.2f
-        view.animate().scaleX(1.0f).scaleY(1.0f).setDuration(duration.toLong()).start()
         return true
     }
 }

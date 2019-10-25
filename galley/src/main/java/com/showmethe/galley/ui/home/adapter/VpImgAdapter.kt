@@ -4,7 +4,11 @@ import android.content.Context
 import androidx.databinding.ObservableArrayList
 import com.showmethe.galley.R
 import com.showmethe.galley.databinding.ItemVpImgBinding
+import okhttp3.internal.toHexString
+import okhttp3.internal.wait
 import showmethe.github.core.adapter.DataBindBaseAdapter
+import showmethe.github.core.glide.TGlide
+import showmethe.github.core.util.match.isEqual
 
 /**
  * Author: showMeThe
@@ -17,7 +21,7 @@ class VpImgAdapter(context: Context, data: ObservableArrayList<String>) :
 
     override fun bindItems(binding: ItemVpImgBinding?, item: String, position: Int) {
         binding?.apply {
-            bean = item
+             bean = item
             executePendingBindings()
         }
     }

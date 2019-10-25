@@ -26,39 +26,34 @@
 			app:cardCornerRadius="@dimen/px35dp"
 			app:cardPreventCornerOverlap="true"
 			app:cardElevation="@dimen/px5dp"
-			app:cardBackgroundColor="@color/white"
+			app:cardBackgroundColor="@color/black"
 			app:rippleColor="@color/colorPrimaryDark"
 			app:strokeColor="@color/color_7986cb"
 			app:strokeWidth="@dimen/px1dp"
 			>
-			
-			<RelativeLayout
+
+			<androidx.viewpager2.widget.ViewPager2
+				android:id="@+id/vp2"
+				android:orientation="horizontal"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent">
-				
-				<androidx.viewpager2.widget.ViewPager2
-					android:id="@+id/vp2"
-					android:orientation="horizontal"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:transitionName="photo"
-					/>
-				
-				<TextView
-					android:id="@+id/tvSelect"
-					android:textColor="@color/white"
-					android:textSize="@dimen/px43dp"
-					android:gravity="center"
-					android:textStyle="italic|bold"
-					android:layout_alignParentEnd="true"
-					android:layout_marginTop="@dimen/px30dp"
-					android:layout_marginEnd="@dimen/px30dp"
-					android:background="@drawable/shape_rect_white__85"
-					android:layout_width="@dimen/px120dp"
-					android:layout_height="@dimen/px70dp" />
+				android:layout_height="wrap_content"
+				android:transitionName="photo"
+				/>
+
+			<TextView
+				android:id="@+id/tvSelect"
+				android:textColor="@color/white"
+				android:textSize="@dimen/px43dp"
+				android:gravity="center"
+				android:layout_gravity="end"
+				android:textStyle="italic|bold"
+				android:layout_alignParentEnd="true"
+				android:layout_marginTop="@dimen/px30dp"
+				android:layout_marginEnd="@dimen/px30dp"
+				android:background="@drawable/shape_rect_white__85"
+				android:layout_width="@dimen/px120dp"
+				android:layout_height="@dimen/px70dp" />
 			
-				
-			</RelativeLayout>
 		</com.google.android.material.card.MaterialCardView>
 		
 		

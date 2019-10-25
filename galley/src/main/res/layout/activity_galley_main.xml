@@ -74,7 +74,7 @@
                 android:layout_height="@dimen/px130dp"
                 app:backgroundTint="@color/colorPrimary"
                 app:fabCradleMargin="@dimen/px13dp"
-                app:fabAlignmentMode="end"
+                app:fabAlignmentMode="center"
                 app:hideOnScroll="true"
                 >
             </com.google.android.material.bottomappbar.BottomAppBar>
