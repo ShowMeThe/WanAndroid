@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"/>
 
 
-                <showmethe.github.core.widget.common.ProgressImageView
+                <ImageView
                     android:id="@+id/ivLogo"
                     android:layout_marginTop="@dimen/px20dp"
                     android:layout_alignStart="@+id/tvAuthor"

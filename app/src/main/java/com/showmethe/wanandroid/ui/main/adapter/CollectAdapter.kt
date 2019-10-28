@@ -25,8 +25,7 @@ class CollectAdapter(mContext: Context, mData: ObservableArrayList<Collect.Datas
         holder.itemView.apply {
             if(item.envelopePic.isNotEmpty()){
                 ivLogo.visibility = View.VISIBLE
-               // ivLogo.loadRevealNoCrop(item.envelopePic)
-                TGlide.loadProgress(item.envelopePic,ivLogo)
+                ivLogo.loadRevealNoCrop(item.envelopePic)
             }else{
                 ivLogo.visibility = View.GONE
             }
