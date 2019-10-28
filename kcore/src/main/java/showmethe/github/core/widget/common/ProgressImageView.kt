@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.widget.ImageView
 
 import android.graphics.*
+import showmethe.github.core.photoview.PhotoView
 
 /**
  * Author: showMeThe
@@ -14,7 +15,7 @@ import android.graphics.*
  */
 class ProgressImageView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : ImageView(context, attrs, defStyleAttr) {
+) : PhotoView(context, attrs, defStyleAttr) {
 
     private val proPaint = Paint()
     private val bgPaint = Paint()
