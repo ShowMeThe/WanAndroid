@@ -16,6 +16,7 @@ import com.bumptech.glide.request.transition.Transition
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import showmethe.github.core.widget.common.ProgressImageView
 import java.io.*
 import java.util.HashMap
 
@@ -164,6 +165,19 @@ class TGlide private constructor(private var context: Context) {
             }
         }
 
+        fun loadProgress(url:String,imageView:ProgressImageView){
+            INSTANT.apply {
+                requestManager
+                    .load(url)
+                    .transition(transitionOptions)
+                    .into(imageView)
+                ProgressInterceptor.get().addListener(url,object : ProgressListener{
+                    override fun onProgress(progress: Float) {
+                        imageView.setPercentage(progress)
+                    }
+                })
+           }
+        }
 
         fun loadFile(url: String, imageView: ImageView) {
             INSTANT.apply {

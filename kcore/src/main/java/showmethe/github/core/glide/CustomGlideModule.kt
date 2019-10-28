@@ -10,6 +10,7 @@ import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory
 import com.bumptech.glide.load.engine.cache.LruResourceCache
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.module.AppGlideModule
+import okhttp3.OkHttpClient
 import java.io.InputStream
 
 /**
@@ -21,13 +22,17 @@ import java.io.InputStream
 class CustomGlideModule : AppGlideModule() {
 
     override fun applyOptions(context: Context, builder: GlideBuilder) {
-        val diskCacheSizeBytes = 1024 * 1024 * 300 // 300 MB
+        val diskCacheSizeBytes = 1024 * 1024 * 500 // 500 MB
         builder.setMemoryCache(LruResourceCache(diskCacheSizeBytes.toLong()))
         builder.setDiskCache(InternalCacheDiskCacheFactory(context, diskCacheSizeBytes.toLong()))
     }
 
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
-        registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpUrlLoader.Factory())
+       // registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpUrlLoader.Factory())
+        val okHttpClient = OkHttpClient.Builder()
+            .addInterceptor(ProgressInterceptor())
+            .build()
+        registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpLoader.Factory(okHttpClient))
     }
 
     override fun isManifestParsingEnabled(): Boolean {
