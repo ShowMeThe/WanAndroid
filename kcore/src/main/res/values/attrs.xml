@@ -60,7 +60,9 @@
         <item name="android:textSize">@dimen/px43dp</item>
     </style>
 
-
+    <declare-styleable name="ProgressImageView">
+        <attr name="zoomable" format="boolean"/>
+    </declare-styleable>
 
     <declare-styleable name="RectScaleAnim">
         <attr name="rectWidth" format="dimension"/>

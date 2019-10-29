@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.widget.ImageView
 
 import android.graphics.*
+import showmethe.github.core.R
 import showmethe.github.core.photoview.PhotoView
 
 /**
@@ -14,7 +15,7 @@ import showmethe.github.core.photoview.PhotoView
  * Package Name:showmethe.github.core.widget.common
  */
 class ProgressImageView @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+        context: Context, var attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : PhotoView(context, attrs, defStyleAttr) {
 
     private val proPaint = Paint()
@@ -41,8 +42,18 @@ class ProgressImageView @JvmOverloads constructor(
         circlePaint.color = Color.WHITE
         circlePaint.style = Paint.Style.STROKE
         circlePaint.alpha = (255 * 0.8f).toInt()
+
+        initAttr()
     }
 
+
+    private fun initAttr(){
+        val array = context.obtainStyledAttributes(attrs, R.styleable.ProgressImageView)
+        val zoomable = array.getBoolean(R.styleable.ProgressImageView_zoomable,false)
+        array.recycle()
+
+        isZoomable = zoomable
+    }
 
 
     override fun draw(canvas: Canvas) {
