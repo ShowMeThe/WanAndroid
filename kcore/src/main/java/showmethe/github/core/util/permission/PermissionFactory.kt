@@ -43,19 +43,22 @@ class PermissionFactory : DefaultLifecycleObserver{
     fun requestAll(){
         weakReference?.get()?.apply  {
             lifecycle.addObserver(this@PermissionFactory)
-            this::class.members.forEach { call ->
-                val annotation = call.findAnnotation<RequestPermission>()
-                annotation?.apply {
-                    this.permissions.forEach {
-                        targetCall = call
-                        if (checkSelfPermission(it) != PackageManager.PERMISSION_GRANTED) {
-                            requestPermission.add(it)
+            kotlin.run breaking@{
+                this::class.members.forEach { call ->
+                    val annotation = call.findAnnotation<RequestPermission>()
+                    annotation?.apply {
+                        this.permissions.forEach {
+                            targetCall = call
+                            if (checkSelfPermission(it) != PackageManager.PERMISSION_GRANTED) {
+                                requestPermission.add(it)
+                            }
                         }
-                    }
-                    if (requestPermission.isNotEmpty()) {
-                        invoke(requestPermission)
-                    }else{
-                        invokeResult(true)
+                        if (requestPermission.isNotEmpty()) {
+                            invoke(requestPermission)
+                        }else{
+                            invokeResult(true)
+                        }
+                        return@breaking
                     }
                 }
             }
