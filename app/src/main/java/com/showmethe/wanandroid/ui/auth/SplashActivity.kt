@@ -4,6 +4,7 @@ package com.showmethe.wanandroid.ui.auth
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.core.content.PermissionChecker
 import androidx.databinding.ObservableArrayList
 
@@ -62,13 +63,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
 
 
     @RequestPermission(permissions = [
-        android.Manifest.permission.CAMERA,
-        android.Manifest.permission.RECORD_AUDIO])
+        android.Manifest.permission.CAMERA])
     private fun checkPermission(result: Boolean){
         initData()
-        if(result){
-            startToMain()
-        }
+        startToMain()
     }
 
 
