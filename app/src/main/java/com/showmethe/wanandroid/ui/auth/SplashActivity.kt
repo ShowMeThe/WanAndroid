@@ -2,7 +2,9 @@ package com.showmethe.wanandroid.ui.auth
 
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import androidx.core.content.PermissionChecker
 import androidx.databinding.ObservableArrayList
 
 import com.ken.materialwanandroid.ui.auth.vm.AuthViewModel
@@ -25,7 +27,11 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.util.extras.double2Decimal
+import showmethe.github.core.util.permission.PermissionFactory
+import showmethe.github.core.util.permission.RequestPermission
 import showmethe.github.core.util.rden.RDEN
+import java.security.Permission
+import java.util.jar.Manifest
 import kotlin.random.Random
 
 
@@ -46,10 +52,23 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
     override fun observerUI() {
     }
 
+
     @SuppressLint("CheckResult")
     override fun init(savedInstanceState: Bundle?) {
+
+         PermissionFactory.with(this).requestAll()
+
+    }
+
+
+    @RequestPermission(permissions = [
+        android.Manifest.permission.CAMERA,
+        android.Manifest.permission.RECORD_AUDIO])
+    private fun checkPermission(result: Boolean){
         initData()
-        startToMain()
+        if(result){
+            startToMain()
+        }
     }
 
 
