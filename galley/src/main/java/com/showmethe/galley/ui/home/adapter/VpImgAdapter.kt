@@ -21,8 +21,8 @@ class VpImgAdapter(context: Context, data: ObservableArrayList<String>) :
 
     override fun bindItems(binding: ItemVpImgBinding?, item: String, position: Int) {
         binding?.apply {
-             bean = item
-           // TGlide.loadProgress(item,iv)
+            // bean = item
+            TGlide.loadProgress(item,iv)
             executePendingBindings()
         }
     }

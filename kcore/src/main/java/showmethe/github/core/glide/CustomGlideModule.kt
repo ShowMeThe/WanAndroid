@@ -28,11 +28,11 @@ class CustomGlideModule : AppGlideModule() {
     }
 
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
-       registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpUrlLoader.Factory())
-       /* val okHttpClient = OkHttpClient.Builder()
+       //registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpUrlLoader.Factory())
+        val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(ProgressInterceptor())
             .build()
-        registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpLoader.Factory(okHttpClient))*/
+        registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpLoader.Factory(okHttpClient))
     }
 
     override fun isManifestParsingEnabled(): Boolean {

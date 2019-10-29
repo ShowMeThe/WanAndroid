@@ -19,6 +19,7 @@ class ProgressImageView @JvmOverloads constructor(
 
     private val proPaint = Paint()
     private val bgPaint = Paint()
+    private val circlePaint = Paint()
     private var  progressPercent = 0f
     private var  radius  = 0f
     private val rect = RectF()
@@ -29,11 +30,17 @@ class ProgressImageView @JvmOverloads constructor(
         proPaint.style = Paint.Style.FILL_AND_STROKE
         proPaint.isAntiAlias = true
         proPaint.color = Color.WHITE
-        proPaint.alpha = (255 * 0.8f).toInt()
+        proPaint.alpha = (255 * 0.6f).toInt()
 
         //设置抗锯齿
         bgPaint.isAntiAlias = true
-        bgPaint.color = Color.parseColor("#000000")
+        bgPaint.color = Color.BLACK
+
+        circlePaint.isAntiAlias = true
+        circlePaint.strokeWidth = 0.5f
+        circlePaint.color = Color.WHITE
+        circlePaint.style = Paint.Style.STROKE
+        circlePaint.alpha = (255 * 0.8f).toInt()
     }
 
 
@@ -47,8 +54,8 @@ class ProgressImageView @JvmOverloads constructor(
                 radius = measuredWidth.div(24f)
                 rect.set(centerX - radius,centerY - radius,centerX + radius,centerY + radius)
             }
-            canvas.drawArc(rect,90f,(progressPercent/100) * 360f,true,proPaint)
-            canvas.drawCircle(centerX,centerY,radius,proPaint)
+            canvas.drawArc(rect,270f,(progressPercent/100) * 360f,true,proPaint)
+            canvas.drawCircle(centerX,centerY,radius,circlePaint)
         }
         super.draw(canvas)
     }

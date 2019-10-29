@@ -12,10 +12,10 @@
         android:layout_height="match_parent">
 
 
-        <ImageView
+        <showmethe.github.core.widget.common.ProgressImageView
             android:id="@+id/iv"
             android:scaleType="fitXY"
-            noCrop="@{bean}"
+
             android:transitionName="photo"
             android:adjustViewBounds="true"
             android:layout_centerInParent="true"

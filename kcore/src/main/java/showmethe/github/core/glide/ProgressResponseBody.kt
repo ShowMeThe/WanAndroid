@@ -49,7 +49,7 @@ class ProgressResponseBody(url: String, private val responseBody: ResponseBody) 
                 totalBytesRead += bytesRead
             }
             val progress = (100f * totalBytesRead / fullLength)
-            Log.e(TAG, "download progress is $progress")
+
             if (listener != null && progress != currentProgress) {
                 listener!!.onProgress(progress)
             }

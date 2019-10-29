@@ -36,7 +36,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
     }
 
 
-
     override fun getViewId(): Int = R.layout.activity_splash
 
     override fun initViewModel(): AuthViewModel = createViewModel(AuthViewModel::class.java)

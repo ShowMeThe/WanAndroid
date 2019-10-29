@@ -169,6 +169,7 @@ class TGlide private constructor(private var context: Context) {
             INSTANT.apply {
                 requestManager
                     .load(url)
+                    .apply(options)
                     .transition(transitionOptions)
                     .into(imageView)
                 ProgressInterceptor.get().addListener(url,object : ProgressListener{
