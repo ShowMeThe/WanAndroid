@@ -1,42 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <data>
+        <variable
+            name="Article"
+            type="com.showmethe.wanandroid.ui.account.fragment.AccountFragment" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:background="@color/color_304ffe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </androidx.appcompat.widget.Toolbar>
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px140dp"
-            android:background="@color/color_ff4081"
-            app:tabTextColor="@color/color_fce4ec"
-            app:tabIndicatorColor="@color/white"
-            app:tabMode="auto"
-            app:tabGravity="fill"
-            app:tabRippleColor="@color/color_f8bbd0"
-            app:tabInlineLabel="true"
-            app:tabIndicatorHeight="@dimen/px7dp"
-            app:tabIndicatorFullWidth="false"
-            >
-        </com.google.android.material.tabs.TabLayout>
+             <androidx.appcompat.widget.Toolbar
+                 android:id="@+id/toolbar"
+                 android:background="@color/color_304ffe"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+             </androidx.appcompat.widget.Toolbar>
+
+             <com.google.android.material.tabs.TabLayout
+                 android:id="@+id/tab"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/px140dp"
+                 android:background="@color/color_ff4081"
+                 app:tabTextColor="@color/color_fce4ec"
+                 app:tabIndicatorColor="@color/white"
+                 app:tabMode="auto"
+                 app:tabGravity="fill"
+                 app:tabRippleColor="@color/color_f8bbd0"
+                 app:tabInlineLabel="true"
+                 app:tabIndicatorHeight="@dimen/px7dp"
+                 app:tabIndicatorFullWidth="false"
+                 >
+             </com.google.android.material.tabs.TabLayout>
+
+             <androidx.viewpager.widget.ViewPager
+                 android:id="@+id/vp"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"/>
 
 
+         </LinearLayout>
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/vp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginEnd="@dimen/px40dp"
+            android:layout_marginBottom="@dimen/px30dp"
+            app:tint = "@color/white"
+            app:srcCompat="@mipmap/baseline_arrow_upward_white_24dp"
+            app:backgroundTint="@color/color_ff4081"
+            app:fabSize="auto"
+            app:layout_behavior="showmethe.github.core.util.widget.ScrollAwareFABBehavior"
+            app:rippleColor="@color/color_82b1ff"
+            android:onClick="@{Article::onFabClick}"
+            />
 
-    </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

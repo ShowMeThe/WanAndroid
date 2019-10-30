@@ -4,9 +4,12 @@ package com.showmethe.wanandroid.ui.account.fragment
 
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 
 import com.showmethe.wanandroid.dialog.TextJumpDialog
@@ -27,6 +30,7 @@ import showmethe.github.core.widget.common.SmartRelativeLayout
 class AccountFragment : LazyFragment<FragmentAccuntBinding, MainViewModel>() {
 
 
+    private var pos = 0
     private val dialog = TextJumpDialog()
     private lateinit var adapter : TabArticleAdapter
     private val fragments = ArrayList<Fragment>()
@@ -65,11 +69,8 @@ class AccountFragment : LazyFragment<FragmentAccuntBinding, MainViewModel>() {
 
 
     override fun init() {
-
-        //dialog.show(context.supportFragmentManager,"dialog")
+        binding?.article = this
         viewModel.getChapters()
-
-
 
 
     }
@@ -81,7 +82,7 @@ class AccountFragment : LazyFragment<FragmentAccuntBinding, MainViewModel>() {
         tab.addOnTabSelectedListener(object : SimpleTabSelectedListener(){
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.apply {
-                    val pos = position
+                    pos = position
 
                 }
             }
@@ -98,6 +99,13 @@ class AccountFragment : LazyFragment<FragmentAccuntBinding, MainViewModel>() {
 
     }
 
+
+    fun onFabClick(view: View){
+        viewModel.tabs.value?.apply {
+            viewModel.callId.value = titles[pos].id
+        }
+    }
+
     private fun initVp(){
 
         adapter = TabArticleAdapter(fragments,titles,childFragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
@@ -105,6 +113,22 @@ class AccountFragment : LazyFragment<FragmentAccuntBinding, MainViewModel>() {
         vp.offscreenPageLimit = fragments.size
         tab.setupWithViewPager(vp)
 
+        vp.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                pos = position
+            }
+
+        })
 
 
     }

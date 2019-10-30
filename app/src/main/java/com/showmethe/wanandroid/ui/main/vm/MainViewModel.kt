@@ -29,7 +29,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     val tree = MutableLiveData<Result<ArrayList<Tree>>>()
     val cateTab = MutableLiveData<Result<ArrayList<CateTab>>>()
     val cate = MutableLiveData<Result<CateBean>>()
-
+    val callId = MutableLiveData<Int>()
 
 
 

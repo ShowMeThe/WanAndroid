@@ -81,9 +81,10 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
-                android:src="@mipmap/cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/cart"
+                android:tint="@color/white"
                 app:rippleColor="@color/color_ffab91"
                 app:layout_anchor="@id/bottomBar"
                 app:fabSize="normal"

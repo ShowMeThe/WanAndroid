@@ -1,6 +1,7 @@
 package com.showmethe.wanandroid.ui.account.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.MutableLiveData
@@ -91,6 +92,13 @@ class ArticleFragment : LazyFragment<FragmentArticleBinding, MainViewModel>() {
             }
         })
 
+        viewModel.callId.observe(this, Observer {
+            it?.apply {
+                if(this == accountId){
+                    rv.scrollToPosition(0)
+                }
+            }
+        })
 
     }
 
@@ -110,9 +118,7 @@ class ArticleFragment : LazyFragment<FragmentArticleBinding, MainViewModel>() {
         pagerNumber.value = 0
     }
 
-    fun onFabClick(view: View){
-        rv.scrollToPosition(0)
-    }
+
 
     override fun initListener() {
 
