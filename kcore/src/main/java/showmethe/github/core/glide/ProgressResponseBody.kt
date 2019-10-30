@@ -7,12 +7,13 @@ import java.io.IOException
 import okhttp3.MediaType
 import okhttp3.ResponseBody
 import okio.*
+import java.lang.ref.WeakReference
 
 class ProgressResponseBody(var url: String, private val responseBody: ResponseBody) : ResponseBody() {
 
     private var bufferedSource: BufferedSource? = null
 
-    private var listener: ProgressListener? = null
+    private var listener: WeakReference<ProgressListener>? = null
 
     init {
         listener = TGlide.interceptor.LISTENER_MAP[url]
@@ -51,7 +52,7 @@ class ProgressResponseBody(var url: String, private val responseBody: ResponseBo
             val progress = (100f * totalBytesRead / fullLength)
 
             if (listener != null && progress != currentProgress) {
-                listener!!.onProgress(progress)
+                listener?.get()?.onProgress(progress)
             }
             if (listener != null && totalBytesRead == fullLength.toFloat()) {
                 TGlide.interceptor.removeListener(url)

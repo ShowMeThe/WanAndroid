@@ -169,16 +169,16 @@ class TGlide private constructor(private var context: Context) {
             }
         }
 
-        fun loadProgress(url:String,imageView : WeakReference<ProgressImageView>){
+        fun loadProgress(url:String,imageView : ProgressImageView){
             INSTANT.apply {
                 requestManager
                     .load(url)
                     .apply(RequestOptions().diskCacheStrategy(cacheMode))
                     .transition(transitionOptions)
-                    .into(imageView.get()!!)
+                    .into(imageView)
                 interceptor.addListener(url,object : ProgressListener{
                     override fun onProgress(progress: Float) {
-                        imageView.get()?.setPercentage(progress)
+                        imageView.setPercentage(progress)
                     }
                 })
            }
