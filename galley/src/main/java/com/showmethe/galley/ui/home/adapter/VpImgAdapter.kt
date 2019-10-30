@@ -9,6 +9,7 @@ import okhttp3.internal.wait
 import showmethe.github.core.adapter.DataBindBaseAdapter
 import showmethe.github.core.glide.TGlide
 import showmethe.github.core.util.match.isEqual
+import java.lang.ref.WeakReference
 
 /**
  * Author: showMeThe
@@ -22,7 +23,7 @@ class VpImgAdapter(context: Context, data: ObservableArrayList<String>) :
     override fun bindItems(binding: ItemVpImgBinding?, item: String, position: Int) {
         binding?.apply {
             // bean = item
-            TGlide.loadProgress(item,iv)
+            TGlide.loadProgress(item, WeakReference(iv))
             executePendingBindings()
         }
     }

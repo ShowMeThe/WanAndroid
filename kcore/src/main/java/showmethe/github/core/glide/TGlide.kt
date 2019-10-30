@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.media.MediaMetadataRetriever
+import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -18,6 +19,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import showmethe.github.core.widget.common.ProgressImageView
 import java.io.*
+import java.lang.ref.WeakReference
 import java.util.HashMap
 
 /**
@@ -27,16 +29,15 @@ import java.util.HashMap
  **/
 class TGlide private constructor(private var context: Context) {
     private val requestManager : RequestManager = GlideApp.with(context.applicationContext)
-    private var options = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
     private var transitionOptions = DrawableTransitionOptions()
         .crossFade()
-    private  var revealOption  = DrawableTransitionOptions.with(DrawableScaleFadeFactory(450,isCrossFadeEnabled = true,isReveal = true))
-    private  var scaleOption  = DrawableTransitionOptions.with(DrawableScaleFadeFactory(450,true))
     private var requestOptions: RequestOptions? = null
+    private val cacheMode = DiskCacheStrategy.ALL
 
 
     companion object {
 
+        val interceptor = ProgressInterceptor()
         @SuppressLint("StaticFieldLeak")
         private lateinit var INSTANT: TGlide
 
@@ -44,13 +45,14 @@ class TGlide private constructor(private var context: Context) {
             INSTANT = TGlide(context)
         }
 
+        fun get() : TGlide = INSTANT
 
         fun load(url: Any, placeholder: Int, error: Int, imageView: ImageView) {
             INSTANT.apply {
                 requestManager
                     .load(url)
                     .apply(
-                        options.centerCrop()
+                        RequestOptions().diskCacheStrategy(cacheMode).centerCrop()
                             .placeholder(placeholder)
                             .error(error)
                     ).transition(transitionOptions)
@@ -64,12 +66,12 @@ class TGlide private constructor(private var context: Context) {
                 val thumbnailRequest = requestManager
                     .load(url)
                     .thumbnail(0.1f)
-                    .apply(options.centerCrop())
+                    .apply(RequestOptions().diskCacheStrategy(cacheMode).centerCrop())
 
                 requestManager
                     .load(url)
                     .thumbnail(thumbnailRequest)
-                    .apply(options.centerCrop())
+                    .apply(RequestOptions().diskCacheStrategy(cacheMode).centerCrop())
                     .transition(transitionOptions)
                     .into(imageView)
             }
@@ -80,8 +82,8 @@ class TGlide private constructor(private var context: Context) {
             INSTANT.apply {
                 requestManager
                     .load(url)
-                    .apply(options.centerCrop())
-                    .transition(revealOption)
+                    .apply(RequestOptions().diskCacheStrategy(cacheMode).centerCrop())
+                    .transition(DrawableTransitionOptions.with(DrawableScaleFadeFactory(350,isCrossFadeEnabled = true,isReveal = true)))
                     .into(imageView)
             }
         }
@@ -91,9 +93,8 @@ class TGlide private constructor(private var context: Context) {
 
                 requestManager
                     .load(url)
-
-                    .apply(options)
-                    .transition(revealOption)
+                    .apply(RequestOptions().diskCacheStrategy(cacheMode))
+                    .transition(DrawableTransitionOptions.with(DrawableScaleFadeFactory(350,isCrossFadeEnabled = true,isReveal = true)))
                     .into(imageView)
             }
         }
@@ -103,8 +104,8 @@ class TGlide private constructor(private var context: Context) {
             INSTANT.apply {
                 requestManager
                     .load(url)
-                    .apply(options.centerCrop())
-                    .transition(scaleOption)
+                    .apply(RequestOptions().diskCacheStrategy(cacheMode).centerCrop())
+                    .transition(DrawableTransitionOptions.with(DrawableScaleFadeFactory(350,true)))
                     .into(imageView)
             }
         }
@@ -113,8 +114,8 @@ class TGlide private constructor(private var context: Context) {
             INSTANT.apply {
                 requestManager
                     .load(url)
-                    .apply(options)
-                    .transition(scaleOption)
+                    .apply(RequestOptions().diskCacheStrategy(cacheMode))
+                    .transition(DrawableTransitionOptions.with(DrawableScaleFadeFactory(350,true)))
                     .into(imageView)
 
             }
@@ -125,7 +126,7 @@ class TGlide private constructor(private var context: Context) {
             INSTANT.apply {
                 requestManager
                     .load(url)
-                    .apply(options)
+                    .apply(RequestOptions().diskCacheStrategy(cacheMode))
                     .transition(transitionOptions)
                     .into(imageView)
             }
@@ -168,16 +169,16 @@ class TGlide private constructor(private var context: Context) {
             }
         }
 
-        fun loadProgress(url:String,imageView:ProgressImageView){
+        fun loadProgress(url:String,imageView : WeakReference<ProgressImageView>){
             INSTANT.apply {
                 requestManager
                     .load(url)
-                    .apply(options)
+                    .apply(RequestOptions().diskCacheStrategy(cacheMode))
                     .transition(transitionOptions)
-                    .into(imageView)
-                ProgressInterceptor.get().addListener(url,object : ProgressListener{
+                    .into(imageView.get()!!)
+                interceptor.addListener(url,object : ProgressListener{
                     override fun onProgress(progress: Float) {
-                        imageView.setPercentage(progress)
+                        imageView.get()?.setPercentage(progress)
                     }
                 })
            }
@@ -197,7 +198,7 @@ class TGlide private constructor(private var context: Context) {
                 requestManager
                     .load(res)
                     .apply(
-                        options.signature(ObjectKey(key)).placeholder(defaultImg).error(
+                        RequestOptions().diskCacheStrategy(cacheMode).signature(ObjectKey(key)).placeholder(defaultImg).error(
                             defaultImg
                         )
                     )

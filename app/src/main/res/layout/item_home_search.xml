@@ -38,7 +38,6 @@
                     android:maxEms="14"
                     android:maxLines="2"
                     android:ellipsize="end"
-                    android:layout_below="@+id/ivLogo"
                     android:textSize="@dimen/px43dp"
                     android:textColor="@color/text_333333"
                     android:layout_marginTop="@dimen/px35dp"

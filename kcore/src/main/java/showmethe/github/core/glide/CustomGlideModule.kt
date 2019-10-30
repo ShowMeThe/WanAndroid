@@ -21,6 +21,7 @@ import java.io.InputStream
 @GlideModule
 class CustomGlideModule : AppGlideModule() {
 
+
     override fun applyOptions(context: Context, builder: GlideBuilder) {
         val diskCacheSizeBytes = 1024 * 1024 * 500 // 500 MB
         builder.setMemoryCache(LruResourceCache(diskCacheSizeBytes.toLong()))
@@ -30,7 +31,7 @@ class CustomGlideModule : AppGlideModule() {
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
        //registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpUrlLoader.Factory())
         val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(ProgressInterceptor())
+            .addInterceptor(TGlide.interceptor)
             .build()
         registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpLoader.Factory(okHttpClient))
     }

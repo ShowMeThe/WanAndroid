@@ -8,14 +8,14 @@ import okhttp3.MediaType
 import okhttp3.ResponseBody
 import okio.*
 
-class ProgressResponseBody(url: String, private val responseBody: ResponseBody) : ResponseBody() {
+class ProgressResponseBody(var url: String, private val responseBody: ResponseBody) : ResponseBody() {
 
     private var bufferedSource: BufferedSource? = null
 
     private var listener: ProgressListener? = null
 
     init {
-        listener = ProgressInterceptor.get().LISTENER_MAP[url]
+        listener = TGlide.interceptor.LISTENER_MAP[url]
     }
 
     override fun contentType(): MediaType? {
@@ -54,6 +54,7 @@ class ProgressResponseBody(url: String, private val responseBody: ResponseBody) 
                 listener!!.onProgress(progress)
             }
             if (listener != null && totalBytesRead == fullLength.toFloat()) {
+                TGlide.interceptor.removeListener(url)
                 listener = null
             }
             currentProgress = progress

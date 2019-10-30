@@ -30,7 +30,6 @@
         android:gravity="center|start"
         android:imeOptions="actionSearch"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/tvBack"
         android:layout_centerInParent="true"
         android:layout_height="@dimen/px80dp"
         />

@@ -30,15 +30,14 @@ class DrawableScaleFadeTransition(
     override fun transition(current: Drawable, adapter: Transition.ViewAdapter): Boolean {
         var previous = adapter.currentDrawable
         if (previous == null) {
-            previous = ColorDrawable( Color.TRANSPARENT)
+            previous = ColorDrawable(Palette.from(createBitmap(current)).generate().getVibrantColor(Color.TRANSPARENT))
         }
         val view = adapter.view
-        if (view.visibility == View.VISIBLE && view.isAttachedToWindow ) {
-            val transitionDrawable = TransitionDrawable(arrayOf(previous, current))
-            transitionDrawable.isCrossFadeEnabled = isCrossFadeEnabled
-            transitionDrawable.startTransition(duration)
-            adapter.setDrawable(transitionDrawable)
-
+        val transitionDrawable = TransitionDrawable(arrayOf(previous, current))
+        transitionDrawable.isCrossFadeEnabled = isCrossFadeEnabled
+        transitionDrawable.startTransition(duration * 2)
+        adapter.setDrawable(transitionDrawable)
+        if (view.visibility == View.VISIBLE && view.isAttachedToWindow) {
             if(isReveal){
                 val maxRadius = view.height.coerceAtLeast(view.width)
                 val animation = ViewAnimationUtils.createCircularReveal(
@@ -59,6 +58,14 @@ class DrawableScaleFadeTransition(
             view.scaleY = 1.0f
         }
         return true
+    }
+
+    private fun createBitmap(current: Drawable) : Bitmap{
+        val bitmap = Bitmap.createBitmap(10,10,Bitmap.Config.RGB_565)
+        val canvas = Canvas(bitmap)
+        current.setBounds(0,0,10,10)
+        current.draw(canvas)
+        return bitmap
     }
 
 }

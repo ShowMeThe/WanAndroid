@@ -1,14 +1,14 @@
 package showmethe.github.core.glide
 
 import java.io.IOException
-import java.util.HashMap
 
 import okhttp3.Interceptor
 import okhttp3.Response
+import java.util.*
 
 class ProgressInterceptor : Interceptor {
 
-    val LISTENER_MAP: MutableMap<String, ProgressListener> = HashMap()
+    val LISTENER_MAP: WeakHashMap<String, ProgressListener> = WeakHashMap()
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -19,6 +19,7 @@ class ProgressInterceptor : Interceptor {
         return response.newBuilder().body(ProgressResponseBody(url, body!!)).build()
     }
 
+
     fun addListener(url: String, listener: ProgressListener) {
         LISTENER_MAP[url] = listener
     }
@@ -27,14 +28,4 @@ class ProgressInterceptor : Interceptor {
         LISTENER_MAP.remove(url)
     }
 
-    companion object {
-
-
-
-        private val instant by lazy (mode = LazyThreadSafetyMode.SYNCHRONIZED){ ProgressInterceptor() }
-
-        fun get() : ProgressInterceptor = instant
-
-
-    }
 }
