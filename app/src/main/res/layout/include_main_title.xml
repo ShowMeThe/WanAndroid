@@ -7,15 +7,14 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/px135dp">
 
-    <com.google.android.material.button.MaterialButton
+    <TextView
         android:id="@+id/profile"
+        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/px70dp"
         android:layout_marginStart="@dimen/px35dp"
-        app:icon="@mipmap/ic_view_list_black_48dp"
-        app:iconSize="@dimen/px85dp"
-        app:iconTint="@color/colorPrimaryDark"
-        app:backgroundTint="@color/white"
+        android:drawableStart="@mipmap/ic_view_list_black_48dp"
+        android:drawableTint="@color/colorAccent"
         />
 
     <com.google.android.material.textview.MaterialTextView

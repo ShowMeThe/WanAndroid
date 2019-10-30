@@ -109,13 +109,19 @@
                 android:layout_gravity="bottom|end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/baseline_arrow_upward_white_24dp"
+                app:tint = "@color/white"
+                app:srcCompat="@mipmap/baseline_arrow_upward_white_24dp"
                 app:fabSize="auto"
+                android:tint="@color/white"
+                android:tintMode="src_in"
                 app:rippleColor="@color/color_a100"
-                android:backgroundTint="@color/colorAccent"
+                app:backgroundTintMode="src_in"
+                app:backgroundTint="@color/colorAccent"
                 app:layout_behavior="showmethe.github.core.util.widget.ScrollAwareFABBehavior"
                 android:onClick="@{Home::onFabClick}"
                 />
+
+
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
