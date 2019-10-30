@@ -34,6 +34,7 @@ class GoodsAdapter(context: Context, data: ObservableArrayList<GoodsListDto>) :
                             tvDes.setTextColor(item.vibrantColor)
                             cardView.strokeColor = item.vibrantColor
                             cardView.rippleColor = ColorStateList.valueOf(item.vibrantColor)
+                            ivLogo.setBackgroundColor(item.vibrantColor)
                             btnBuy.setBackgroundColor(item.vibrantColor)
                         }
                     }
@@ -43,6 +44,7 @@ class GoodsAdapter(context: Context, data: ObservableArrayList<GoodsListDto>) :
                 cardView.strokeColor = item.vibrantColor
                 cardView.rippleColor = ColorStateList.valueOf(item.vibrantColor)
                 btnBuy.setBackgroundColor(item.vibrantColor)
+                ivLogo.setBackgroundColor(item.vibrantColor)
             }
 
             btnBuy.setOnClickListener {

@@ -52,7 +52,7 @@ class DrawableScaleFadeFactory (
         }
 
         companion object {
-            private val DEFAULT_DURATION_MS = 300
+            private const val DEFAULT_DURATION_MS = 300
         }
     }
 }

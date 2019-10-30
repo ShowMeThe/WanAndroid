@@ -6,11 +6,14 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import android.view.ViewAnimationUtils
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
+import androidx.palette.graphics.Palette
 import androidx.viewpager.widget.ViewPager
+import com.showmethe.galley.database.DataSourceBuilder
 import com.showmethe.galley.ui.home.GalleyMainActivity
 import com.showmethe.galley.ui.home.WelcomeActivity
 
@@ -33,6 +36,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import showmethe.github.core.base.AppManager
 import showmethe.github.core.base.BaseActivity
+import showmethe.github.core.glide.TGlide
 import showmethe.github.core.http.RetroHttp
 import showmethe.github.core.util.extras.SimpleAnimatorListener
 import showmethe.github.core.util.rden.RDEN
@@ -81,7 +85,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
 
     override fun init(savedInstanceState: Bundle?) {
-
+        preload()
 
         colors.add(resources.getColorStateList(R.color.tab_color,null))
         colors.add(resources.getColorStateList(R.color.tab_color_1,null))
@@ -224,6 +228,27 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         tvCollect.setTextColor( bottomView.itemTextColor)
         tvGalley.compoundDrawableTintList = bottomView.itemTextColor
         tvGalley.setTextColor(bottomView.itemTextColor)
+    }
+
+    /**
+     * 预加载部分图片颜色信息
+     */
+    private fun preload(){
+        val defaultColor = ContextCompat.getColor(context, com.showmethe.galley.R.color.color_ff6e00)
+        GlobalScope.launch (Dispatchers.IO){
+            val goodsList = DataSourceBuilder.getGoods().findAllGoods();
+            for(goods in goodsList){
+                if(goods.vibrantColor!=-1){
+                    TGlide.loadIntoBitmap(goods.coverImg){ bitmap ->
+                        Palette.from(bitmap).generate {
+                            it?.apply {
+                                goods.vibrantColor = getVibrantColor(defaultColor)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

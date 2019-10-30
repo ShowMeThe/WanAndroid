@@ -38,7 +38,7 @@
                 android:transitionName="ivLogo"
                 crop="@{Bean.coverImg}"
                 android:scaleType="centerCrop"
-                android:background="@color/colorAccent"
+                android:background="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px700dp" />
 

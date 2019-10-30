@@ -22,4 +22,8 @@ interface GoodsListDao {
     @Query("select * from GoodsListDto limit :page,:pageSize  ")
     fun findByPage(page:Int,pageSize:Int) : LiveData<List<GoodsListDto>>
 
+
+    @Query("select * from GoodsListDto")
+    fun findAllGoods() : List<GoodsListDto>
+
 }

@@ -88,8 +88,10 @@ class TGlide private constructor(private var context: Context) {
 
         fun loadRevealNoCrop(url: Any, imageView: ImageView) {
             INSTANT.apply {
+
                 requestManager
                     .load(url)
+
                     .apply(options)
                     .transition(revealOption)
                     .into(imageView)
@@ -114,6 +116,7 @@ class TGlide private constructor(private var context: Context) {
                     .apply(options)
                     .transition(scaleOption)
                     .into(imageView)
+
             }
         }
 
