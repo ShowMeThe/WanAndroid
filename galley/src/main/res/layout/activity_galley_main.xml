@@ -17,7 +17,7 @@
 
                 <RelativeLayout
                     android:id="@+id/layout"
-                    android:background="@color/colorAccent"
+                    android:background="@color/color_ff6e00"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -51,6 +51,7 @@
                         app:tabIndicatorFullWidth="false"
                         app:tabIconTintMode="src_in"
                         app:tabIconTint="@color/white"
+                        app:tabTextColor="@color/white"
                         >
                     </com.google.android.material.tabs.TabLayout>
 
@@ -67,30 +68,7 @@
 
             </LinearLayout>
 
-            <com.google.android.material.bottomappbar.BottomAppBar
-                android:id="@+id/bottomBar"
-                android:layout_gravity="bottom"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px130dp"
-                app:backgroundTint="@color/colorPrimary"
-                app:fabCradleMargin="@dimen/px13dp"
-                app:fabAlignmentMode="center"
-                app:hideOnScroll="true"
-                >
-            </com.google.android.material.bottomappbar.BottomAppBar>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/cart"
-                android:tint="@color/white"
-                app:rippleColor="@color/color_ffab91"
-                app:layout_anchor="@id/bottomBar"
-                app:fabSize="normal"
-                app:fabCustomSize="@dimen/px150dp"
-                app:backgroundTint="@color/color_ff6e00"
-                />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 

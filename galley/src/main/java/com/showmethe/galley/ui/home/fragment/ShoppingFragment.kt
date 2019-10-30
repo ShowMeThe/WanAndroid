@@ -5,6 +5,8 @@ import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE
 import com.showmethe.galley.R
 import com.showmethe.galley.database.dto.GoodsListDto
 import com.showmethe.galley.databinding.FragmentShoppingBinding
@@ -83,7 +85,15 @@ class ShoppingFragment : BaseFragment<FragmentShoppingBinding, MainViewModel>() 
         }
 
 
-
+        rv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if(newState == SCROLL_STATE_IDLE ){
+                    fab.extend()
+                }else {
+                    fab.shrink()
+                }
+            }
+        })
 
     }
 
