@@ -5,7 +5,9 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.showmethe.galley.database.dto.CartDto
 import com.showmethe.galley.database.dto.GoodsListDto
+import com.showmethe.galley.entity.CartListBean
 
 /**
  * Author: showMeThe
@@ -26,4 +28,10 @@ interface GoodsListDao {
     @Query("select * from GoodsListDto")
     fun findAllGoods() : List<GoodsListDto>
 
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addCart(dto: CartDto)
+
+    @Query("select orderId,goodsName,coverImg,goodDes,price from GoodsListDto inner join CartDto where GoodsListDto.id == CartDto.goodsId")
+    fun getCartList() : LiveData<List<CartListBean>>
 }

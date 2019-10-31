@@ -5,7 +5,9 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.showmethe.galley.database.dto.CartDto
 import com.showmethe.galley.database.dto.UserDto
+
 
 /**
  *  com.showmethe.galley.database.dao

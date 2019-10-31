@@ -2,12 +2,15 @@ package com.showmethe.galley.ui.home.repository
 
 import android.util.Log
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.showmethe.galley.database.DataSourceBuilder
+import com.showmethe.galley.database.dto.CartDto
 import com.showmethe.galley.database.dto.GoodsListDto
 import com.showmethe.galley.database.dto.PhotoWallDto
 import com.showmethe.galley.database.dto.UserDto
+import com.showmethe.galley.entity.CartListBean
 import showmethe.github.core.base.BaseRepository
 import java.sql.RowId
 
@@ -59,5 +62,17 @@ class MainRepository : BaseRepository() {
     }
 
 
+    fun addCart(dto:CartDto){
+        goodsDao.addCart(dto)
+        showToast("Add Successfully!")
+    }
+
+    fun getCartList(list : MutableLiveData<List<CartListBean>>){
+       goodsDao.getCartList().observe(owner!!, Observer {
+           it?.apply {
+               list.value = this
+           }
+       })
+    }
 
 }

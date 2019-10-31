@@ -11,6 +11,7 @@ import com.showmethe.galley.databinding.ActivityGalleyMainBinding
 import com.showmethe.galley.ui.home.fragment.PhotoFragment
 import com.showmethe.galley.ui.home.fragment.ShoppingFragment
 import com.showmethe.galley.ui.home.vm.MainViewModel
+import com.showmethe.galley.util.OnBackPressedHandler
 import kotlinx.android.synthetic.main.activity_galley_main.*
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.util.widget.StatusBarUtil
@@ -19,6 +20,8 @@ import showmethe.github.core.widget.slideback.annotation.SlideBackBinder
 @SlideBackBinder
 class GalleyMainActivity : BaseActivity<ActivityGalleyMainBinding, MainViewModel>() {
 
+
+    val shopFragment = PhotoFragment()
 
     override fun getViewId(): Int  = R.layout.activity_galley_main
     override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
@@ -72,11 +75,24 @@ class GalleyMainActivity : BaseActivity<ActivityGalleyMainBinding, MainViewModel
    private fun switchFragment(position: Int) {
         when (position) {
             0 -> {
-                replaceFragment(PhotoFragment::class.java.name)
+                replaceFragment(shopFragment::class.java.name)
             }
             1 ->{
                 replaceFragment(ShoppingFragment::class.java.name)
             }
+        }
+    }
+
+
+    override fun onBackPressed() {
+        if(viewModel.handler!=null){
+            viewModel.handler?.apply {
+                if(!onBackPressed()){
+                    super.onBackPressed()
+                }
+            }
+        }else{
+            super.onBackPressed()
         }
     }
 

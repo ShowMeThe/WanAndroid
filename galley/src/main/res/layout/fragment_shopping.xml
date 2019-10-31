@@ -27,9 +27,48 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+        <com.google.android.material.transformation.TransformationChildCard
+            android:id="@+id/sheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            app:cardElevation="@dimen/px15dp"
+            app:layout_behavior="@string/fab_transformation_sheet_behavior">
+            <RelativeLayout
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+
+            </RelativeLayout>
+
+        </com.google.android.material.transformation.TransformationChildCard>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_marginBottom="@dimen/px30dp"
+            android:layout_marginEnd="@dimen/px30dp"
+            android:layout_gravity="bottom|end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CART"
+            android:textColor="@color/white"
+            app:tintMode="src_in"
+            app:tint="@color/white"
+            app:srcCompat="@mipmap/cart"
+            app:backgroundTint="@color/color_ff6e00"
+            />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/expand"
+            android:visibility="invisible"
             android:layout_marginBottom="@dimen/px30dp"
             android:layout_marginEnd="@dimen/px30dp"
             android:layout_gravity="bottom|end"
@@ -41,6 +80,7 @@
             app:icon="@mipmap/cart"
             app:backgroundTint="@color/color_ff6e00"
             />
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
