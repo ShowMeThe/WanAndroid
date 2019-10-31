@@ -71,7 +71,8 @@ class ShoppingFragment : BaseFragment<FragmentShoppingBinding, MainViewModel>(),
 
         viewModel.carts.observe(this, Observer {
             it?.apply {
-
+                cart.clear()
+                cart.addAll(this)
             }
         })
 

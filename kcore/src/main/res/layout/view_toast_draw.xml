@@ -13,10 +13,10 @@
         android:background="@drawable/item_toast"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/px50dp"
-        android:paddingLeft="@dimen/px80dp"
-        android:paddingRight="@dimen/px80dp"
-        android:paddingTop="@dimen/px50dp">
+        android:paddingBottom="@dimen/px30dp"
+        android:paddingLeft="@dimen/px30dp"
+        android:paddingRight="@dimen/px30dp"
+        android:paddingTop="@dimen/px30dp">
 
         <ImageView
             android:id="@+id/image"

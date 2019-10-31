@@ -12,7 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/white"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/CutCardViewStyle"
+        app:strokeColor="@color/color_ff6e00"
+        app:strokeWidth="@dimen/px2dp"
+        app:cardElevation="@dimen/px15dp"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
