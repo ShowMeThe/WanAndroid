@@ -17,15 +17,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/px120dp">
 
-            <com.google.android.material.button.MaterialButton
+            <ImageView
                 android:id="@+id/profile"
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/px110dp"
                 android:layout_marginStart="@dimen/px35dp"
-                app:icon="@mipmap/ic_view_list_black_48dp"
-                app:iconSize="@dimen/px85dp"
-                app:iconTint="@color/white"
-                app:backgroundTint="@color/color_f4511e"
+                android:src="@mipmap/ic_view_list_black_48dp"
+                android:tint="@color/white"
                 />
 
             <com.google.android.material.textview.MaterialTextView

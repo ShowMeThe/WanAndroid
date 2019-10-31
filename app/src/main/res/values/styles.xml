@@ -1,21 +1,20 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="MaterialTheme" parent="Theme.MaterialComponents.NoActionBar.Bridge">
+    <style name="MaterialTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorAccent</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary</item>
-        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
-        <item name="android:colorControlHighlight">@color/colorPrimaryDark</item>
-        <item name="colorControlActivated">@color/colorPrimaryDark</item>
-        <item name="android:colorControlActivated">@color/colorPrimaryDark</item>
-        <item name="colorControlNormal">@color/colorPrimaryDark</item>
-        <item name="android:colorControlNormal">@color/colorPrimaryDark</item>
+
+        <item name="colorControlNormal">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+
         <item name="android:statusBarColor">@color/colorAccent</item>
         <item name="android:windowBackground">@color/colorPrimaryDark</item>
         <item name="popupMenuStyle">@style/popMenu</item>
-        <item name="colorSurface">@color/colorAccent</item>
+        <item name="colorSurface">@color/transparent</item>
         <item name="android:textAppearanceSmallPopupMenu">@style/popMenuText</item>
         <item name="android:textAppearanceLargePopupMenu">@style/popMenuText</item>
         <item name="android:windowContentTransitions">true</item>
@@ -24,6 +23,8 @@
         <item name="android:windowSharedElementExitTransition">@transition/transition_change_bound</item>
         <item name="android:windowSharedElementReturnTransition">@transition/transition_change_bound</item>
     </style>
+
+
 
     <!-- TranslucentTheme-->
     <style name="TranslucentTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">

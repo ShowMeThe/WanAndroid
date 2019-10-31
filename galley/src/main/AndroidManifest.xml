@@ -3,7 +3,10 @@
     package="com.showmethe.galley">
 
     <application>
-        <activity android:name=".ui.home.WelcomeActivity"></activity>
+        <activity android:name=".ui.home.WelcomeActivity"
+            android:theme="@style/MaterialDarkTheme"
+            >
+        </activity>
         <activity
             android:name=".ui.home.GalleyMainActivity"
             android:theme="@style/MaterialDarkTheme" />

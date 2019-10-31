@@ -7,14 +7,15 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/px135dp">
 
-    <TextView
+
+    <ImageView
         android:id="@+id/profile"
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/px70dp"
+        android:layout_height="@dimen/px110dp"
         android:layout_marginStart="@dimen/px35dp"
-        android:drawableStart="@mipmap/ic_view_list_black_48dp"
-        android:drawableTint="@color/colorAccent"
+        android:src="@mipmap/ic_view_list_black_48dp"
+        android:tint="@color/colorAccent"
         />
 
     <com.google.android.material.textview.MaterialTextView

@@ -17,6 +17,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/color_ff6e00"
         tools:context=".ui.home.WelcomeActivity">
 
         <com.showmethe.galley.widget.ScrollRecyclerView
@@ -41,7 +42,9 @@
                 android:layout_marginEnd="@dimen/px30dp"
                 android:textColorHint="@color/colorAccent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                >
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edName"
                     android:hint="Account"
@@ -52,7 +55,7 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/px43dp"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/px110dp" />
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -62,6 +65,7 @@
                 android:layout_height="wrap_content"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/colorAccent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edPassword"
@@ -73,7 +77,7 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/px43dp"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/px110dp" />
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

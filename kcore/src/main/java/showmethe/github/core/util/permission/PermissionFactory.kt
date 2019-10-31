@@ -28,10 +28,13 @@ class PermissionFactory : DefaultLifecycleObserver{
     companion object{
 
         private var weakReference : WeakReference<FragmentActivity>? = null
-        private val instant  by lazy { PermissionFactory() }
+        private var instant : PermissionFactory? = null
         fun with(activity: FragmentActivity) : PermissionFactory{
             weakReference = WeakReference(activity)
-            return instant
+            if(instant == null){
+                instant =   PermissionFactory()
+            }
+            return instant!!
         }
     }
 

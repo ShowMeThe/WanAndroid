@@ -4,15 +4,18 @@
 	
 	
 	<!-- Base application theme. -->
-	<style name="MaterialDarkTheme" parent="Theme.MaterialComponents.NoActionBar.Bridge">
+	<style name="MaterialDarkTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
 		<!-- Customize your theme here. -->
 		<item name="colorPrimary">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 		<item name="colorAccent">@color/colorPrimary</item>
+
 		<item name="colorControlHighlight">@color/colorPrimaryDark</item>
 		<item name="android:colorControlHighlight">@color/colorPrimaryDark</item>
 		<item name="colorControlActivated">@color/colorPrimaryDark</item>
 		<item name="colorControlNormal">@color/colorPrimaryDark</item>
+
+
 		<item name="android:statusBarColor">@color/colorPrimary</item>
 		<item name="android:windowBackground">@color/white</item>
 		<item name="popupMenuStyle">@style/popMenu</item>

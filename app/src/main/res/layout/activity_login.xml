@@ -52,7 +52,9 @@
                 android:layout_marginEnd="@dimen/px30dp"
                 android:textColorHint="@color/colorAccent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                >
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edName"
                     android:hint="用户名"
@@ -63,7 +65,8 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/px43dp"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/px110dp" />
+                    android:layout_height="wrap_content" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -73,6 +76,7 @@
                 android:layout_height="wrap_content"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/colorAccent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edPassword"
@@ -81,10 +85,9 @@
                     android:text="@={bean.password}"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
-                    android:textColor="@color/colorAccent"
                     android:textSize="@dimen/px43dp"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/px110dp" />
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
