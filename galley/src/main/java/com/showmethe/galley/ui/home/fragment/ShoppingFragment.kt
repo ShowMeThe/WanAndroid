@@ -21,6 +21,7 @@ import com.showmethe.galley.ui.home.vm.MainViewModel
 import com.showmethe.galley.util.OnBackPressedHandler
 import kotlinx.android.synthetic.main.fragment_shopping.*
 import showmethe.github.core.adapter.AutoLoadAdapter
+import showmethe.github.core.adapter.SpaceItemDecoration
 import showmethe.github.core.base.BaseFragment
 import showmethe.github.core.base.LazyFragment
 
@@ -89,6 +90,7 @@ class ShoppingFragment : BaseFragment<FragmentShoppingBinding, MainViewModel>(),
         cartAdapter = CartListAdapter(context,cart)
         rvCart.adapter = cartAdapter
         rvCart.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
+        rvCart.addItemDecoration(SpaceItemDecoration(0,30))
 
         binding?.shopping = this
 

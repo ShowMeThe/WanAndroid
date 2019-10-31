@@ -19,7 +19,6 @@
             android:layout_marginBottom="@dimen/px30dp"
             android:layout_marginTop="@dimen/px30dp"
             android:layout_marginStart="@dimen/px30dp"
-
             style="@style/CutLeftViewStyle"
             app:strokeColor="@color/colorAccent"
             app:strokeWidth="@dimen/px2dp"
