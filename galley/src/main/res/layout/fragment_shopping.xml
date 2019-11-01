@@ -27,8 +27,19 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+
+        <View
+            android:id="@+id/scrim"
+            android:background="?scrimBackground"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/fab_transformation_scrim_behavior"
+            />
+
         <com.google.android.material.transformation.TransformationChildCard
             android:id="@+id/sheet"
+            android:layout_margin="@dimen/px30dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="invisible"

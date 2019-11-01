@@ -121,10 +121,6 @@ class ShoppingFragment : BaseFragment<FragmentShoppingBinding, MainViewModel>(),
             fab.isExpanded = true
         }
 
-        sheet.setOnClickListener {
-            fab.isExpanded = false
-            expand.hide()
-        }
 
         expand.setOnClickListener {
             fab.isExpanded = true
@@ -155,7 +151,7 @@ class ShoppingFragment : BaseFragment<FragmentShoppingBinding, MainViewModel>(),
 
     override fun onBackPressed(): Boolean {
         if(fab.isEnabled){
-            sheet.performClick()
+            fab.isExpanded = false
            return true
         }
         return false
