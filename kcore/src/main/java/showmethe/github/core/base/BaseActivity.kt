@@ -11,9 +11,14 @@ import android.util.SparseArray
 import android.view.*
 import android.view.animation.LinearInterpolator
 import android.widget.EditText
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
+import com.google.android.material.circularreveal.CircularRevealCompat
+import com.google.android.material.circularreveal.CircularRevealFrameLayout
+import com.google.android.material.circularreveal.CircularRevealWidget
 
 import com.jeremyliao.liveeventbus.LiveEventBus
 import showmethe.github.core.util.widget.ScreenSizeUtil
@@ -36,6 +41,7 @@ import showmethe.github.core.R
 import showmethe.github.core.base.vmpath.VMRouter
 import showmethe.github.core.util.extras.putValueInBundle
 import showmethe.github.core.util.system.hideSoftKeyboard
+import showmethe.github.core.widget.slideback.widget.SlideBackInterceptLayout
 import kotlin.math.hypot
 
 /**
@@ -104,12 +110,19 @@ abstract class BaseActivity<V : ViewDataBinding,VM : BaseViewModel> : AppCompatA
      */
     private fun setUpReveal(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            val viewTreeObserver = root.viewTreeObserver
+            val container = window.decorView as FrameLayout
+            val rootLayout = container.getChildAt(0) // 取出根布局
+            container.removeView(rootLayout) // 先移除根布局
+            val layout  = CircularRevealFrameLayout(this)
+            layout.addView(rootLayout,ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT)
+            container.addView(layout)
+            val viewTreeObserver = container.viewTreeObserver
             if (viewTreeObserver.isAlive) {
                 viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
                     override fun onGlobalLayout() {
-                        circularReveal(root)
-                        root.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                        circularReveal(layout)
+                        container.viewTreeObserver.removeOnGlobalLayoutListener(this)
                     }
                 })
             }
@@ -359,19 +372,15 @@ abstract class BaseActivity<V : ViewDataBinding,VM : BaseViewModel> : AppCompatA
      * 水波纹覆盖显示动画
      * @param rootLayout
      */
-    private fun circularReveal(rootLayout: View) {
+    private fun circularReveal(rootLayout: CircularRevealFrameLayout) {
         val centerX = rootLayout.width.toFloat() /2
         val centerY = rootLayout.height.toFloat() /2
         val finalRadius = hypot(
             centerX.coerceAtLeast(rootLayout.width - centerX),
             centerY.coerceAtLeast(rootLayout.height - centerY)
         )
-        val circularReveal = ViewAnimationUtils.createCircularReveal(
-            rootLayout,
-            (rootLayout.width * 0.5).toInt(),
-            (rootLayout.height * 0.5).toInt(),
-            0f, finalRadius
-        )
+        rootLayout.revealInfo = CircularRevealWidget.RevealInfo(centerX,centerY,0f)
+        val circularReveal = CircularRevealCompat.createCircularReveal(rootLayout,centerX,centerY,finalRadius)
         circularReveal.duration = 500
         circularReveal.interpolator = LinearInterpolator()
         circularReveal.startDelay = 50
