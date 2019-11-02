@@ -73,7 +73,7 @@ ___
   #### V1.03 修改时间：2019/11/2
   内容：新增一个FloatActonButton的菜单，实现的效果其实不难，效果如下：  
   <img src ="https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191102234438.jpg" width = 200 alt = "主页"/>  
-  简单说一下步骤吧，之后可能会抽个时间完善一下写成Libray
+  简单说一下步骤吧，之后可能会抽个时间完善一下写成Libray  
   1、通过自定义的Beahavior 可以很简单地拿到需要依附的View
   ```kotlin
   override fun layoutDependsOn(parent: CoordinatorLayout, child: ExpandMenuChildLayout, dependency: View): Boolean {
@@ -97,6 +97,25 @@ ___
   ```
   3 、就是在这个view上实现常规自定view代码编写，其实核心是需要理解Beahavior的用处，CoordinatorLayout里面这个是一个很灵活的操作，
   网上有非常多的例子介绍怎么使用，也是很常规的例子。  
+  然后略改了一下之前添加Glide图片加载效果，让图片加载过渡时候有个渐变色效果，代码如下:  
+  ```kotlin
+  override fun transition(current: Drawable, adapter: Transition.ViewAdapter): Boolean {
+        var previous = adapter.currentDrawable
+        if (previous == null) {
+            previous = ColorDrawable(Palette.from(createBitmap(current)).generate().getVibrantColor(Color.TRANSPARENT))
+        }
+       ——————————  一堆实现动画的代码 ——————————
+        return true
+    }
+
+    private fun createBitmap(current: Drawable) : Bitmap{
+        val bitmap = Bitmap.createBitmap(10,10,Bitmap.Config.RGB_565)
+        val canvas = Canvas(bitmap)
+        current.setBounds(0,0,10,10)
+        current.draw(canvas)
+        return bitmap
+    }
+  ```
   #### V1.03 修改时间：2019/10/29
   内容： 新增一个可以监听到下载进度的ImageView,继承PhotpView，利用onDraw，画出进度条。新增Glide的Okhttp3图片Loader的自定义进度监听。
   自定义属性为zoomable，默认为false
