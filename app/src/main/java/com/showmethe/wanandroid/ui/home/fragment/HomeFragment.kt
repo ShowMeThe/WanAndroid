@@ -20,6 +20,9 @@ import com.showmethe.wanandroid.constant.onStartBanner
 import com.showmethe.wanandroid.constant.onStopBanner
 import com.showmethe.wanandroid.databinding.FragmentHomeBinding
 import com.showmethe.wanandroid.entity.HomeArticle
+import com.showmethe.wanandroid.expand.Builder
+import com.showmethe.wanandroid.expand.ExpandIcon
+import com.showmethe.wanandroid.expand.ExpandManager
 import com.showmethe.wanandroid.ui.home.SearchActivity
 import com.showmethe.wanandroid.ui.home.adapter.HomeArticleAdapter
 import com.showmethe.wanandroid.ui.home.openDetail
@@ -34,7 +37,7 @@ import showmethe.github.core.http.coroutines.Result.Companion.OutTime
 import showmethe.github.core.http.coroutines.Result.Companion.Success
 import showmethe.github.core.livebus.LiveBusHelper
 import showmethe.github.core.util.widget.StatusBarUtil
-import showmethe.github.core.util.widget.setOnSingleClickListner
+import showmethe.github.core.util.widget.setOnSingleClickListener
 import kotlin.math.abs
 
 
@@ -109,7 +112,10 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
 
         refreshing.value = true
 
-
+        val expands = ArrayList<ExpandIcon>()
+        expands.add(ExpandIcon().setIcon(R.mipmap.baseline_search_white_24).setBackgroundTint(R.color.colorPrimaryDark))
+        expands.add(ExpandIcon().setIcon(R.mipmap.baseline_arrow_upward_white_24dp).setBackgroundTint(R.color.colorPrimaryDark))
+        ExpandManager.newBuilder().setExpandIcons(expands).bindTarget(crl).build()
 
 
         router.toTarget("getBanner")
@@ -143,10 +149,6 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
     }
 
 
-    fun onFabClick(view: View){
-        rv.scrollToPosition(0)
-    }
-
 
     fun loadMore(){
         pagerNumber.value =  pagerNumber.value!! + 1
@@ -159,9 +161,19 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
 
     override fun initListener() {
 
+        crl.setOnMenuClickListener {
+            when(it){
+                0 ->{
+                   context. startActivity<SearchActivity>()
+                }
+                1 ->{
+                    rv.scrollToPosition(0)
+                }
+            }
+        }
 
 
-        profile.setOnSingleClickListner {
+        profile.setOnSingleClickListener {
             viewModel.openDrawer.value = true
         }
 

@@ -14,9 +14,9 @@ import showmethe.github.core.glide.TGlide
  * Package Name:showmethe.github.core.util.widget
  */
 
-fun View.setOnSingleClickListner(onSingleClick : (it:View)->Unit){
+fun View.setOnSingleClickListener(onSingleClick : (it:View)->Unit){
     var lastClickTime = 0L
-    val lastLongTime = 2000L
+    val lastLongTime = 1500L
 
     setOnClickListener {
         val time = System.currentTimeMillis()

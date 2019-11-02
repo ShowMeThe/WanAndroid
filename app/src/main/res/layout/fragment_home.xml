@@ -102,6 +102,8 @@
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
+
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
                 android:layout_marginBottom="@dimen/px30dp"
@@ -110,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:tint = "@color/white"
-                app:srcCompat="@mipmap/baseline_arrow_upward_white_24dp"
+                app:srcCompat="@mipmap/baseline_home_white_24dp"
                 app:fabSize="auto"
                 android:tint="@color/white"
                 android:tintMode="src_in"
@@ -118,9 +120,17 @@
                 app:backgroundTintMode="src_in"
                 app:backgroundTint="@color/colorAccent"
                 app:layout_behavior="showmethe.github.core.util.widget.ScrollAwareFABBehavior"
-                android:onClick="@{Home::onFabClick}"
                 />
 
+
+            <com.showmethe.wanandroid.expand.ExpandMenuChildLayout
+                android:id="@+id/crl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_behavior=".expand.ExpandBottomBehavior"
+                app:layout_anchor="@id/fab"
+                >
+            </com.showmethe.wanandroid.expand.ExpandMenuChildLayout>
 
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
