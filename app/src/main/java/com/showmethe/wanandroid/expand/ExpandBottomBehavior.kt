@@ -8,9 +8,9 @@ import com.showmethe.wanandroid.expand.ExpandMenuConfig.defaultMargin
 import com.google.android.material.circularreveal.CircularRevealLinearLayout
 
 /**
- * com.example.ken.kmvvm
- * 2019/11/1
- * 21:42
+ * Author: showMeThe
+ * Update Time: 2019/11/2
+ * Package Name:com.showmethe.wanandroid.expand
  */
 class ExpandBottomBehavior(context: Context?, attrs: AttributeSet?)
     : ExpandParentBehavior(context, attrs) {
