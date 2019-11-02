@@ -70,13 +70,59 @@ ___
   #### 增加了快捷标签的入口
   
   ### 更新日志  
-  V1.03 修改时间：2019/10/29
+  #### V1.03 修改时间：2019/11/2
+  内容：新增一个FloatActonButton的菜单，实现的效果其实不难，效果如下：  
+  <img src ="https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191102234438.jpg" width = 200 alt = "主页"/>  
+  简单说一下步骤吧，之后可能会抽个时间完善一下写成Libray  
+  1、通过自定义的Beahavior 可以很简单地拿到需要依附的View
+  ```kotlin
+  override fun layoutDependsOn(parent: CoordinatorLayout, child: ExpandMenuChildLayout, dependency: View): Boolean {
+        return dependency is FloatingActionButton
+    }
+  ```
+  2、对自己控制的view和依附的dependency构建关系，相对位置，状态改变监听等等，代码在ExpandBottomBehavior.kt里
+  ```kotlin
+     override fun dependentViewChanged(parent: CoordinatorLayout, child: CircularRevealLinearLayout, dependency: View) {
+        val dependencyWidth = dependency.measuredWidth
+        val dependencyHeight = dependency.measuredHeight
+        val childHeight = child.measuredHeight
+        val childWidth = child.measuredWidth
+        val dependencyX = dependency.x
+        val dependencyY = dependency.y + dependencyHeight
+
+        child.x = dependencyX + dependencyWidth - childWidth
+        child.y = dependencyY -  defaultMargin - dependencyHeight - childHeight
+    }
+
+  ```
+  3 、就是在这个view上实现常规自定view代码编写，其实核心是需要理解Beahavior的用处，CoordinatorLayout里面这个是一个很灵活的操作，
+  网上有非常多的例子介绍怎么使用，也是很常规的例子。  
+  然后略改了一下之前添加Glide图片加载效果，让图片加载过渡时候有个渐变色效果，代码如下:  
+  ```kotlin
+  override fun transition(current: Drawable, adapter: Transition.ViewAdapter): Boolean {
+        var previous = adapter.currentDrawable
+        if (previous == null) {
+            previous = ColorDrawable(Palette.from(createBitmap(current)).generate().getVibrantColor(Color.TRANSPARENT))
+        }
+       ——————————  一堆实现动画的代码 ——————————
+        return true
+    }
+
+    private fun createBitmap(current: Drawable) : Bitmap{
+        val bitmap = Bitmap.createBitmap(10,10,Bitmap.Config.RGB_565)
+        val canvas = Canvas(bitmap)
+        current.setBounds(0,0,10,10)
+        current.draw(canvas)
+        return bitmap
+    }
+  ```
+  #### V1.03 修改时间：2019/10/29
   内容： 新增一个可以监听到下载进度的ImageView,继承PhotpView，利用onDraw，画出进度条。新增Glide的Okhttp3图片Loader的自定义进度监听。
   自定义属性为zoomable，默认为false
   新增一个注解的权限管理，利用Fragment处理权限申请。在权限申请的内部，仅提供了申请结果。暂不实现权限被拒绝后吊起一个对话框告知用户手动申请， 
   个人理由是因为在权限开发这块我们更应该倾向于某功能需要用到权限时候才执行权限申请，而不是一次性全部申请。所以应该是尽可能保留功能稳定完善，
   减少提示框的弹出。  
-  V1.02 修改时间：2019/10/25   
+  #### V1.02 修改时间：2019/10/25   
   内容：修复Glide的过渡动画，会导致某些时候图片加载完后，被拉伸了。
   修改图片墙的FAB位置
 
