@@ -70,6 +70,33 @@ ___
   #### 增加了快捷标签的入口
   
   ### 更新日志  
+  V1.03 修改时间：2019/11/2
+  内容：新增一个FloatActonButton的菜单，实现的效果其实不难，效果如下：
+  <img src ="https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191102234438.jpg" width = 200 alt = "主页"/>  
+  简单说一下步骤吧，之后可能会抽个时间完善一下写成Libray
+  1、通过自定义的Beahavior 可以很简单地拿到需要依附的View
+  ```kotlin
+  override fun layoutDependsOn(parent: CoordinatorLayout, child: ExpandMenuChildLayout, dependency: View): Boolean {
+        return dependency is FloatingActionButton
+    }
+  ```
+  2、对自己控制的view和依附的dependency构建关系，相对位置，状态改变监听等等，代码在ExpandBottomBehavior.kt里
+  ```kotlin
+     override fun dependentViewChanged(parent: CoordinatorLayout, child: CircularRevealLinearLayout, dependency: View) {
+        val dependencyWidth = dependency.measuredWidth
+        val dependencyHeight = dependency.measuredHeight
+        val childHeight = child.measuredHeight
+        val childWidth = child.measuredWidth
+        val dependencyX = dependency.x
+        val dependencyY = dependency.y + dependencyHeight
+
+        child.x = dependencyX + dependencyWidth - childWidth
+        child.y = dependencyY -  defaultMargin - dependencyHeight - childHeight
+    }
+
+  ```
+  3 、就是在这个view上实现常规自定view代码编写，其实核心是需要理解Beahavior的用处，CoordinatorLayout里面这个是一个很灵活的操作，
+  网上有非常多的例子介绍怎么使用，也是很常规的例子。
   V1.03 修改时间：2019/10/29
   内容： 新增一个可以监听到下载进度的ImageView,继承PhotpView，利用onDraw，画出进度条。新增Glide的Okhttp3图片Loader的自定义进度监听。
   自定义属性为zoomable，默认为false
