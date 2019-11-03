@@ -1,14 +1,13 @@
 package com.showmethe.wanandroid.expand
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
+import android.animation.*
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import android.util.AttributeSet
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.animation.LinearInterpolator
@@ -19,6 +18,8 @@ import com.google.android.material.circularreveal.CircularRevealLinearLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textview.MaterialTextView
 import com.showmethe.wanandroid.R
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Author: showMeThe
@@ -37,6 +38,11 @@ class ExpandMenuChildLayout(context: Context, attrs: AttributeSet?) : CircularRe
     private var isHide = true
     private var targetCount = 0
     private var showCount = 0
+    private var originBackTint : ColorStateList? = null
+    private var originIcon : Drawable?  = null
+    private var originIconTint : ColorStateList? = null
+    private val showMotionSet = AnimatorSet()
+    private val hideMotionSet = AnimatorSet()
 
     fun isHidden() = isHide
 
@@ -63,8 +69,10 @@ class ExpandMenuChildLayout(context: Context, attrs: AttributeSet?) : CircularRe
 
     private fun createFab(index: Int,expandIcon: ExpandIcon) : FloatingActionButton{
         val fab = FloatingActionButton(context)
+        if(expandIcon.getIcon()!=-1){
+            fab.setImageResource(expandIcon.getIcon())
+        }
         fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context,expandIcon.getBackgroundTint()))
-        fab.setImageResource(expandIcon.getIcon())
         fab.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context,expandIcon.getIconTint()))
         val layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT)
         fab.size = FloatingActionButton.SIZE_MINI
@@ -139,15 +147,89 @@ class ExpandMenuChildLayout(context: Context, attrs: AttributeSet?) : CircularRe
         }
     }
 
-    private var onMenuClick:((index:Int)->Unit)? = null
-    fun setOnMenuClickListener(onMenuClick:((index:Int)->Unit)){
-        this.onMenuClick = onMenuClick
+    fun createMotion(fab: FloatingActionButton){
+       if(builder.getMotionIcon()!=-1){
+           if(isHidden()){
+               createSave(fab)
+               createShowMotion(fab)
+           }else{
+               createHideMotion(fab)
+           }
+       }
+    }
+
+
+    private fun createSave(fab: FloatingActionButton){
+        originBackTint = fab.backgroundTintList
+        originIcon = fab.drawable
+        originIconTint = fab.imageTintList
+    }
+
+    private fun reverseSave(fab: FloatingActionButton){
+         fab.backgroundTintList = originBackTint
+         fab.setImageDrawable(originIcon)
+         fab.imageTintList = originIconTint
+    }
+
+    private fun createShowMotion(fab: FloatingActionButton){
+       if(showMotionSet.childAnimations.isEmpty()){
+           val alpha = ObjectAnimator.ofFloat(fab,"alpha",0f,0.75f ,0.5f,0.75f,1.0f)
+           val rotate = ObjectAnimator.ofFloat(fab,"rotation",0f,180f)
+           val scaleX = ObjectAnimator.ofFloat(fab,"scaleX",1.0f,0.75f,1.0f)
+           val scaleY = ObjectAnimator.ofFloat(fab,"scaleY",1.0f,0.75f,1.0f)
+           val color = ValueAnimator.ofObject(ArgbEvaluator(),fab.backgroundTintList!!.defaultColor,
+               ContextCompat.getColor(context,builder.getMotionColor()))
+           color.addUpdateListener {
+               fab.backgroundTintList = ColorStateList.valueOf(it.animatedValue as Int)
+           }
+           showMotionSet.interpolator = LinearInterpolator()
+           showMotionSet.duration = 450
+           showMotionSet.playTogether(alpha,color,rotate,scaleX,scaleY)
+           val newBackgroundTint = context.getColorStateList(builder.getMotionColor())
+           val newDrawable = context.getDrawable(builder.getMotionIcon())
+           showMotionSet.addListener(object : AnimatorListenerAdapter(){
+               override fun onAnimationEnd(animation: Animator?) {
+                   fab.backgroundTintList = newBackgroundTint
+                   fab.setImageDrawable(newDrawable)
+               }
+           })
+           showMotionSet.start()
+       }else{
+           showMotionSet.start()
+       }
+
+    }
+
+
+    private fun createHideMotion(fab: FloatingActionButton){
+        if(hideMotionSet.childAnimations.isEmpty()){
+            val alpha = ObjectAnimator.ofFloat(fab,"alpha",0f,0.75f ,0.5f,0.75f,1.0f)
+            val rotate = ObjectAnimator.ofFloat(fab,"rotation",180f,0f)
+            val scaleX = ObjectAnimator.ofFloat(fab,"scaleX",1.0f,0.75f,1.0f)
+            val scaleY = ObjectAnimator.ofFloat(fab,"scaleY",1.0f,0.75f,1.0f)
+            val color = ValueAnimator.ofObject(ArgbEvaluator(),ContextCompat.getColor(context,builder.getMotionColor()),
+                fab.backgroundTintList!!.defaultColor)
+            color.addUpdateListener {
+                fab.backgroundTintList = ColorStateList.valueOf(it.animatedValue as Int)
+            }
+            hideMotionSet.interpolator = LinearInterpolator()
+            hideMotionSet.duration = 450
+            hideMotionSet.playTogether(alpha,rotate,scaleX,scaleY,color)
+            hideMotionSet.addListener(object : AnimatorListenerAdapter(){
+                override fun onAnimationEnd(animation: Animator?) {
+                    reverseSave(fab)
+                }
+            })
+            hideMotionSet.start()
+        }else{
+            hideMotionSet.start()
+        }
     }
 
     private fun createShow(index: Int,fab : FloatingActionButton){
-        val alpha = ObjectAnimator.ofFloat(fab,"alpha",0f,0.25f,0.5f,0.75f,1.0f)
-        val scaleX = ObjectAnimator.ofFloat(fab,"scaleX",0f,0.25f,0.5f,0.75f,1.0f)
-        val scaleY = ObjectAnimator.ofFloat(fab,"scaleY",0f,0.25f,0.5f,0.75f,1.0f)
+        val alpha = ObjectAnimator.ofFloat(fab,"alpha",0f,1.0f)
+        val scaleX = ObjectAnimator.ofFloat(fab,"scaleX",0f,1.0f)
+        val scaleY = ObjectAnimator.ofFloat(fab,"scaleY",0f,1.0f)
         val animatorSet = AnimatorSet()
         animatorSet.interpolator = LinearInterpolator()
         animatorSet.duration = 350
@@ -174,9 +256,9 @@ class ExpandMenuChildLayout(context: Context, attrs: AttributeSet?) : CircularRe
 
 
     private fun createHide(index: Int,fab : FloatingActionButton){
-        val alpha = ObjectAnimator.ofFloat(fab,"alpha",1f,0.75f,0.5f,0.25f,0.0f)
-        val scaleX = ObjectAnimator.ofFloat(fab,"scaleX",1f,0.75f,0.5f,0.25f,0.0f)
-        val scaleY = ObjectAnimator.ofFloat(fab,"scaleY",1f,0.75f,0.5f,0.25f,0.0f)
+        val alpha = ObjectAnimator.ofFloat(fab,"alpha",1f,0.0f)
+        val scaleX = ObjectAnimator.ofFloat(fab,"scaleX",1f,0.0f)
+        val scaleY = ObjectAnimator.ofFloat(fab,"scaleY",1f,0.0f)
         val animatorSet = AnimatorSet()
         animatorSet.interpolator = LinearInterpolator()
         animatorSet.duration = 350
@@ -214,6 +296,11 @@ class ExpandMenuChildLayout(context: Context, attrs: AttributeSet?) : CircularRe
 
     }
 
+
+    private var onMenuClick:((index:Int)->Unit)? = null
+    fun setOnMenuClickListener(onMenuClick:((index:Int)->Unit)){
+        this.onMenuClick = onMenuClick
+    }
 
 
 }

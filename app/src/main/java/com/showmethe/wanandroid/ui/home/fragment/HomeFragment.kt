@@ -115,7 +115,7 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
         val expands = ArrayList<ExpandIcon>()
         expands.add(ExpandIcon().setIcon(R.mipmap.baseline_search_white_24).setBackgroundTint(R.color.colorPrimaryDark))
         expands.add(ExpandIcon().setIcon(R.mipmap.baseline_arrow_upward_white_24dp).setBackgroundTint(R.color.colorPrimaryDark))
-        ExpandManager.newBuilder().setExpandIcons(expands).bindTarget(crl).build()
+        ExpandManager.newBuilder().setExpandIcons(expands).motion(R.color.black,R.mipmap.close).bindTarget(crl).build()
 
 
         router.toTarget("getBanner")

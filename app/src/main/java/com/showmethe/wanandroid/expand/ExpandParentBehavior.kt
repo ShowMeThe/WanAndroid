@@ -29,9 +29,11 @@ open class ExpandParentBehavior(context: Context?, attrs: AttributeSet?)
             dependency.setOnClickListener {
                 if(child.isHidden()){
                     child.toVisible()
+                    child.createMotion(dependency)
                     dependency.isExpanded = true
                 }else{
                     child.toInVisible()
+                    child.createMotion(dependency)
                     dependency.isExpanded = false
                 }
             }
