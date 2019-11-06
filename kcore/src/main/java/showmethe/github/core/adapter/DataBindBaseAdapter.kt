@@ -25,40 +25,7 @@ abstract class DataBindBaseAdapter<D, V : ViewDataBinding>(var context: Context,
 
 
     init {
-        this.data.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableArrayList<D>>(){
-            override fun onChanged(sender: ObservableArrayList<D>?) {
-                notifyDataSetChanged()
-            }
-            override fun onItemRangeRemoved(sender: ObservableArrayList<D>?, positionStart: Int, itemCount: Int) {
-                if (itemCount == 1) {
-                    notifyItemRemoved(positionStart)
-                    notifyItemRangeChanged(positionStart, itemCount)
-                } else {
-                    notifyDataSetChanged()
-                }
-            }
-
-            override fun onItemRangeInserted(sender: ObservableArrayList<D>, positionStart: Int, itemCount: Int) {
-                notifyItemRangeInserted(positionStart,itemCount)
-                notifyItemRangeChanged(positionStart, sender.size - positionStart)
-            }
-
-
-            override fun onItemRangeMoved(sender: ObservableArrayList<D>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
-                if (itemCount == 1) {
-                    notifyItemMoved(fromPosition, toPosition)
-                } else {
-                    notifyDataSetChanged()
-                }
-            }
-
-            override fun onItemRangeChanged(sender: ObservableArrayList<D>?, positionStart: Int, itemCount: Int) {
-                notifyItemRangeChanged(positionStart, itemCount)
-
-            }
-
-        })
-
+        this.data.addCallback(this)
     }
 
 
