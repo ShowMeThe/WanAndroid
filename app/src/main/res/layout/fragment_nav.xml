@@ -46,6 +46,7 @@
                         android:layout_height="@dimen/px150dp"
                         app:layout_collapseMode="pin"
                         app:title="知识体系"
+                        app:titleTextColor="@color/white"
                         app:navigationIcon="@mipmap/baseline_search_white_24"
                         android:theme="@style/ToolbarTheme"
                         >
