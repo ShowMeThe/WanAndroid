@@ -48,19 +48,13 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
     @SuppressLint("CheckResult")
     override fun init(savedInstanceState: Bundle?) {
          rect.bindLifecyle(this)
-         PermissionFactory.with(this)
-             .requestAll( android.Manifest.permission.CAMERA){
-             checkPermission(it)
-         }
+         initData()
+         startToMain()
     }
 
-    private fun checkPermission(result: Boolean){
-        initData()
-        startToMain()
-    }
+
 
     private fun startToMain(){
-
         GlobalScope.launch(Dispatchers.Main) {
             delay(3000)
             startActivity<MainActivity>(null)
