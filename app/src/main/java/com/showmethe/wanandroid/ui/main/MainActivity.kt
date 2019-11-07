@@ -41,13 +41,14 @@ import showmethe.github.core.http.RetroHttp
 import showmethe.github.core.util.extras.SimpleAnimatorListener
 import showmethe.github.core.util.rden.RDEN
 import showmethe.github.core.util.widget.StatusBarUtil
+import showmethe.github.core.util.widget.StatusBarUtil.setFullScreen
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     private val colors = ArrayList<ColorStateList>()
 
     override fun setTheme() {
-        StatusBarUtil.setFullScreen(this)
+       setFullScreen()
     }
 
     private val fragments = ArrayList<Fragment>()

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import showmethe.github.core.util.extras.forEachBreak
 import kotlin.reflect.KCallable
 import kotlin.reflect.full.findAnnotation
 
@@ -25,21 +26,20 @@ class VMRouter(private var viewModel: ViewModel) {
         if(callMap["${viewModel.javaClass.name}/${path}"] == null){
             viewModel.viewModelScope.launch(Dispatchers.Main) {
                 try {
-                    kotlin.run breaking@{
-                        viewModel::class.members.forEach { call->
-                            val annotation = call.findAnnotation<VMPath>()
-                            annotation?.apply {
-                                if(this.path == path){
-                                    if(args.isNotEmpty()){
-                                        call.call(viewModel,*args)
-                                    }else{
-                                        call.call(viewModel)
-                                    }
-                                    callMap["${viewModel.javaClass.name}/${path}"] = call
-                                    return@breaking
+                    viewModel::class.members.forEachBreak { call->
+                        val annotation = call.findAnnotation<VMPath>()
+                        annotation?.apply {
+                            if(this.path == path){
+                                if(args.isNotEmpty()){
+                                    call.call(viewModel,*args)
+                                }else{
+                                    call.call(viewModel)
                                 }
+                                callMap["${viewModel.javaClass.name}/${path}"] = call
+                                return@forEachBreak false
                             }
                         }
+                        true
                     }
                 }catch (e:Exception){
                     Log.e("ViewModel","Exception  : ${e.message}")

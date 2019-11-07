@@ -39,8 +39,10 @@ import showmethe.github.core.util.widget.StatusBarUtil
 import java.util.concurrent.TimeUnit
 import showmethe.github.core.R
 import showmethe.github.core.base.vmpath.VMRouter
+import showmethe.github.core.util.extras.onGlobalLayout
 import showmethe.github.core.util.extras.putValueInBundle
 import showmethe.github.core.util.system.hideSoftKeyboard
+import showmethe.github.core.util.widget.StatusBarUtil.addStatusBar
 import showmethe.github.core.widget.slideback.widget.SlideBackInterceptLayout
 import kotlin.math.hypot
 
@@ -117,23 +119,12 @@ abstract class BaseActivity<V : ViewDataBinding,VM : BaseViewModel> : AppCompatA
             layout.addView(rootLayout,ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT)
             container.addView(layout)
-            val viewTreeObserver = container.viewTreeObserver
-            if (viewTreeObserver.isAlive) {
-                viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-                    override fun onGlobalLayout() {
-                        circularReveal(layout)
-                        container.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                    }
-                })
+            container.onGlobalLayout {
+                circularReveal(layout)
             }
         }
     }
 
-
-
-    protected fun addStatusBarView(color: Int, isTxBlack: Boolean) {
-        StatusBarUtil.addStatusBarView(this, color, isTxBlack)
-    }
 
     private var observer: Observer<LiveBusHelper> = Observer {
         it?.apply {

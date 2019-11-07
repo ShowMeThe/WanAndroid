@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import showmethe.github.core.util.system.GetSystemUtils
 
 
@@ -20,45 +22,49 @@ import showmethe.github.core.util.system.GetSystemUtils
 
 object StatusBarUtil {
 
-
     //OPPO
     private val SYSTEM_UI_FLAG_OP_STATUS_BAR_TINT = 0x00000010
 
-    fun registerActivity(activity: Activity) {
+    fun FragmentActivity.registerActivity() {
         if (GetSystemUtils.system == GetSystemUtils.SYS_FLYME) {
-            setMeizuStatusBarDarkIcon(activity, true)
+            setMeizuStatusBarDarkIcon(this, true)
         } else if (GetSystemUtils.system == GetSystemUtils.SYS_MIUI) {
-            setMiuiStatusBarDarkMode(activity, true)
+            setMiuiStatusBarDarkMode(this, true)
         } else if (GetSystemUtils.system == GetSystemUtils.SYS_OPPO) {
-            setOPPOStatusTextColor(activity, true)
+            setOPPOStatusTextColor(this, true)
         } else {
-            android6StatusBarDarkMode(activity, true)
+            android6StatusBarDarkMode(this, true)
         }
-
-
     }
 
 
-    fun fixToolbarScreen(activity: Activity, toolbar: Toolbar) {
-        setFullScreen(activity)
+    fun FragmentActivity.fixToolbarScreen(toolbar: Toolbar) {
+        setFullScreen()
         val params = toolbar.layoutParams
-        params.height = (getStatusBarHeight(activity) * 1).toInt()
+        params.height = (getStatusBarHeight() * 1).toInt()
         toolbar.layoutParams = params
     }
 
 
-    fun fixToolbar(activity: Activity, toolbar: Toolbar) {
+    fun FragmentActivity.fixToolbar(toolbar: Toolbar) {
         val params = toolbar.layoutParams
-        params.height = (getStatusBarHeight(activity) * 1).toInt()
+        params.height = (getStatusBarHeight() * 1).toInt()
         toolbar.layoutParams = params
     }
+
+    fun Fragment.fixToolbar(toolbar: Toolbar) {
+        val params = toolbar.layoutParams
+        params.height = (activity?.getStatusBarHeight()?.times(1)!!)
+        toolbar.layoutParams = params
+    }
+
 
     /**
      * 顶部状态栏上移
      */
-    fun setFullScreen(activity: Activity) {
-        setScreen(activity)
-        val mContentView = activity.findViewById<ViewGroup>(Window.ID_ANDROID_CONTENT)
+    fun FragmentActivity.setFullScreen() {
+        setScreen()
+        val mContentView = findViewById<ViewGroup>(Window.ID_ANDROID_CONTENT)
         val mChildView = mContentView.getChildAt(0)
         if (mChildView != null) {
             mChildView.fitsSystemWindows = false
@@ -66,8 +72,8 @@ object StatusBarUtil {
     }
 
 
-    private fun setScreen(activity: Activity) {
-        val window = activity.window
+    private fun FragmentActivity.setScreen() {
+        val window = window
         val decorView = window.decorView
         //两个 flag 要结合使用，表示让应用的主体内容占用系统状态栏的空间
         val option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -77,80 +83,70 @@ object StatusBarUtil {
     }
 
 
-    fun setStatusColor(activity: Activity, color: Int) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val window = activity.window
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = ContextCompat.getColor(activity, color)
-        }
+    fun FragmentActivity.setStatusColor(color: Int) {
+        val window = window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = ContextCompat.getColor(this, color)
     }
 
 
-    fun setTranslucentNavigation(activity: Activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val window = activity.window
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
-        }
+    fun FragmentActivity.setTranslucentNavigation() {
+        val window = window
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
     }
 
 
-    fun setTranslucentStatusBar(activity: Activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val window = activity.window
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        }
+    fun FragmentActivity.setTranslucentStatusBar() {
+        val window = window
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
     }
 
-    fun setTranslucent(activity: Activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val window = activity.window
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        }
+    fun Activity.setTranslucent() {
+        val window = window
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
     }
 
 
-    fun addStatusBarView(activity: Activity, color: Int, isBlack: Boolean) {
-        setScreen(activity)
-        val contentView = activity.findViewById<ViewGroup>(android.R.id.content)
-        val statusBarView = View(activity)
+    fun FragmentActivity.addStatusBar(color: Int, isBlack: Boolean) {
+        setScreen()
+        val contentView = findViewById<ViewGroup>(android.R.id.content)
+        val statusBarView = View(this)
         val lp = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                getStatusBarHeight(activity))
+                getStatusBarHeight())
         if (contentView.childCount > 1) {
             contentView.removeViewAt(1)
         }
-        statusBarView.setBackgroundColor(ContextCompat.getColor(activity, color))
+        statusBarView.setBackgroundColor(ContextCompat.getColor(this, color))
         contentView.addView(statusBarView, lp)
         if (isBlack) {
-            registerActivity(activity)
+            registerActivity()
         }
     }
 
 
-    fun addTranslucentStatusBarView(activity: Activity, color: Int, isBlack: Boolean) {
-        setFullScreen(activity)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val window = activity.window
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        }
+    fun FragmentActivity.addTranslucentStatusBarView(activity: Activity, color: Int, isBlack: Boolean) {
+        setFullScreen()
+        val window = activity.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         val contentView = activity.findViewById<ViewGroup>(android.R.id.content)
         val statusBarView = View(activity)
         val lp = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                getStatusBarHeight(activity))
+                getStatusBarHeight())
         statusBarView.setBackgroundColor(ContextCompat.getColor(activity, color))
         contentView.addView(statusBarView, lp)
         if (isBlack) {
-            registerActivity(activity)
+            registerActivity()
         }
     }
 
 
-    fun getStatusBarHeight(activity: Activity): Int {
+    fun FragmentActivity.getStatusBarHeight(): Int {
         var result = 0
         //获取状态栏高度的资源id
-        val resourceId = activity.resources.getIdentifier("status_bar_height", "dimen", "android")
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
         if (resourceId > 0) {
-            result = activity.resources.getDimensionPixelSize(resourceId)
+            result = resources.getDimensionPixelSize(resourceId)
         }
         return result
     }

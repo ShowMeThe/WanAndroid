@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_accunt.*
 import showmethe.github.core.base.LazyFragment
 import showmethe.github.core.util.extras.SimpleTabSelectedListener
 import showmethe.github.core.util.widget.StatusBarUtil
+import showmethe.github.core.util.widget.StatusBarUtil.fixToolbar
 import showmethe.github.core.widget.common.SmartRelativeLayout
 
 
@@ -46,7 +47,7 @@ class AccountFragment : LazyFragment<FragmentAccuntBinding, MainViewModel>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        StatusBarUtil.fixToolbar(context,toolbar)
+        fixToolbar(toolbar)
     }
 
     override fun observerUI() {

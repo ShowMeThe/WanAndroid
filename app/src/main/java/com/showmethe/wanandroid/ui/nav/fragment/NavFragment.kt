@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_nav.*
 import showmethe.github.core.base.LazyFragment
 import showmethe.github.core.base.vmpath.VMRouter
 import showmethe.github.core.util.widget.StatusBarUtil
+import showmethe.github.core.util.widget.StatusBarUtil.fixToolbar
 
 
 class NavFragment : LazyFragment<FragmentNavBinding, MainViewModel>() {
@@ -60,9 +61,8 @@ class NavFragment : LazyFragment<FragmentNavBinding, MainViewModel>() {
     }
 
     override fun init() {
-        router = VMRouter(viewModel)
         refresh.setColorSchemeResources(R.color.color_6200ea)
-        StatusBarUtil.fixToolbar(context,toolbar)
+        fixToolbar(toolbar)
 
         adapter = TreeAdapter(context,list)
         rv.adapter = adapter

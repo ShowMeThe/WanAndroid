@@ -29,7 +29,9 @@ import com.showmethe.wanandroid.ui.home.openDetail
 import com.showmethe.wanandroid.ui.main.startToImgs
 import com.showmethe.wanandroid.ui.main.vm.MainViewModel
 import com.showmethe.wanandroid.util.HoldViewHelper
+import kotlinx.android.synthetic.main.fragment_accunt.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.toolbar
 import kotlinx.android.synthetic.main.include_main_title.*
 import showmethe.github.core.base.LazyFragment
 import showmethe.github.core.glide.TGlide
@@ -37,6 +39,7 @@ import showmethe.github.core.http.coroutines.Result.Companion.OutTime
 import showmethe.github.core.http.coroutines.Result.Companion.Success
 import showmethe.github.core.livebus.LiveBusHelper
 import showmethe.github.core.util.widget.StatusBarUtil
+import showmethe.github.core.util.widget.StatusBarUtil.fixToolbar
 import showmethe.github.core.util.widget.setOnSingleClickListener
 import kotlin.math.abs
 
@@ -105,7 +108,7 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
 
 
     override fun init() {
-        StatusBarUtil.fixToolbar(context,toolbar)
+        fixToolbar(toolbar)
         refresh.setColorSchemeResources(R.color.colorAccent)
         rv.hideWhenScrolling(refresh)
         binding?.home = this

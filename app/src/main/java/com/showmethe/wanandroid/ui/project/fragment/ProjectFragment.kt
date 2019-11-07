@@ -24,10 +24,13 @@ import com.showmethe.wanandroid.ui.main.startToImg
 import com.showmethe.wanandroid.ui.main.vm.MainViewModel
 import com.showmethe.wanandroid.ui.project.adapter.ProjectAdapter
 import com.showmethe.wanandroid.util.HoldViewHelper
+import kotlinx.android.synthetic.main.fragment_accunt.*
 import kotlinx.android.synthetic.main.fragment_project.*
+import kotlinx.android.synthetic.main.fragment_project.toolbar
 import showmethe.github.core.base.LazyFragment
 import showmethe.github.core.base.vmpath.VMRouter
 import showmethe.github.core.util.widget.StatusBarUtil
+import showmethe.github.core.util.widget.StatusBarUtil.fixToolbar
 
 
 class ProjectFragment : LazyFragment<FragmentProjectBinding, MainViewModel>() {
@@ -93,8 +96,7 @@ class ProjectFragment : LazyFragment<FragmentProjectBinding, MainViewModel>() {
     }
 
     override fun init() {
-        router = VMRouter(viewModel)
-        StatusBarUtil.fixToolbar(context,toolbar)
+        fixToolbar(toolbar)
         refresh.setColorSchemeResources(R.color.color_f4511e)
 
         window = DropWindow(context)

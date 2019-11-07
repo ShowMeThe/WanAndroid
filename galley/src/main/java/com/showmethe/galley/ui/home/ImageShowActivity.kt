@@ -9,6 +9,7 @@ import com.showmethe.galley.ui.home.vm.MainViewModel
 import kotlinx.android.synthetic.main.activity_image.*
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.util.widget.StatusBarUtil
+import showmethe.github.core.util.widget.StatusBarUtil.setFullScreen
 
 
 fun BaseActivity<*,*>.openImage(url:String,transitionView: View){
@@ -20,7 +21,7 @@ fun BaseActivity<*,*>.openImage(url:String,transitionView: View){
 class ImageShowActivity : BaseActivity<ActivityImageBinding, MainViewModel>() {
 
     override fun setTheme() {
-        StatusBarUtil.setFullScreen(this)
+        setFullScreen()
     }
 
 

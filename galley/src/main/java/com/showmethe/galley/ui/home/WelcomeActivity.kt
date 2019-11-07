@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_welcome.*
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.util.rden.RDEN
 import showmethe.github.core.util.widget.StatusBarUtil
+import showmethe.github.core.util.widget.StatusBarUtil.setFullScreen
 
 
 class WelcomeActivity : BaseActivity<ActivityWelcomeBinding,MainViewModel>() {
@@ -26,7 +27,7 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding,MainViewModel>() {
 
     private val login = LoginBean()
     override fun setTheme() {
-        StatusBarUtil.setFullScreen(this)
+       setFullScreen()
     }
     private lateinit var adapter: VerticalAdapter
     private val verList = ObservableArrayList<String>()

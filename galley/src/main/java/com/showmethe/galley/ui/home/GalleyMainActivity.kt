@@ -15,6 +15,7 @@ import com.showmethe.galley.util.OnBackPressedHandler
 import kotlinx.android.synthetic.main.activity_galley_main.*
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.util.widget.StatusBarUtil
+import showmethe.github.core.util.widget.StatusBarUtil.fixToolbarScreen
 import showmethe.github.core.widget.slideback.annotation.SlideBackBinder
 
 @SlideBackBinder
@@ -29,7 +30,7 @@ class GalleyMainActivity : BaseActivity<ActivityGalleyMainBinding, MainViewModel
 
     }
     override fun setTheme() {
-        StatusBarUtil.fixToolbarScreen(this, toolbar)
+        fixToolbarScreen( toolbar)
     }
     override fun observerUI() {
 

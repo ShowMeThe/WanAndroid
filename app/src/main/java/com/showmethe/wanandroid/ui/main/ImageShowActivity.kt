@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_image_show.*
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.livebus.LiveBusHelper
 import showmethe.github.core.util.widget.StatusBarUtil
+import showmethe.github.core.util.widget.StatusBarUtil.setFullScreen
 
 fun BaseActivity<*,*>.startToImg(url:String,transitionView: View){
     val bundle = Bundle()
@@ -38,7 +39,7 @@ fun BaseActivity<*,*>.startToImgs(url:ArrayList<String>,position: Int,transition
 class ImageShowActivity : BaseActivity<ViewDataBinding, MainViewModel>() {
 
     override fun setTheme() {
-        StatusBarUtil.setFullScreen(this)
+       setFullScreen()
     }
 
     private var url = ""
