@@ -19,26 +19,51 @@
         android:theme="@style/MaterialTheme"
         tools:ignore="GoogleAppIndexingWarning"
         >
-        <activity android:name="com.showmethe.wanandroid.ui.home.ArticleDetailActivity">
+        <activity android:name="com.showmethe.wanandroid.ui.home.ArticleDetailActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|locale"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            >
         </activity>
 
         <activity
             android:name="com.showmethe.wanandroid.ui.main.ImageShowActivity"
-            android:theme="@style/TranslucentTheme">
+            android:theme="@style/TranslucentTheme"
+            android:configChanges="orientation|keyboardHidden|navigation|locale"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            >
         </activity>
 
 
-        <activity android:name="com.showmethe.wanandroid.ui.main.CollectActivity">
+        <activity android:name="com.showmethe.wanandroid.ui.main.CollectActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|locale"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            >
 
         </activity>
         <activity
             android:name="com.showmethe.wanandroid.ui.home.SearchActivity"
-            android:launchMode="singleTop" />
+            android:configChanges="orientation|keyboardHidden|navigation|locale"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name="com.showmethe.wanandroid.ui.auth.LoginActivity"
-            android:launchMode="singleTop" />
+            android:configChanges="orientation|keyboardHidden|navigation|locale"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name="com.showmethe.wanandroid.ui.auth.SplashActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|locale"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:theme="@style/Theme.Splash">
 
             <intent-filter>
@@ -54,6 +79,9 @@
         </activity>
         <activity
             android:name="com.showmethe.wanandroid.ui.main.MainActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|locale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:launchMode="singleTask">
         </activity>
     </application>

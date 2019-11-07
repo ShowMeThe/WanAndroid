@@ -1,15 +1,15 @@
 <resources>
 
 
-
     <style name="Theme.Splash" parent="Theme.Design.Light.NoActionBar">
-    <item name="android:windowNoTitle">true</item>
-    <item name="android:windowContentOverlay">@null</item>
-    <item name="android:windowIsTranslucent">true</item>
-    <item name="android:windowDisablePreview">false</item>
-    <item name="android:windowBackground">@color/colorPrimary</item>
-    <item name="android:windowFullscreen">true</item>
-</style>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowDisablePreview">false</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
 
 
     <style name="AnimAlpha" parent="@android:style/Animation">
@@ -33,7 +33,6 @@
         <item name="android:windowEnterAnimation">@anim/anim_right_in</item>
         <item name="android:windowExitAnimation">@anim/anim_left_out</item>
     </style>
-
 
 
 </resources>
