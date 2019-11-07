@@ -1,5 +1,6 @@
 package showmethe.github.core.base
 
+import android.animation.Animator
 import android.app.Activity
 import android.app.ActivityOptions
 import androidx.lifecycle.*
@@ -39,6 +40,7 @@ import showmethe.github.core.util.widget.StatusBarUtil
 import java.util.concurrent.TimeUnit
 import showmethe.github.core.R
 import showmethe.github.core.base.vmpath.VMRouter
+import showmethe.github.core.util.extras.SimpleAnimatorListener
 import showmethe.github.core.util.extras.onGlobalLayout
 import showmethe.github.core.util.extras.putValueInBundle
 import showmethe.github.core.util.system.hideSoftKeyboard
@@ -376,6 +378,7 @@ abstract class BaseActivity<V : ViewDataBinding,VM : BaseViewModel> : AppCompatA
         circularReveal.interpolator = LinearInterpolator()
         circularReveal.startDelay = 50
         circularReveal.start()
+
     }
 
 
