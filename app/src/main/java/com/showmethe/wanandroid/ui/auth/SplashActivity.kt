@@ -2,10 +2,7 @@ package com.showmethe.wanandroid.ui.auth
 
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.core.content.PermissionChecker
 import androidx.databinding.ObservableArrayList
 
 import com.ken.materialwanandroid.ui.auth.vm.AuthViewModel
@@ -13,8 +10,6 @@ import com.showmethe.galley.database.DataSourceBuilder
 import com.showmethe.galley.database.Source
 import com.showmethe.galley.database.dto.GoodsListDto
 import com.showmethe.galley.database.dto.PhotoWallDto
-import com.showmethe.galley.database.dto.UserDto
-import com.showmethe.galley.ui.home.WelcomeActivity
 
 
 import com.showmethe.wanandroid.R
@@ -29,10 +24,7 @@ import kotlinx.coroutines.launch
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.util.extras.double2Decimal
 import showmethe.github.core.util.permission.PermissionFactory
-import showmethe.github.core.util.permission.RequestPermission
 import showmethe.github.core.util.rden.RDEN
-import java.security.Permission
-import java.util.jar.Manifest
 import kotlin.random.Random
 
 
@@ -41,7 +33,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
     override fun setTheme() {
 
     }
-
 
     override fun getViewId(): Int = R.layout.activity_splash
 
@@ -56,22 +47,20 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
 
     @SuppressLint("CheckResult")
     override fun init(savedInstanceState: Bundle?) {
-
-         PermissionFactory.with(this).requestAll()
-
+         rect.bindLifecyle(this)
+         PermissionFactory.with(this)
+             .requestAll( android.Manifest.permission.CAMERA){
+             checkPermission(it)
+         }
     }
 
-
-    @RequestPermission(permissions = [
-        android.Manifest.permission.CAMERA])
     private fun checkPermission(result: Boolean){
         initData()
         startToMain()
     }
 
-
     private fun startToMain(){
-        rect.bindLifecyle(this)
+
         GlobalScope.launch(Dispatchers.Main) {
             delay(3000)
             startActivity<MainActivity>(null)

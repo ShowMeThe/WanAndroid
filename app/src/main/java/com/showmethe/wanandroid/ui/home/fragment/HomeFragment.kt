@@ -4,6 +4,7 @@ import android.graphics.Matrix
 import android.graphics.RectF
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.View
 import androidx.core.app.SharedElementCallback
 import androidx.databinding.ObservableArrayList

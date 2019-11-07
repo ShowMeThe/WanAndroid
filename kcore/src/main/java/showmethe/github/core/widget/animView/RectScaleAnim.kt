@@ -130,7 +130,6 @@ class RectScaleAnim @JvmOverloads constructor(context: Context, attrs: Attribute
     }
 
     override fun onResume(owner: LifecycleOwner) {
-        stopAnim()
         startAnim()
     }
 

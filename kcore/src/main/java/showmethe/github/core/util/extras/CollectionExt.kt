@@ -22,3 +22,12 @@ inline fun <T> Collection<T>.forEachBreak(action: (T) -> Boolean ){
             }
     }
 }
+
+inline fun <T> Array<out T>.forEachBreak(action: (T) -> Boolean ){
+    kotlin.run breaking@{
+        for (element in this)
+            if(!action(element)){
+                return@breaking
+            }
+    }
+}

@@ -23,6 +23,7 @@ class VMRouter(private var viewModel: ViewModel) {
     }
 
     fun toTarget(path: String,vararg args: Any?){
+
         if(callMap["${viewModel.javaClass.name}/${path}"] == null){
             viewModel.viewModelScope.launch(Dispatchers.Main) {
                 try {
@@ -58,5 +59,7 @@ class VMRouter(private var viewModel: ViewModel) {
                 Log.e("ViewModel","Exception  call : ${e.message}")
             }
         }
+
+
     }
 }

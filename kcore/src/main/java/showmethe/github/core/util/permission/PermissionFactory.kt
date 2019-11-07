@@ -10,7 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import showmethe.github.core.base.vmpath.VMPath
+import showmethe.github.core.util.extras.forEachBreak
 import java.lang.ref.WeakReference
 
 import java.util.ArrayList
@@ -40,43 +43,37 @@ class PermissionFactory : DefaultLifecycleObserver{
 
     private var hasAdd = false
     private val requestPermission = ArrayList<String>()
-    private var  targetCall : KCallable<*>? = null
     private var fragment: PermissionFragment? = null
 
-    fun requestAll(){
-        weakReference?.get()?.apply  {
-            lifecycle.addObserver(this@PermissionFactory)
-            kotlin.run breaking@{
-                this::class.members.forEach { call ->
-                    val annotation = call.findAnnotation<RequestPermission>()
-                    annotation?.apply {
-                        this.permissions.forEach {
-                            targetCall = call
-                            if (checkSelfPermission(it) != PackageManager.PERMISSION_GRANTED) {
-                                requestPermission.add(it)
-                            }
-                        }
-                        if (requestPermission.isNotEmpty()) {
-                            invoke(requestPermission)
-                        }else{
-                            invokeResult(true)
-                        }
-                        return@breaking
+    fun requestAll(vararg permissions: String,result: (bool : Boolean) ->Unit){
+        weakReference?.get()?.apply {
+            if(permissions.isEmpty()){
+                result.invoke(true)
+            }else{
+                permissions.forEach {
+                    if (checkSelfPermission(it) != PackageManager.PERMISSION_GRANTED) {
+                        requestPermission.add(it)
                     }
                 }
+                if (requestPermission.isNotEmpty()) {
+                    invoke(requestPermission,result)
+                }else{
+                    result.invoke(true)
+                }
             }
+
         }
     }
 
 
-    private fun invoke(permissions : ArrayList<String>){
+    private fun invoke(permissions : ArrayList<String>,result: (bool : Boolean) ->Unit){
         weakReference?.get()?.apply {
             fragment = PermissionFragment.get(permissions)
             supportFragmentManager.beginTransaction().add(fragment!!,fragment!!::class.java.name).commitNow()
             hasAdd = true
             fragment?.apply {
                 fragment?.setOnCallPermissionResult {
-                    invokeResult(it)
+                    result.invoke(it)
                 }
             }
 
@@ -85,7 +82,6 @@ class PermissionFactory : DefaultLifecycleObserver{
 
     override fun onDestroy(owner: LifecycleOwner) {
         requestPermission.clear()
-        targetCall = null
         if(hasAdd){
             weakReference?.get()?.supportFragmentManager?.beginTransaction()?.remove(fragment!!)
         }
@@ -93,12 +89,6 @@ class PermissionFactory : DefaultLifecycleObserver{
         weakReference = null
     }
 
-    private fun invokeResult(boolean: Boolean){
-        weakReference?.get()?.apply {
-            targetCall?.isAccessible = true
-            targetCall?.call(this@apply,boolean)
-        }
 
-    }
 
 }
