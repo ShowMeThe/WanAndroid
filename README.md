@@ -70,6 +70,9 @@ ___
   #### 增加了快捷标签的入口
   
   ### 更新日志  
+  #### V1.03 修改时间：2019/11/7
+  内容：修复冷启动慢得问题，在启动时候，使用了反射来解决权限申请问题，此处是很大的问题，再加上Kotlin的Reflect比Java的Reflect还慢  
+  导致启动到看到SplashActivity高达2s之久。
   #### V1.03 修改时间：2019/11/2
   内容：新增一个FloatActonButton的菜单，实现的效果其实不难，效果如下：  
   <img src ="https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191102234438.jpg" width = 200 alt = "主页"/>  
