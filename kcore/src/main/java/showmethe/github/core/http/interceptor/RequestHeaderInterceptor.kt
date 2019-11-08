@@ -1,6 +1,7 @@
 package showmethe.github.core.http.interceptor
 
 
+import androidx.annotation.Keep
 import java.io.IOException
 
 import okhttp3.Interceptor
@@ -8,6 +9,7 @@ import showmethe.github.core.http.SessionObserver
 import showmethe.github.core.util.rden.RDEN
 import showmethe.github.core.util.system.Network
 
+@Keep
 class RequestHeaderInterceptor : Interceptor, SessionObserver {
 
     override fun update(sessionId: String) {

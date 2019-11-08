@@ -1,6 +1,7 @@
 package com.showmethe.wanandroid.base
 
 import android.os.Bundle
+import androidx.annotation.Keep
 import com.showmethe.galley.database.DataSourceBuilder
 
 import showmethe.github.core.base.BaseApplication

@@ -5,7 +5,9 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import androidx.annotation.Keep
 import androidx.appcompat.app.AppCompatActivity
+import androidx.multidex.MultiDexApplication
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -22,7 +24,8 @@ import java.lang.ref.WeakReference
  * Update Time: 2019/10/16 10:58
  * Package Name:showmethe.github.core.base
  */
-open class BaseApplication : Application() {
+@Keep
+open class BaseApplication : MultiDexApplication() {
 
     companion object {
        @SuppressLint("StaticFieldLeak")

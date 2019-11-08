@@ -23,18 +23,22 @@ android {
         targetSdkVersion Versions.targetSdkVersion
         versionCode 2
         versionName "1.03"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             zipAlignEnabled true
             buildConfigField "boolean", "IS_SHOW_LOG", NOT_SHOW_LOG
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
+            minifyEnabled true
+            zipAlignEnabled true
             buildConfigField "boolean", "IS_SHOW_LOG", SHOW_LOG
             signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
