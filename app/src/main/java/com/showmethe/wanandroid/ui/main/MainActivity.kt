@@ -222,7 +222,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     private fun setColorState(position: Int){
         bottomView.itemIconTintList = colors[position]
         bottomView.itemTextColor = bottomView.itemIconTintList
-        topBg.backgroundTintList =  bottomView.itemTextColor
+        topBg.setCardBackgroundColor(bottomView.itemTextColor)
         tvLogout.setTextColor(bottomView.itemTextColor)
         tvLogout.compoundDrawableTintList = bottomView.itemTextColor
         tvCollect.compoundDrawableTintList = bottomView.itemTextColor

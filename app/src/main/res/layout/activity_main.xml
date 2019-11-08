@@ -59,9 +59,8 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/topBg"
-                        android:backgroundTintMode="src_in"
                         app:cardElevation="0dp"
-                        android:backgroundTint="@color/colorAccent"
+                        app:cardBackgroundColor="@color/colorAccent"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/px400dp">
 
