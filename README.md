@@ -70,6 +70,9 @@ ___
   #### 增加了快捷标签的入口
   
   ### 更新日志  
+  #### V1.03 修改时间：2019/11/10
+  内容：添加一个预加载占位的drawable,尚未完善优化，效果如下
+  <img src= "https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191110.gif" width = "300" alt ="Gif" />
   #### V1.03 修改时间：2019/11/7
   内容：修复冷启动慢得问题，在启动时候，使用了反射来解决权限申请问题，此处是很大的问题，再加上Kotlin的Reflect比Java的Reflect还慢  
   导致启动到看到SplashActivity高达2s之久。
