@@ -119,24 +119,9 @@ class ShoppingFragment : BaseFragment<FragmentShoppingBinding, MainViewModel>(),
 
         fab.setOnClickListener {
             fab.isExpanded = true
+            fab.hide()
         }
 
-
-        expand.setOnClickListener {
-            fab.isExpanded = true
-        }
-
-        rv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                if(newState == SCROLL_STATE_IDLE ){
-                    fab.show()
-                    expand.hide()
-                }else {
-                    fab.hide()
-                    expand.show()
-                }
-            }
-        })
 
     }
 
@@ -152,6 +137,7 @@ class ShoppingFragment : BaseFragment<FragmentShoppingBinding, MainViewModel>(),
     override fun onBackPressed(): Boolean {
         if(fab.isEnabled){
             fab.isExpanded = false
+            fab.show()
            return true
         }
         return false

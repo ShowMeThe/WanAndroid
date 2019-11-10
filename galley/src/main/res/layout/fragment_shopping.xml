@@ -77,20 +77,7 @@
             app:backgroundTint="@color/color_ff6e00"
             />
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/expand"
-            android:visibility="invisible"
-            android:layout_marginBottom="@dimen/px30dp"
-            android:layout_marginEnd="@dimen/px30dp"
-            android:layout_gravity="bottom|end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CART"
-            android:textColor="@color/white"
-            app:iconTint="@color/white"
-            app:icon="@mipmap/cart"
-            app:backgroundTint="@color/color_ff6e00"
-            />
+
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
