@@ -219,9 +219,9 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
 
         }
 
-        adapter.setOnItemClickListener { view, position ->
+       /* adapter.setOnItemClickListener { view, position ->
             context.openDetail(list[position].link)
-        }
+        }*/
 
         banner.setOnPageClickListener { view, position ->
             context.startToImgs(bannerList,position,banner)

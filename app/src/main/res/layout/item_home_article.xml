@@ -45,6 +45,7 @@
 
 
                 <TextView
+                    android:id="@+id/tvClass"
                     android:text="@{`分类:` + bean.superChapterName}"
                     android:gravity="end|center"
                     android:maxLines="1"

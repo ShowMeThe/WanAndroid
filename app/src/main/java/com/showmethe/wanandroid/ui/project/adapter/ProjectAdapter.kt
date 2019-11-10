@@ -20,8 +20,6 @@ class ProjectAdapter(context: Context, data: ObservableArrayList<CateBean.DatasB
     override fun bindItems(binding: ItemProjectBinding?, item: CateBean.DatasBean, position: Int) {
         binding?.apply {
 
-
-
             ivLogo.loadScaleNoCrop(item.envelopePic)
 
             bean  = item
