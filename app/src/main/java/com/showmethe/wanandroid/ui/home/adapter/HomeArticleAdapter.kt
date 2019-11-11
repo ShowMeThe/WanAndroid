@@ -30,10 +30,15 @@ class HomeArticleAdapter(context: Context, data: ObservableArrayList<HomeArticle
        holder.binding.apply {
            bean = item
 
-           holder.holderManager.patchViews(tvTit,tvClass,tvTime)
-           root.postDelayed({
+           if(!item.isShow){
+               holder.holderManager.patchViews(tvTit,tvClass,tvTime)
+               root.postDelayed({
+                   holder.holderManager.clear()
+                   item.isShow = true
+               },500)
+           }else{
                holder.holderManager.clear()
-           },500)
+           }
 
             like.setLike(item.isCollect,false)
             like.setOnClickListener {

@@ -10,20 +10,20 @@ import android.view.View
  */
 class PlaceHolderManager {
 
-    private val views = ArrayMap<View,PlaceHolder>()
+    private val views = ArrayMap<View,PlaceConfig>()
 
     fun patchViews(vararg varView: View){
         for(view in varView){
-            val placeHolder=   PlaceHolder(view)
-            placeHolder.onPatchView()
-            views[view] = placeHolder
+            val config = PlaceConfig(view)
+            config.getHolder()
+            views[view] = config
         }
     }
 
     fun clear(){
         if(views.isNotEmpty()){
             for(it in views){
-                it.value.clear()
+                it.value.getHolder()?.clear()
             }
         }
     }

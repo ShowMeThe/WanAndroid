@@ -16,10 +16,10 @@ import java.lang.ref.WeakReference
  *  2019/11/10
  *  19:43
  */
-class PlaceHolderDrawable(view: View) : ShapeDrawable() {
+class PlaceHolderDrawable(config: PlaceConfig) : ShapeDrawable() {
 
-    private val defaultColor = Color.parseColor("#eeeeee")
-    private val heightColor = Color.parseColor("#f7f7f7")
+    private val defaultColor = config.getDefaultColor()
+    private val heightColor = config.getLightColor()
 
     private val mColors: IntArray = intArrayOf(defaultColor,heightColor,defaultColor)
     private var valueAnimator: ValueAnimator? = null
@@ -36,7 +36,7 @@ class PlaceHolderDrawable(view: View) : ShapeDrawable() {
 
     private var mBackgroundCanvas: Canvas? = null
     private var mBackgroundLayer: Bitmap? = null
-    private var target: WeakReference<View> = WeakReference(view)
+    private var target: WeakReference<View> = WeakReference(config.view)
 
     init {
 

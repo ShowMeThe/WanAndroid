@@ -24,6 +24,7 @@ import com.showmethe.wanandroid.entity.HomeArticle
 import com.showmethe.wanandroid.expand.Builder
 import com.showmethe.wanandroid.expand.ExpandIcon
 import com.showmethe.wanandroid.expand.ExpandManager
+import com.showmethe.wanandroid.placeholder.PlaceHolderManager
 import com.showmethe.wanandroid.ui.home.SearchActivity
 import com.showmethe.wanandroid.ui.home.adapter.HomeArticleAdapter
 import com.showmethe.wanandroid.ui.home.openDetail
@@ -53,6 +54,7 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
     private lateinit var adapter: HomeArticleAdapter
     private val list = ObservableArrayList<HomeArticle.DatasBean>()
     private  val bannerList  = ArrayList<String>()
+    private val manager = PlaceHolderManager()
     override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
     override fun getViewId(): Int = R.layout.fragment_home
 

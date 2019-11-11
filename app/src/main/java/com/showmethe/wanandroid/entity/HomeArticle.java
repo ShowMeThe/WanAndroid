@@ -58,6 +58,7 @@ public class HomeArticle {
          * zan : 0
          */
 
+        private boolean show;
         private String apkLink;
         private String author;
         private int chapterId;
@@ -82,6 +83,14 @@ public class HomeArticle {
         private int visible;
         private int zan;
         private List<?> tags;
+
+        public boolean isShow() {
+            return show;
+        }
+
+        public void setShow(boolean show) {
+            this.show = show;
+        }
 
         public String getApkLink() {
             return apkLink;
