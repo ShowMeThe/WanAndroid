@@ -170,7 +170,7 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
         crl.setOnMenuClickListener {
             when(it){
                 0 ->{
-                   context. startActivity<SearchActivity>()
+                    tvSearch.performClick()
                 }
                 1 ->{
                     rv.scrollToPosition(0)

@@ -1,12 +1,13 @@
 package com.showmethe.wanandroid.expand
 
 import androidx.annotation.ColorRes
+import com.showmethe.speeddiallib.expand.ExpandIcon
 import com.showmethe.wanandroid.R
 
 /**
  * Author: showMeThe
- * Update Time: 2019/11/2
- * Package Name:com.showmethe.wanandroid.expand
+ * Update Time: 2019/11/11 11:40
+ * Package Name:com.showmethe.speeddiallib.expand
  */
 class ExpandManager {
 
@@ -36,7 +37,7 @@ class Builder{
         return this
     }
 
-    fun motion(@ColorRes motionColor:Int,motionIcon: Int) : Builder{
+    fun motion(@ColorRes motionColor:Int,motionIcon: Int) : Builder {
         this.motionColor = motionColor
         this.motionIcon = motionIcon
         return this

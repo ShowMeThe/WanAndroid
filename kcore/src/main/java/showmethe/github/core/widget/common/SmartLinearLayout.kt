@@ -21,6 +21,9 @@ import showmethe.github.core.R
  */
 class SmartLinearLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
 
+    private val loadingId = R.layout.smart_loading_layout
+    private val emptyId = R.layout.smart_empty_layout
+    private val errorId = R.layout.smart_error_layout
 
     private var loadingView: View? = null
     private var emptyView: View? = null
@@ -165,9 +168,7 @@ class SmartLinearLayout @JvmOverloads constructor(context: Context, attrs: Attri
     companion object {
 
 
-        private val loadingId = R.layout.smart_loading_layout
-        private val emptyId = R.layout.smart_empty_layout
-        private val errorId = R.layout.smart_error_layout
+
 
         private val loadingState = 0
         private val emptyState = 1

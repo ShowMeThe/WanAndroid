@@ -21,6 +21,7 @@ import com.showmethe.wanandroid.ui.account.adapter.TabArticleAdapter
 import com.showmethe.wanandroid.ui.main.vm.MainViewModel
 
 import kotlinx.android.synthetic.main.fragment_accunt.*
+import kotlinx.android.synthetic.main.fragment_article.*
 import showmethe.github.core.base.LazyFragment
 import showmethe.github.core.util.extras.SimpleTabSelectedListener
 import showmethe.github.core.util.widget.StatusBarUtil
@@ -70,6 +71,8 @@ class AccountFragment : LazyFragment<FragmentAccuntBinding, MainViewModel>() {
 
 
     override fun init() {
+
+
         binding?.article = this
         viewModel.getChapters()
 
@@ -89,14 +92,6 @@ class AccountFragment : LazyFragment<FragmentAccuntBinding, MainViewModel>() {
             }
         })
 
-        SmartRelativeLayout.setDefaultLayoutCreator(object : SmartRelativeLayout.DefaultLayoutCreator{
-            override fun createLoadingView(): Int = R.layout.smart_loading
-
-            override fun createErrorView(): Int = -1
-
-            override fun createEmptyView(): Int = -1
-
-        })
 
     }
 

@@ -103,6 +103,7 @@ class ArticleFragment : LazyFragment<FragmentArticleBinding, MainViewModel>() {
     }
 
     override fun init() {
+        smrl.setDefaultLoadingColorRes(R.color.color_304ffe)
         refresh.setColorSchemeResources(R.color.color_304ffe)
         binding?.article = this
         adapter = ArticleAdapter(context,list)

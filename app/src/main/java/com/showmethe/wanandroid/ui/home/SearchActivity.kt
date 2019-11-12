@@ -88,7 +88,6 @@ class SearchActivity : BaseActivity<ActivitySearchBinding, SearchViewModel>() {
 
     override fun init(savedInstanceState: Bundle?) {
         refresh.setColorSchemeResources(R.color.colorAccent)
-        smrl.setDefaultLoadingColorRes(R.color.colorPrimary)
 
         adapter = SearchAdapter(this,list)
         rvHis.adapter = adapter

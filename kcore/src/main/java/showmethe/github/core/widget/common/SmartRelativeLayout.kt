@@ -26,6 +26,7 @@ import showmethe.github.core.R
 class SmartRelativeLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : RelativeLayout(context, attrs, defStyleAttr) {
 
 
+
     private var loadingView: View? = null
     private var emptyView: View? = null
     private var errorView: View? = null
@@ -78,7 +79,6 @@ class SmartRelativeLayout @JvmOverloads constructor(context: Context, attrs: Att
         loadingView = LayoutInflater.from(context).inflate(loadinglayout, null)
         loadingView!!.layoutParams = DEFAULT_LAYOUT_PARAMS
         views.add(loadingView!!)
-        progressbar = loadingView?.findViewById(R.id.progressbar)
 
         emptyView = LayoutInflater.from(context).inflate(emptyLayout, null)
         emptyView!!.layoutParams = DEFAULT_LAYOUT_PARAMS
@@ -166,12 +166,13 @@ class SmartRelativeLayout @JvmOverloads constructor(context: Context, attrs: Att
 
 
     fun setDefaultLoadingColorRes(color: Int){
-        progressbar?.indeterminateTintList = ColorStateList.valueOf(ContextCompat.getColor(context,color))
-    }
-    fun setDefaultLoadingColor(color: Int){
-        progressbar?.indeterminateTintList = ColorStateList.valueOf(color)
+        loadingView?.findViewById<ProgressBar>(R.id.progressbar)?.indeterminateTintList = ColorStateList.valueOf(ContextCompat.getColor(context,color))
     }
 
+
+    fun setDefaultLoadingColor(color: Int){
+        loadingView?.findViewById<ProgressBar>(R.id.progressbar)?.indeterminateTintList = ColorStateList.valueOf(color)
+    }
 
     companion object {
 

@@ -1,14 +1,14 @@
-package com.showmethe.wanandroid.expand
+package com.showmethe.speeddiallib.expand
 
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
+import com.showmethe.speeddiallib.R
 
-import com.showmethe.wanandroid.R
 
 /**
  * Author: showMeThe
- * Update Time: 2019/11/2
- * Package Name:com.example.ken.kmvvm.expand
+ * Update Time: 2019/11/11 11:39
+ * Package Name:com.showmethe.speeddiallib.expand
  */
 class ExpandIcon {
 
