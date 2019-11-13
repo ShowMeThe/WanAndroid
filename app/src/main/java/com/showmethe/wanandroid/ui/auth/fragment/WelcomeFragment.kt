@@ -12,6 +12,7 @@ import com.showmethe.wanandroid.ui.main.MainActivity
 import kotlinx.android.synthetic.main.fragment_welcome.*
 import showmethe.github.core.base.BaseFragment
 import showmethe.github.core.util.extras.onGlobalLayout
+import java.time.Duration
 import kotlin.math.hypot
 
 /**
@@ -33,17 +34,19 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding, AuthViewModel>() {
 
     override fun init(savedInstanceState: Bundle?) {
         binding?.main = this
-
-
-
         initAnim()
+    }
+
+    override fun onVisible() {
+        toAnim(0,500)
 
     }
 
+    override fun onHidden() {
+        reset()
+    }
+
     override fun initListener() {
-
-
-
 
 
     }
@@ -61,7 +64,7 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding, AuthViewModel>() {
 
     private fun initAnim(){
 
-        val revealDuration = 1100L
+        val revealDuration = 900L
         val logoDuration = 500L
 
         card.onGlobalLayout {
@@ -80,7 +83,11 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding, AuthViewModel>() {
             circularReveal.start()
         }
 
+        toAnim(revealDuration, logoDuration)
+    }
 
+
+    private fun toAnim(revealDuration : Long,logoDuration:Long){
         tvTop.animate()
             .scaleY(1.0f)
             .scaleX(1.0f)
@@ -119,6 +126,33 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding, AuthViewModel>() {
             .setDuration(logoDuration)
             .setStartDelay(revealDuration + logoDuration*2)
             .start()
+    }
+
+
+    private fun reset(){
+        tvTop.apply {
+            alpha = 0f
+            scaleX = 0f
+            scaleY = 0f
+            translationY = -50f
+        }
+        tvCenter.apply {
+            alpha = 0f
+            scaleX = 0f
+            scaleY = 0f
+            translationY = -50f
+        }
+        btnReg.apply {
+            alpha = 0f
+            scaleX = 0f
+            scaleY = 0f
+            translationY = -250f
+        }
+        tvLogin.apply {
+            alpha = 0f
+            scaleX = 0f
+            scaleY = 0f
+        }
 
     }
 

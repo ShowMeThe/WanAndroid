@@ -184,7 +184,6 @@ abstract class BaseFragment<V : ViewDataBinding,VM : BaseViewModel> : Fragment()
 
 
 
-
     fun setContentView(inflater: LayoutInflater, resId: Int): View? {
         if (rootView == null) {
             rootView = inflater.inflate(resId, null)

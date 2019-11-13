@@ -54,7 +54,6 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
     private lateinit var adapter: HomeArticleAdapter
     private val list = ObservableArrayList<HomeArticle.DatasBean>()
     private  val bannerList  = ArrayList<String>()
-    private val manager = PlaceHolderManager()
     override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
     override fun getViewId(): Int = R.layout.fragment_home
 

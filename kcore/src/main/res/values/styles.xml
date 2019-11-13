@@ -1,16 +1,7 @@
 <resources>
 
 
-    <style name="Theme.Splash" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowIsTranslucent">false</item>
-        <item name="android:windowDisablePreview">false</item>
-        <item name="android:windowBackground">@color/colorPrimary</item>
-        <item name="android:windowTranslucentNavigation">false</item>
-        <item name="android:windowTranslucentStatus">false</item>
-        <item name="android:windowFullscreen">true</item>
-    </style>
+
 
 
     <style name="AnimAlpha" parent="@android:style/Animation">

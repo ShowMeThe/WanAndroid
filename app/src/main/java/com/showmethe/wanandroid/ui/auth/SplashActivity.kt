@@ -2,27 +2,26 @@ package com.showmethe.wanandroid.ui.auth
 
 
 import android.annotation.SuppressLint
+import android.graphics.PointF
 import android.os.Bundle
-import android.view.View
+import android.util.Log
 import android.view.animation.AnticipateOvershootInterpolator
+import android.view.animation.LinearInterpolator
 import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
-
-import com.showmethe.wanandroid.ui.auth.vm.AuthViewModel
 import com.showmethe.galley.database.DataSourceBuilder
 import com.showmethe.galley.database.Source
 import com.showmethe.galley.database.dto.GoodsListDto
 import com.showmethe.galley.database.dto.PhotoWallDto
-
-
 import com.showmethe.wanandroid.R
 import com.showmethe.wanandroid.constant.INIT_DATA
 import com.showmethe.wanandroid.databinding.ActivitySplashBinding
 import com.showmethe.wanandroid.ui.auth.fragment.InputUserFragment
 import com.showmethe.wanandroid.ui.auth.fragment.SplashFragmentAdapter
 import com.showmethe.wanandroid.ui.auth.fragment.WelcomeFragment
+import com.showmethe.wanandroid.ui.auth.vm.AuthViewModel
 import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -30,8 +29,6 @@ import kotlinx.coroutines.launch
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.util.extras.double2Decimal
 import showmethe.github.core.util.rden.RDEN
-import showmethe.github.core.widget.transformer.AlphaScalePageTransformer
-import showmethe.github.core.widget.transformer.ParallaxTransformer
 import kotlin.random.Random
 
 
@@ -40,6 +37,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
 
     private val list = ArrayList<Fragment>()
     private lateinit var adapter: SplashFragmentAdapter
+    private val point = PointF()
 
     override fun setTheme() {
 
@@ -59,6 +57,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
         viewModel.toNext.value = 0
         viewModel.toNext.observe(this, Observer {
             it?.apply {
+
+                if(this>0){
+                    toLeft()
+                }else{
+                    reverse()
+                }
                 vp2.setCurrentItem(this,true)
             }
         })
@@ -78,13 +82,15 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
 
         adapter = SplashFragmentAdapter(list,this)
         vp2.adapter = adapter
-        vp2.isUserInputEnabled = false;
+        vp2.isUserInputEnabled = false
         vp2.orientation = ViewPager2.ORIENTATION_VERTICAL
         vp2.offscreenPageLimit = list.size
 
         initData()
 
     }
+
+
 
 
     private fun initAnim(){
@@ -100,15 +106,35 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
     }
 
 
-    fun startReg(){
-        viewModel.toNext.value = 1
+
+    private fun toLeft(){
+        val dx = ivLogo.x - 15
+        point.set(ivLogo.x,ivLogo.y)
+        ivLogo
+            .animate()
+            .scaleY(0.7f)
+            .scaleX(0.7f)
+            .setInterpolator(LinearInterpolator())
+            .translationY(-50f)
+            .translationXBy(-dx)
+            .setDuration(500)
+            .setStartDelay(0)
+            .start()
     }
 
-    fun startToLogin(){
-
-
-
+    private fun reverse(){
+        ivLogo
+            .animate()
+            .scaleY(1.0f)
+            .scaleX(1.0f)
+            .setInterpolator(LinearInterpolator())
+            .translationXBy(point.x - 15)
+            .translationY(50f)
+            .setDuration(500)
+            .setStartDelay(0)
+            .start()
     }
+
 
 
     private val source by lazy {  Source.get() }

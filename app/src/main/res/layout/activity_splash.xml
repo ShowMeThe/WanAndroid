@@ -25,8 +25,8 @@
 
 		<ImageView
 			android:id="@+id/ivLogo"
-			android:layout_width="@dimen/px200dp"
-			android:layout_height="@dimen/px200dp"
+			android:layout_width="@dimen/px220dp"
+			android:layout_height="@dimen/px220dp"
 			android:src="@mipmap/play"
 			android:scaleX ="0"
 			android:scaleY ="0"

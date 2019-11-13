@@ -1,11 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+        <variable
+            name="Main"
+            type="com.showmethe.wanandroid.ui.auth.fragment.InputUserFragment" />
+    </data>
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tvBack"
+            android:text="返回"
+            android:layout_marginTop="@dimen/px30dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/px43dp"
+            android:drawableTop="@mipmap/round_arrow_forward_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:onClick="@{()->Main.backToTop()}"
+            />
 
+        <com.google.android.material.textview.MaterialTextView
+            android:text="一个好的用户名，方便您登记注册"
+            android:textColor="@color/white_85"
+            android:textSize="@dimen/px60dp"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/px50dp"
+            android:layout_marginTop="@dimen/px350dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edName"
+            android:hint="您的名字"
+            android:maxLines="1"
+            android:inputType="text"
+            android:imeOptions="actionNext"
+            android:textColor="@color/white"
+            android:maxLength="10"
+            android:textCursorDrawable="@drawable/hight_drawable"
+            android:background="@color/transparent"
+            android:textColorHint="@color/white"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/px30dp"
+            android:layout_marginStart="@dimen/px30dp"
+            android:textSize="@dimen/px75dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_below="@id/edName"
+            android:layout_marginStart="@dimen/px30dp"
+            android:background="@color/color_a100"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px1dp"/>
+
+        <TextView
+            android:text="您的名字"
+            android:layout_alignStart="@+id/edName"
+            android:layout_below="@+id/edName"
+            android:textColor="@color/color_a100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/px43dp"
+            android:layout_marginTop="@dimen/px15dp"
+            />
+
+        <TextView
+            android:id="@+id/tvNumber"
+            android:text="0/10"
+            android:layout_alignEnd="@+id/edName"
+            android:layout_below="@+id/edName"
+            android:textColor="@color/color_a100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/px43dp"
+            android:layout_marginTop="@dimen/px15dp"
+            />
+
+        <TextView
+            android:id="@+id/tvNext"
+            android:text="下一步"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/px43dp"
+            android:layout_marginBottom="@dimen/px30dp"
+            android:layout_alignParentBottom="true"
+            android:drawableBottom="@mipmap/round_arrow_forward_up_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </RelativeLayout>
 </layout>
