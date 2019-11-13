@@ -1,4 +1,4 @@
-package com.ken.materialwanandroid.ui.auth.vm
+package com.showmethe.wanandroid.ui.auth.vm
 
 import android.app.Application
 import androidx.lifecycle.LifecycleOwner
@@ -20,6 +20,7 @@ class AuthViewModel(application: Application) : BaseViewModel(application) {
 
     val register = MutableLiveData<Result<Empty>>()
     val auth = MutableLiveData<Result<Auth>>()
+    val toNext = MutableLiveData<Int>()
 
     override fun onViewModelCreated(owner: LifecycleOwner) {
 

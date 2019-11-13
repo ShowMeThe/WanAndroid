@@ -20,17 +20,6 @@
         tools:context=".ui.auth.LoginActivity">
 
 
-        <showmethe.github.core.widget.animView.RectScaleAnim
-            android:id="@+id/rect"
-            android:transitionName="rect"
-            android:layout_marginTop="@dimen/px240dp"
-            android:layout_centerHorizontal="true"
-            app:rectColor="@color/white"
-            app:rectWidth="@dimen/px80dp"
-            android:background="@color/white"
-            android:layout_width="@dimen/px240dp"
-            android:layout_height="@dimen/px240dp" />
-
 
         <com.google.android.material.circularreveal.CircularRevealLinearLayout
             android:id="@+id/llLogin"
@@ -90,15 +79,6 @@
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/tvReg"
-                android:layout_gravity="center"
-                android:text="尚未有账号，请注册"
-                android:padding="@dimen/px10dp"
-                android:onClick="@{()->Login.showReg()}"
-                android:textColor="@color/colorAccent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
             <Button
                 android:id="@+id/btnLogin"

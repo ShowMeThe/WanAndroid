@@ -7,65 +7,56 @@
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> <!-- 移除快捷方式 -->
     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" /> <!-- 查询快捷方式 -->
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:name="com.showmethe.wanandroid.base.WanApplication"
+        android:name=".base.WanApplication"
         android:allowBackup="true"
-        android:icon="@drawable/tree"
+        android:icon="@mipmap/play"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/tree"
+        android:roundIcon="@mipmap/play"
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme"
-        tools:ignore="GoogleAppIndexingWarning"
-        >
-        <activity android:name="com.showmethe.wanandroid.ui.home.ArticleDetailActivity"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <activity
+            android:name=".ui.home.ArticleDetailActivity"
             android:configChanges="orientation|keyboardHidden|navigation|locale"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            >
-        </activity>
-
+            android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
-            android:name="com.showmethe.wanandroid.ui.main.ImageShowActivity"
+            android:name=".ui.main.ImageShowActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|locale"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             android:theme="@style/TranslucentTheme"
-            android:configChanges="orientation|keyboardHidden|navigation|locale"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            >
-        </activity>
-
-
-        <activity android:name="com.showmethe.wanandroid.ui.main.CollectActivity"
-            android:configChanges="orientation|keyboardHidden|navigation|locale"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            >
-
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
-            android:name="com.showmethe.wanandroid.ui.home.SearchActivity"
+            android:name=".ui.main.CollectActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|locale"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity
+            android:name=".ui.home.SearchActivity"
             android:configChanges="orientation|keyboardHidden|navigation|locale"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.showmethe.wanandroid.ui.auth.LoginActivity"
+            android:name=".ui.auth.LoginActivity"
             android:configChanges="orientation|keyboardHidden|navigation|locale"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.showmethe.wanandroid.ui.auth.SplashActivity"
+            android:name=".ui.auth.SplashActivity"
             android:configChanges="orientation|keyboardHidden|navigation|locale"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:theme="@style/Theme.Splash">
-
+            android:theme="@style/Theme.Splash"
+            android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -75,14 +66,13 @@
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/short_cut" />
-
         </activity>
         <activity
-            android:name="com.showmethe.wanandroid.ui.main.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:configChanges="orientation|keyboardHidden|navigation|locale"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:launchMode="singleTask">
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
     </application>
+
 </manifest>

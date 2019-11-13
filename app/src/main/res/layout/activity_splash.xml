@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:app="http://schemas.android.com/apk/res-auto"
-		xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+		<variable
+			name="Main"
+			type="com.showmethe.wanandroid.ui.auth.SplashActivity" />
+	</data>
+
+	<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:background="@color/colorPrimary"
+		android:background="@color/color_03a9f4"
 		tools:context=".ui.auth.SplashActivity">
 
 
-		<showmethe.github.core.widget.animView.RectScaleAnim
-			android:id="@+id/rect"
-			android:transitionName="rect"
-			android:layout_marginTop="@dimen/px240dp"
-			android:layout_centerInParent="true"
-			app:rectColor="@color/white"
-			app:rectWidth="@dimen/px80dp"
-			android:layout_width="@dimen/px240dp"
-			android:layout_height="@dimen/px240dp" />
+
+		<androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+		<ImageView
+			android:id="@+id/ivLogo"
+			android:layout_width="@dimen/px200dp"
+			android:layout_height="@dimen/px200dp"
+			android:src="@mipmap/play"
+			android:scaleX ="0"
+			android:scaleY ="0"
+			android:alpha ="0"
+			android:translationY="-100px"
+			android:elevation="@dimen/px15dp"
+			android:layout_centerHorizontal="true"
+			android:layout_marginTop="@dimen/px150dp"
+			/>
 
 
 	</RelativeLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_03a9f4"
+        tools:context=".ui.auth.RegisterActivity">
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_marginStart="@dimen/px35dp"
+            android:layout_width="@dimen/px180dp"
+            android:layout_height="@dimen/px180dp"
+            android:src="@mipmap/play"
+            android:translationY="-100px"
+            android:elevation="@dimen/px15dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/px150dp"
+            />
+
+
+
+    </FrameLayout>
+</layout>

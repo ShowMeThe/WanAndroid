@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
+import com.showmethe.speeddiallib.expand.ExpandIcon
 
 
 import com.showmethe.wanandroid.R
@@ -21,8 +22,7 @@ import com.showmethe.wanandroid.constant.onStartBanner
 import com.showmethe.wanandroid.constant.onStopBanner
 import com.showmethe.wanandroid.databinding.FragmentHomeBinding
 import com.showmethe.wanandroid.entity.HomeArticle
-import com.showmethe.wanandroid.expand.Builder
-import com.showmethe.wanandroid.expand.ExpandIcon
+
 import com.showmethe.wanandroid.expand.ExpandManager
 import com.showmethe.wanandroid.placeholder.PlaceHolderManager
 import com.showmethe.wanandroid.ui.home.SearchActivity

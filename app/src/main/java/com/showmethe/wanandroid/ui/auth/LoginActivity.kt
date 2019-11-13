@@ -12,13 +12,12 @@ import com.showmethe.wanandroid.base.WanApplication
 import com.showmethe.wanandroid.constant.ACCOUNT
 
 import com.showmethe.wanandroid.saveAuth
-import com.ken.materialwanandroid.ui.auth.vm.AuthViewModel
+import com.showmethe.wanandroid.ui.auth.vm.AuthViewModel
 
 
 import com.showmethe.wanandroid.R
 import com.showmethe.wanandroid.databinding.ActivityLoginBinding
 import com.showmethe.wanandroid.entity.Login
-import kotlinx.android.synthetic.main.activity_login.*
 import showmethe.github.core.base.AppManager
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.http.coroutines.Result.Companion.Success
@@ -41,6 +40,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
     override fun initViewModel(): AuthViewModel = createViewModel(AuthViewModel::class.java)
 
     override fun onBundle(bundle: Bundle) {
+
+
     }
 
 
@@ -54,6 +55,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
                 }
             }
         })
+
         
         viewModel.auth.observe(this, Observer {
             it?.apply {
@@ -80,7 +82,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
     }
 
     override fun init(savedInstanceState: Bundle?) {
-        initAnim()
+
         binding?.apply {
             login = this@LoginActivity
             this@LoginActivity.bean.account = RDEN.get(ACCOUNT,"")
@@ -137,13 +139,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
     }
 
 
-    private fun initAnim() {
-        rect.bindLifecyle(this)
-        rect.stopAnim()
-        rect.postDelayed({
-            rect.background = null
-            rect.startAnim()
-        }, 400)
-    }
+
 
 }

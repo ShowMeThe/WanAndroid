@@ -99,4 +99,19 @@
         <item name="android:colorControlHighlight">@color/color_b388ff</item>
     </style>
 
+    <style name="SplashCardViewTheme" parent="Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/SplashCardView</item>
+    </style>
+
+    <style name="SplashCardView" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamilyTopRight">cut</item>
+        <item name="cornerFamilyBottomRight">cut</item>
+        <item name="cornerFamilyTopLeft">cut</item>
+        <item name="cornerFamilyBottomLeft">cut</item>
+        <item name="cornerSizeBottomLeft">30dp</item>
+        <item name="cornerSizeBottomRight">30dp</item>
+        <item name="cornerSizeTopLeft">30dp</item>
+        <item name="cornerSizeTopRight">30dp</item>
+    </style>
+
 </resources>

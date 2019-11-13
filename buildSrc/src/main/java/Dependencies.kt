@@ -20,7 +20,7 @@ object LibV{
     const val glide = "4.10.0"
     const val okhttp3 = "4.2.1"
     const val retrofit = "2.6.2"
-    const val lifecycle = "2.2.0-rc01"
+    const val lifecycle = "2.2.0-rc02"
     const val room = "2.2.1"
     const val gson = "2.8.5"
     const val work_runtime = "2.3.0-alpha03"

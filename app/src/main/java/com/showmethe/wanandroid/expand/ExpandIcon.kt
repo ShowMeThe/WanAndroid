@@ -2,7 +2,8 @@ package com.showmethe.speeddiallib.expand
 
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
-import com.showmethe.speeddiallib.R
+
+import com.showmethe.wanandroid.R
 
 
 /**

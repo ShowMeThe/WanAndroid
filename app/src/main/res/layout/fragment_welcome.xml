@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="Main"
+            type="com.showmethe.wanandroid.ui.auth.fragment.WelcomeFragment" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="@color/color_03a9f4"
+                app:cardElevation="@dimen/px5dp"
+                style="@style/SplashCardViewTheme"
+                />
+
+            <View
+                android:id="@+id/cardIn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:cardCornerRadius="@dimen/px10dp"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTop"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:elevation="@dimen/px15dp"
+                android:text="欢迎使用玩安卓"
+                android:textStyle="bold"
+                android:scaleX ="0"
+                android:scaleY ="0"
+                android:alpha ="0"
+                android:translationY="-50px"
+                android:layout_marginTop="@dimen/px380dp"
+                android:textSize="@dimen/px66dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCenter"
+                android:layout_below="@+id/tvTop"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white_85"
+                android:elevation="@dimen/px15dp"
+                android:text="一个分享技术的好地方"
+                android:scaleX ="0"
+                android:scaleY ="0"
+                android:alpha ="0"
+                android:textStyle="italic"
+                android:translationY="-50px"
+                android:layout_marginTop="@dimen/px80dp"
+                android:textSize="@dimen/px44dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnReg"
+                android:transitionName="logo"
+                android:textColor="@color/colorAccent"
+                android:text="注册属于你的账号"
+                android:elevation="@dimen/px15dp"
+                android:layout_marginEnd="@dimen/px150dp"
+                android:layout_marginStart="@dimen/px150dp"
+                android:layout_marginBottom="@dimen/px145dp"
+                android:layout_above="@+id/tvLogin"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px150dp"
+                android:scaleX ="0"
+                android:scaleY ="0"
+                android:alpha ="0"
+                android:translationY ="-250px"
+                app:elevation="@dimen/px15dp"
+                app:backgroundTint="@color/white"
+                app:backgroundTintMode="src_in"
+                app:cornerRadius="@dimen/px50dp"
+                app:rippleColor="@color/color_a100"
+                android:onClick="@{()->Main.startReg()}"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvLogin"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:elevation="@dimen/px15dp"
+                android:text="我已经有一个账号"
+                android:scaleX ="0"
+                android:scaleY ="0"
+                android:alpha ="0"
+                android:textStyle="italic"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/px150dp"
+                android:textSize="@dimen/px44dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->Main.startToMain()}"
+                />
+
+    </RelativeLayout>
+</layout>

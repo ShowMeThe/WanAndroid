@@ -3,9 +3,14 @@ package com.showmethe.wanandroid.ui.auth
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
+import android.view.animation.AnticipateOvershootInterpolator
 import androidx.databinding.ObservableArrayList
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.viewpager2.widget.ViewPager2
 
-import com.ken.materialwanandroid.ui.auth.vm.AuthViewModel
+import com.showmethe.wanandroid.ui.auth.vm.AuthViewModel
 import com.showmethe.galley.database.DataSourceBuilder
 import com.showmethe.galley.database.Source
 import com.showmethe.galley.database.dto.GoodsListDto
@@ -15,20 +20,26 @@ import com.showmethe.galley.database.dto.PhotoWallDto
 import com.showmethe.wanandroid.R
 import com.showmethe.wanandroid.constant.INIT_DATA
 import com.showmethe.wanandroid.databinding.ActivitySplashBinding
-import com.showmethe.wanandroid.ui.main.MainActivity
+import com.showmethe.wanandroid.ui.auth.fragment.InputUserFragment
+import com.showmethe.wanandroid.ui.auth.fragment.SplashFragmentAdapter
+import com.showmethe.wanandroid.ui.auth.fragment.WelcomeFragment
 import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.util.extras.double2Decimal
-import showmethe.github.core.util.permission.PermissionFactory
 import showmethe.github.core.util.rden.RDEN
+import showmethe.github.core.widget.transformer.AlphaScalePageTransformer
+import showmethe.github.core.widget.transformer.ParallaxTransformer
 import kotlin.random.Random
 
 
 class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
+
+
+    private val list = ArrayList<Fragment>()
+    private lateinit var adapter: SplashFragmentAdapter
 
     override fun setTheme() {
 
@@ -39,28 +50,66 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
     override fun initViewModel(): AuthViewModel = createViewModel(AuthViewModel::class.java)
 
     override fun onBundle(bundle: Bundle) {
+
+
     }
 
     override fun observerUI() {
+
+        viewModel.toNext.value = 0
+        viewModel.toNext.observe(this, Observer {
+            it?.apply {
+                vp2.setCurrentItem(this,true)
+            }
+        })
+
+
+
     }
 
 
     @SuppressLint("CheckResult")
     override fun init(savedInstanceState: Bundle?) {
-         rect.bindLifecyle(this)
-         initData()
-         startToMain()
+
+        initAnim()
+
+        list.add(WelcomeFragment())
+        list.add(InputUserFragment())
+
+        adapter = SplashFragmentAdapter(list,this)
+        vp2.adapter = adapter
+        vp2.isUserInputEnabled = false;
+        vp2.orientation = ViewPager2.ORIENTATION_VERTICAL
+        vp2.offscreenPageLimit = list.size
+
+        initData()
+
     }
 
 
-
-    private fun startToMain(){
-        GlobalScope.launch(Dispatchers.Main) {
-            delay(3000)
-            startActivity<MainActivity>(null)
-            finishAfterTransition()
-        }
+    private fun initAnim(){
+        ivLogo.animate()
+            .scaleY(1.0f)
+            .scaleX(1.0f)
+            .alpha(1.0f)
+            .setInterpolator(AnticipateOvershootInterpolator())
+            .translationY(100f)
+            .setDuration(500)
+            .setStartDelay(1200)
+            .start()
     }
+
+
+    fun startReg(){
+        viewModel.toNext.value = 1
+    }
+
+    fun startToLogin(){
+
+
+
+    }
+
 
     private val source by lazy {  Source.get() }
     private fun initData(){
