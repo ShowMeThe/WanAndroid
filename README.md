@@ -1,8 +1,8 @@
 #### 简书地址：https://www.jianshu.com/p/03e7446ff512
-#### 新的UI   
-<img src= "https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191114.gif" width = 200 alt= "UI"/>
-#### 基于AAC架构玩安卓客户端  
-#### 首页、公众号、知识体系、项目  
+#### 新的UI</br>
+<img src= "https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191114.gif" width = 200 alt= "ui"/></br>
+#### 基于AAC架构玩安卓客户端</br>
+#### 首页、公众号、知识体系、项目</br>  
 ___
 <img src ="https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191021094102.jpg" width = 200 alt = "首页"/> <img src ="https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191021094100.jpg" width = 200 alt = "公众号"/>  <img src ="https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191021094056.jpg" width = 200 alt = "知识体系"/>  <img src ="https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191021094105.jpg" width = 200 alt = "项目"/>
 ___
