@@ -31,7 +31,7 @@ class InputUserFragment  : BaseFragment<FragmentInputBinding, AuthViewModel>() {
 
     override fun init(savedInstanceState: Bundle?) {
         binding?.main = this
-
+        binding?.register = viewModel.registerBean
     }
 
     override fun onVisible() {
@@ -48,6 +48,15 @@ class InputUserFragment  : BaseFragment<FragmentInputBinding, AuthViewModel>() {
             }
         })
     }
+
+
+
+    fun toNextPage(){
+       if(viewModel.registerBean.account.isNotEmpty()){
+           viewModel.toNext.value = 2
+       }
+    }
+
 
     fun backToTop(){
         viewModel.toNext.value = 0

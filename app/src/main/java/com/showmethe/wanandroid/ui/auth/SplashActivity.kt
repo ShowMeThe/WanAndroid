@@ -2,6 +2,7 @@ package com.showmethe.wanandroid.ui.auth
 
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.PointF
 import android.os.Bundle
 import android.util.Log
@@ -16,17 +17,23 @@ import com.showmethe.galley.database.Source
 import com.showmethe.galley.database.dto.GoodsListDto
 import com.showmethe.galley.database.dto.PhotoWallDto
 import com.showmethe.wanandroid.R
+import com.showmethe.wanandroid.base.WanApplication
 import com.showmethe.wanandroid.constant.INIT_DATA
 import com.showmethe.wanandroid.databinding.ActivitySplashBinding
+import com.showmethe.wanandroid.saveAuth
+import com.showmethe.wanandroid.ui.auth.fragment.InputPswFragment
 import com.showmethe.wanandroid.ui.auth.fragment.InputUserFragment
 import com.showmethe.wanandroid.ui.auth.fragment.SplashFragmentAdapter
 import com.showmethe.wanandroid.ui.auth.fragment.WelcomeFragment
 import com.showmethe.wanandroid.ui.auth.vm.AuthViewModel
+import com.showmethe.wanandroid.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import showmethe.github.core.base.AppManager
 import showmethe.github.core.base.BaseActivity
+import showmethe.github.core.http.coroutines.Result
 import showmethe.github.core.util.extras.double2Decimal
 import showmethe.github.core.util.rden.RDEN
 import kotlin.random.Random
@@ -38,6 +45,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
     private val list = ArrayList<Fragment>()
     private lateinit var adapter: SplashFragmentAdapter
     private val point = PointF()
+    private var isLeft = false
 
     override fun setTheme() {
 
@@ -54,20 +62,56 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
 
     override fun observerUI() {
 
-        viewModel.toNext.value = 0
+        viewModel.toNext.value = -1
         viewModel.toNext.observe(this, Observer {
             it?.apply {
-
-                if(this>0){
-                    toLeft()
-                }else{
+                if(this == 0){
                     reverse()
+                    isLeft = false
+                }else if(!isLeft && this>0){
+                    toLeft()
+                    isLeft = true
                 }
-                vp2.setCurrentItem(this,true)
+                if(this >-1){
+                    vp2.setCurrentItem(this,true)
+                }
+            }
+        })
+
+        viewModel.register.observe(this, Observer {
+            it?.apply {
+                if (status == Result.Success) {
+                    showToast("注册成功,稍后自动登录")
+                    viewModel.registerBean.apply {
+                        router.toTarget("login",account,password)
+                    }
+
+                }
             }
         })
 
 
+
+        viewModel.auth.observe(this, Observer {
+            it?.apply {
+                if (status == Result.Success) {
+                    response?.apply {
+                        saveAuth(this)
+                        WanApplication.lastActivity?.apply {
+                            AppManager.get().finishTarget(this)
+                            val intent = Intent(context,this)
+                            WanApplication.lastBundle?.apply {
+                                intent.putExtras(this)
+                            }
+                            startActivity(intent)
+                        }
+                        WanApplication.lastActivity = null
+                        WanApplication.lastBundle = null
+                        finishAfterTransition()
+                    }
+                }
+            }
+        })
 
     }
 
@@ -79,12 +123,13 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
 
         list.add(WelcomeFragment())
         list.add(InputUserFragment())
+        list.add(InputPswFragment())
 
         adapter = SplashFragmentAdapter(list,this)
         vp2.adapter = adapter
         vp2.isUserInputEnabled = false
         vp2.orientation = ViewPager2.ORIENTATION_VERTICAL
-        vp2.offscreenPageLimit = list.size
+        vp2.offscreenPageLimit = 3
 
         initData()
 

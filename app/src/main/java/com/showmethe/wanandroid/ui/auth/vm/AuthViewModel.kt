@@ -5,6 +5,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import com.ken.materialwanandroid.entity.Auth
 import com.ken.materialwanandroid.entity.Empty
+import com.showmethe.wanandroid.entity.RegisterBean
 import com.showmethe.wanandroid.ui.auth.repository.AuthRepository
 import showmethe.github.core.base.BaseViewModel
 import showmethe.github.core.base.InjectOwner
@@ -18,6 +19,7 @@ class AuthViewModel(application: Application) : BaseViewModel(application) {
     @InjectOwner
     val repository = AuthRepository()
 
+    val registerBean  = RegisterBean()
     val register = MutableLiveData<Result<Empty>>()
     val auth = MutableLiveData<Result<Auth>>()
     val toNext = MutableLiveData<Int>()
@@ -38,7 +40,7 @@ class AuthViewModel(application: Application) : BaseViewModel(application) {
      * 注册
      */
     @VMPath("register")
-    fun register(username:String,password:String){
-        repository.register(username, password, register)
+    fun register(){
+        repository.register(registerBean.account, registerBean.password, register)
     }
 }

@@ -13,6 +13,7 @@ import showmethe.github.core.base.BaseRepository
 import showmethe.github.core.http.RetroHttp
 import showmethe.github.core.http.coroutines.CallResult
 import showmethe.github.core.http.coroutines.Result
+import showmethe.github.core.util.rden.RDEN
 
 
 class AuthRepository : BaseRepository() {
@@ -28,16 +29,7 @@ class AuthRepository : BaseRepository() {
             }.success { result, message ->
                 dismissLoading()
                 call.value = result
-
-
-                /**
-                 * 本地数据库注册账号
-                 */
-                val userdto = UserDto()
-                userdto.userName = username
-                userdto.password = password
-                userDao.register(userdto)
-
+                saveInDB(username, password)
             }.error { result, code, message ->
                 toast(code,message)
                 dismissLoading()
@@ -66,6 +58,16 @@ class AuthRepository : BaseRepository() {
             }.hold {
                 api.register(username, password,password)
             }
+    }
+
+    private fun saveInDB(username: String,password: String){
+        /**
+         * 本地数据库注册账号
+         */
+        val userdto = UserDto()
+        userdto.userName = username
+        userdto.password = password
+        userDao.register(userdto)
     }
 
 

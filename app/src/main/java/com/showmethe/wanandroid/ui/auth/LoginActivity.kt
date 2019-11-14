@@ -28,12 +28,9 @@ import kotlin.random.Random
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
 
-    val dialog by lazy { SignUpDialog() }
+
 
     private val bean = Login()
-    private val random = Random(System.currentTimeMillis())
-    private var snackbar: Snackbar? = null
-    private var num = 0
 
     override fun showCreateReveal(): Boolean = true
     override fun getViewId(): Int = R.layout.activity_login
@@ -47,14 +44,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
 
     override fun observerUI() {
 
-        viewModel.register.observe(this, Observer {
-            it?.apply {
-                if (status == Success) {
-                    showToast("注册成功")
-                    dialog.dismiss()
-                }
-            }
-        })
+
 
         
         viewModel.auth.observe(this, Observer {
@@ -95,50 +85,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
     override fun initListener() {
 
 
-
-        dialog.setOnCodeGetListener {
-            showSnack(it)
-        }
-
-
-        dialog.setOnRegisterGetListener {
-            if (it.code.toInt() == num) {
-                router.toTarget("register",it.account, it.password)
-            } else {
-                showToast("请输入正确的验证码")
-            }
-        }
-
-
     }
 
 
-    fun showReg(){
-        dialog.show(supportFragmentManager, "signUp")
-    }
 
 
     fun login(account:String,password:String){
         router.toTarget("login",account,password)
     }
-
-
-    fun showSnack(view: TextView) {
-        hideSoftKeyboard()
-        num = random.nextInt(200, 9999)
-        snackbar = Snackbar.make(view, "${num}", 15000)
-            .setBackgroundTint(ContextCompat.getColor(context, R.color.colorPrimary))
-            .setTextColor(ContextCompat.getColor(context, R.color.white))
-            .setActionTextColor(ContextCompat.getColor(context, R.color.white))
-            .setAction("复制") {
-                copyTextToClipboard(context, "${num}")
-                showToast("复制成功")
-                snackbar!!.dismiss()
-            }
-        snackbar!!.show()
-    }
-
-
 
 
 }

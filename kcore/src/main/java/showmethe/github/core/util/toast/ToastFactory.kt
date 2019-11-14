@@ -53,7 +53,6 @@ object ToastFactory {
         val container = BaseApplication.ctx!!.get()!!
                 .findViewById<ViewGroup>(android.R.id.content)
         val mView = View.inflate(BaseApplication.context, R.layout.view_toast_draw, null)
-
         container.addView(mView)
 
         val title = mView.findViewById<TextView>(R.id.text)
@@ -98,7 +97,7 @@ object ToastFactory {
         title.text = message.toString()
         toast = Toast.makeText(BaseApplication.context, "", Toast.LENGTH_SHORT)
         toast?.apply {
-            setGravity(Gravity.CENTER, 0, 0)
+            setGravity(Gravity.TOP, 0, 100)
             duration = Toast.LENGTH_SHORT
             setText(message.toString())
             view = layout
@@ -128,7 +127,7 @@ object ToastFactory {
         title.text = message.toString()
         imgToast = Toast.makeText(BaseApplication.context, "", Toast.LENGTH_SHORT)
         imgToast?.apply {
-            setGravity(Gravity.CENTER, 0, 0)
+            setGravity(Gravity.TOP, 0, 0)
             duration = Toast.LENGTH_SHORT
             setText(message.toString())
             view = layout
