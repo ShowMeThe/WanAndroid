@@ -1,6 +1,5 @@
 ## 简书地址：https://www.jianshu.com/p/03e7446ff512
 ## 新的UI  
-设计交互模仿参考来自一款优秀的App：https://reflectly.app  
 <img src= "https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191114.gif" width = 200 alt= "UI"/>  
 ## 基于AAC架构玩安卓客户端
 预览图如下：  
