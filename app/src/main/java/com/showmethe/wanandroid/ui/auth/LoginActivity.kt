@@ -18,6 +18,7 @@ import com.showmethe.wanandroid.ui.auth.vm.AuthViewModel
 import com.showmethe.wanandroid.R
 import com.showmethe.wanandroid.databinding.ActivityLoginBinding
 import com.showmethe.wanandroid.entity.Login
+import com.showmethe.wanandroid.ui.main.MainActivity
 import showmethe.github.core.base.AppManager
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.http.coroutines.Result.Companion.Success
@@ -52,14 +53,19 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
                 if (status == Success) {
                     response?.apply {
                         saveAuth(this)
-                        WanApplication.lastActivity?.apply {
-                            AppManager.get().finishTarget(this)
-                            val intent = Intent(context,this)
-                            WanApplication.lastBundle?.apply {
-                                intent.putExtras(this)
-                            }
-                            startActivity(intent)
-                        }
+                       if(WanApplication.lastActivity == null){
+                           AppManager.get().finishTarget(LoginActivity::class.java)
+                           startActivity<MainActivity>()
+                       }else{
+                           WanApplication.lastActivity?.apply {
+                               AppManager.get().finishTarget(this)
+                               val intent = Intent(context,this)
+                               WanApplication.lastBundle?.apply {
+                                   intent.putExtras(this)
+                               }
+                               startActivity(intent)
+                           }
+                       }
                         WanApplication.lastActivity = null
                         WanApplication.lastBundle = null
                         finishAfterTransition()
