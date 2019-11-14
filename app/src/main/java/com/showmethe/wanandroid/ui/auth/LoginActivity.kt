@@ -34,6 +34,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
     private val bean = Login()
 
 
+    override fun showFinishReveal(): Boolean  = true
     override fun getViewId(): Int = R.layout.activity_login
     override fun initViewModel(): AuthViewModel = createViewModel(AuthViewModel::class.java)
 
@@ -45,8 +46,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
 
     override fun observerUI() {
 
-
-
         
         viewModel.auth.observe(this, Observer {
             it?.apply {
@@ -55,7 +54,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
                         saveAuth(this)
                        if(WanApplication.lastActivity == null){
                            AppManager.get().finishTarget(LoginActivity::class.java)
-                           startActivity<MainActivity>()
+                           finishReveal {  startActivity<MainActivity>() }
                        }else{
                            WanApplication.lastActivity?.apply {
                                AppManager.get().finishTarget(this)
@@ -63,12 +62,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
                                WanApplication.lastBundle?.apply {
                                    intent.putExtras(this)
                                }
-                               startActivity(intent)
+                              finishReveal {
+                                  startActivity(intent)
+                              }
                            }
                        }
                         WanApplication.lastActivity = null
                         WanApplication.lastBundle = null
-                        finishAfterTransition()
                     }
                 }
             }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
 import android.view.View
+import android.widget.BaseAdapter
 import androidx.core.app.SharedElementCallback
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.MutableLiveData
@@ -35,6 +36,7 @@ import kotlinx.android.synthetic.main.fragment_accunt.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.toolbar
 import kotlinx.android.synthetic.main.include_main_title.*
+import showmethe.github.core.adapter.BaseRecyclerViewAdapter
 import showmethe.github.core.base.LazyFragment
 import showmethe.github.core.glide.TGlide
 import showmethe.github.core.http.coroutines.Result.Companion.OutTime
@@ -220,9 +222,12 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
 
         }
 
-       /* adapter.setOnItemClickListener { view, position ->
-            context.openDetail(list[position].link)
-        }*/
+        adapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener{
+            override fun onItemClick(view: View, position: Int) {
+                context.openDetail(list[position].link)
+            }
+        })
+
 
         banner.setOnPageClickListener { view, position ->
             context.startToImgs(bannerList,position,banner)

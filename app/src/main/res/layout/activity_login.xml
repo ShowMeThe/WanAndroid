@@ -57,11 +57,12 @@
                 android:imeOptions="actionNext"
                 android:textColor="@color/white"
                 android:paddingEnd="@dimen/px35dp"
-                android:paddingStart="@dimen/px35dp"
+                android:layout_marginStart="@dimen/px35dp"
                 android:textColorHint="@color/white"
                 android:textSize="@dimen/px62dp"
+                android:background="@color/transparent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="@dimen/px130dp" />
 
 
 
@@ -84,12 +85,13 @@
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:paddingEnd="@dimen/px35dp"
-                android:paddingStart="@dimen/px35dp"
+                android:layout_marginStart="@dimen/px35dp"
                 android:textSize="@dimen/px62dp"
+                android:background="@color/transparent"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="@dimen/px130dp" />
 
 
             <com.google.android.material.textview.MaterialTextView

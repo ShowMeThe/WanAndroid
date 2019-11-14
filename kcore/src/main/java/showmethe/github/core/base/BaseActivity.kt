@@ -1,7 +1,5 @@
 package showmethe.github.core.base
 
-import android.animation.Animator
-import android.app.Activity
 import android.app.ActivityOptions
 import androidx.lifecycle.*
 import android.content.Intent
@@ -14,8 +12,6 @@ import android.view.animation.LinearInterpolator
 import android.widget.EditText
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.fragment.app.FragmentActivity
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import com.google.android.material.circularreveal.CircularRevealCompat
 import com.google.android.material.circularreveal.CircularRevealFrameLayout
@@ -36,16 +32,12 @@ import kotlinx.coroutines.launch
 import showmethe.github.core.dialog.DialogLoading
 import showmethe.github.core.livebus.LiveBusHelper
 import showmethe.github.core.util.toast.ToastFactory
-import showmethe.github.core.util.widget.StatusBarUtil
 import java.util.concurrent.TimeUnit
 import showmethe.github.core.R
 import showmethe.github.core.base.vmpath.VMRouter
-import showmethe.github.core.util.extras.SimpleAnimatorListener
 import showmethe.github.core.util.extras.onGlobalLayout
 import showmethe.github.core.util.extras.putValueInBundle
 import showmethe.github.core.util.system.hideSoftKeyboard
-import showmethe.github.core.util.widget.StatusBarUtil.addStatusBar
-import showmethe.github.core.widget.slideback.widget.SlideBackInterceptLayout
 import kotlin.math.hypot
 
 /**
