@@ -32,7 +32,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
 
     private val bean = Login()
 
-    override fun showCreateReveal(): Boolean = true
+
     override fun getViewId(): Int = R.layout.activity_login
     override fun initViewModel(): AuthViewModel = createViewModel(AuthViewModel::class.java)
 
@@ -80,6 +80,17 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
             executePendingBindings()
         }
 
+    }
+
+
+    fun back(){
+        finishAfterTransition()
+        overridePendingTransition(R.anim.slide_left_in,R.anim.slide_right_out)
+    }
+
+
+    override fun onBackPressed() {
+        back()
     }
 
     override fun initListener() {

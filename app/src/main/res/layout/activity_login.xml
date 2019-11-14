@@ -14,90 +14,120 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.auth.LoginActivity">
 
 
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_margin="@dimen/px35dp"
+            android:src="@mipmap/round_arrow_forward_left"
+            android:layout_width="@dimen/px85dp"
+            android:layout_height="@dimen/px85dp"
+            android:onClick="@{()->Login.back()}"
+            />
 
-        <com.google.android.material.circularreveal.CircularRevealLinearLayout
-            android:id="@+id/llLogin"
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTitle"
+            android:text="账号登录"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/px66dp"
+            android:layout_below="@+id/ivBack"
+            android:layout_marginTop="@dimen/px35dp"
+            android:textColor="@color/color_a100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
             android:orientation="vertical"
-            android:elevation="@dimen/px15dp"
-            android:background="@drawable/shape_white"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/px30dp"
-            android:layout_marginStart="@dimen/px150dp"
-            android:layout_marginEnd="@dimen/px150dp"
             android:layout_centerInParent="true"
-            android:padding="@dimen/px5dp"
-            >
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="@dimen/px30dp"
-                android:layout_marginStart="@dimen/px30dp"
-                android:layout_marginEnd="@dimen/px30dp"
-                android:textColorHint="@color/colorAccent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/edName"
-                    android:hint="用户名"
-                    android:maxLines="1"
-                    android:inputType="text"
-                    android:text="@={bean.account}"
-                    android:imeOptions="actionNext"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/px43dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_margin="@dimen/px30dp"
-                android:textColorHint="@color/colorAccent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/colorAccent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/edPassword"
-                    android:hint="密码"
-                    android:maxLines="1"
-                    android:text="@={bean.password}"
-                    android:imeOptions="actionDone"
-                    android:inputType="textPassword"
-                    android:textSize="@dimen/px43dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-            <Button
-                android:id="@+id/btnLogin"
-                android:text="登录"
-                android:gravity="center"
-                android:background="@drawable/selector_btn_enable"
-                android:onClick="@{()->Login.login(bean.account,bean.password)}"
-                android:enabled="@{bean.enable}"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edName"
+                android:hint="账号"
+                android:maxLines="1"
+                android:inputType="text"
+                android:text="@={bean.account}"
+                android:imeOptions="actionNext"
                 android:textColor="@color/white"
-                android:layout_margin="@dimen/px30dp"
-                android:textSize="@dimen/px43dp"
+                android:paddingEnd="@dimen/px35dp"
+                android:paddingStart="@dimen/px35dp"
+                android:textColorHint="@color/white"
+                android:textSize="@dimen/px62dp"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px110dp"
-                android:elevation="@dimen/px20dp"
-                />
-
-        </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+                android:layout_height="wrap_content" />
 
 
+
+            <com.google.android.material.textview.MaterialTextView
+                android:text="您注册时候的账号"
+                android:textSize="@dimen/px35dp"
+                android:paddingEnd="@dimen/px35dp"
+                android:paddingStart="@dimen/px35dp"
+                android:textColor="@color/white_85"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edPassword"
+                android:hint="密码"
+                android:maxLines="1"
+                android:text="@={bean.password}"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:paddingEnd="@dimen/px35dp"
+                android:paddingStart="@dimen/px35dp"
+                android:textSize="@dimen/px62dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:text="您注册时候的密码"
+                android:textSize="@dimen/px35dp"
+                android:paddingEnd="@dimen/px35dp"
+                android:paddingStart="@dimen/px35dp"
+                android:textColor="@color/white_85"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnReg"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/colorAccent"
+            android:text="登录"
+            android:textStyle="bold"
+            android:textSize="@dimen/px46dp"
+            android:elevation="@dimen/px15dp"
+            android:layout_marginTop="@dimen/px150dp"
+            android:layout_marginEnd="@dimen/px150dp"
+            android:layout_marginStart="@dimen/px150dp"
+            android:layout_marginBottom="@dimen/px145dp"
+            android:layout_above="@+id/tvLogin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px180dp"
+            app:elevation="@dimen/px15dp"
+            app:backgroundTint="@color/white"
+            app:backgroundTintMode="src_in"
+            app:cornerRadius="@dimen/px50dp"
+            app:rippleColor="@color/color_a100"
+            android:enabled="@{bean.enable}"
+            android:onClick="@{()->Login.login(bean.account,bean.password)}"
+            />
 
     </RelativeLayout>
 </layout>

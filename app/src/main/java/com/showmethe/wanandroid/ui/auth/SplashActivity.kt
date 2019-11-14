@@ -85,7 +85,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
                     viewModel.registerBean.apply {
                         router.toTarget("login",account,password)
                     }
-
                 }
             }
         })

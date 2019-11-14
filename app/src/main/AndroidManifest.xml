@@ -49,6 +49,7 @@
             android:configChanges="orientation|keyboardHidden|navigation|locale"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.Splash"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".ui.auth.SplashActivity"

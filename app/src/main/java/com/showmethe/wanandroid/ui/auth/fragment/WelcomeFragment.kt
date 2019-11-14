@@ -1,5 +1,6 @@
 package com.showmethe.wanandroid.ui.auth.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnticipateOvershootInterpolator
 import android.view.animation.LinearInterpolator
@@ -8,6 +9,7 @@ import com.google.android.material.circularreveal.CircularRevealWidget
 import com.showmethe.wanandroid.ui.auth.vm.AuthViewModel
 import com.showmethe.wanandroid.R
 import com.showmethe.wanandroid.databinding.FragmentWelcomeBinding
+import com.showmethe.wanandroid.ui.auth.LoginActivity
 import com.showmethe.wanandroid.ui.main.MainActivity
 import kotlinx.android.synthetic.main.fragment_welcome.*
 import showmethe.github.core.base.BaseFragment
@@ -39,7 +41,6 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding, AuthViewModel>() {
 
     override fun onVisible() {
         toAnim(0,500)
-
     }
 
     override fun onHidden() {
@@ -58,9 +59,11 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding, AuthViewModel>() {
 
 
     fun startToMain(){
-        context.startActivity<MainActivity>(null)
-        context.finishAfterTransition()
+        val intent = Intent(context,LoginActivity::class.java)
+        context.startActivity(intent)
+        context.overridePendingTransition(R.anim.anim_right_in,R.anim.anim_left_out)
     }
+
 
     private fun initAnim(){
 
