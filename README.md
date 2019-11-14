@@ -1,6 +1,6 @@
 #### 简书地址：https://www.jianshu.com/p/03e7446ff512
-#### 新的UI  
-
+#### 新的UI   
+<img src= "https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191114.gif" width = 200 alt= "UI"/>
 #### 基于AAC架构玩安卓客户端  
 #### 首页、公众号、知识体系、项目  
 ___
