@@ -1,4 +1,7 @@
 ## 简书地址：https://www.jianshu.com/p/03e7446ff512
+## 新的UI
+<img src= "https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191114.gif" width = 200 alt= "UI"/>  
+Gif比较大，设计交互模仿参考来自一款优秀的App：https://reflectly.app/ 
 ## 基于AAC架构玩安卓客户端
 预览图如下：  
 #### 首页、公众号、知识体系、项目
@@ -71,6 +74,8 @@ ___
   #### 增加了快捷标签的入口
   
   ### 更新日志  
+  #### V1.05 修改时间：2019/11/14
+  内容：重构了登录和注册UI
   #### V1.03 修改时间：2019/11/10
   内容：添加一个预加载占位的drawable,尚未完善优化，效果如下  
   <img src= "https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191110.gif" width = "300" alt ="Gif" />
