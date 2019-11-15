@@ -37,7 +37,6 @@ class ProjectFragment : LazyFragment<FragmentProjectBinding, MainViewModel>() {
 
     
     lateinit var window: DropWindow
-    private var  needClean = false
     private val pagerNumber = MutableLiveData<Int>()
     private var currentId = -1
     private lateinit var adapter: ProjectAdapter
@@ -60,7 +59,7 @@ class ProjectFragment : LazyFragment<FragmentProjectBinding, MainViewModel>() {
                     if(size>0){
                         tvProject.text = this[0].name
                         currentId = this[0].id
-                        pagerNumber.value = 1
+                        pagerNumber.value = 0
                     }
                     window.addList(this)
                 }
@@ -80,9 +79,8 @@ class ProjectFragment : LazyFragment<FragmentProjectBinding, MainViewModel>() {
         viewModel.cate.observe(this, Observer {
             it?.apply {
                 refresh.isRefreshing = false
-                if(needClean){
+                if(pagerNumber.value!! == 0){
                     list.clear()
-                    needClean = false
                 }
                 response?.apply {
                     list.addAll(this.datas)
@@ -103,7 +101,7 @@ class ProjectFragment : LazyFragment<FragmentProjectBinding, MainViewModel>() {
 
         adapter = ProjectAdapter(context,list)
         rv.adapter  = adapter
-        rv.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
+        rv.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
 
         
         router.toTarget("getCateTab")
@@ -120,14 +118,12 @@ class ProjectFragment : LazyFragment<FragmentProjectBinding, MainViewModel>() {
         window.setOnItemClickListener { id, name ->
             currentId = id
             tvProject.text = name
-            needClean = true
-            pagerNumber.value = 1
+            pagerNumber.value = 0
             window.dismiss()
         }
 
         refresh.setOnRefreshListener {
-            needClean = true
-            pagerNumber.value = 1
+            pagerNumber.value = 0
         }
 
 
@@ -173,12 +169,12 @@ class ProjectFragment : LazyFragment<FragmentProjectBinding, MainViewModel>() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        HoldViewHelper.get().clear()
     }
 
 
     private fun onLoadSize(size: Int) {
         refresh.isRefreshing = false
+        rv.finishLoading()
         if(size == 0){
             rv.setEnableLoadMore(false)
         }else{

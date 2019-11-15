@@ -112,7 +112,17 @@ class AutoRecyclerView @JvmOverloads constructor(
                     itemCount>1 -> itemCount - 1
                     else -> 0
                 }
-                if (!isLoading && lastPosition >= targetPos && itemCount > 0 && dy > 0) {
+                var flag: Boolean
+                flag = if(layoutManager is LinearLayoutManager){
+                    if(layoutManager.orientation == LinearLayoutManager.VERTICAL){
+                        dy >0
+                    }else{
+                        dx > 0
+                    }
+                }else{
+                    dy > 0
+                }
+                if (!isLoading && lastPosition >= targetPos && itemCount > 0 && flag) {
                     if (loadingMore != null) {
                         isLoading = true
                         loadingMore?.invoke()

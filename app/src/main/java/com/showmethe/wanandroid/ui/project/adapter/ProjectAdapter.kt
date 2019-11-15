@@ -1,15 +1,18 @@
 package com.showmethe.wanandroid.ui.project.adapter
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.databinding.ObservableArrayList
-
+import androidx.palette.graphics.Palette
 
 
 import com.showmethe.wanandroid.R
 import com.showmethe.wanandroid.databinding.ItemProjectBinding
 import com.showmethe.wanandroid.entity.CateBean
 import showmethe.github.core.adapter.DataBindBaseAdapter
+import showmethe.github.core.glide.TGlide
 import showmethe.github.core.glide.loadScaleNoCrop
 
 
@@ -17,10 +20,13 @@ class ProjectAdapter(context: Context, data: ObservableArrayList<CateBean.DatasB
     DataBindBaseAdapter<CateBean.DatasBean, ItemProjectBinding>(context, data) {
     override fun getItemLayout(): Int  = R.layout.item_project
 
+    private val defaultColor = ContextCompat.getColor(context, R.color.color_ff6e00)
+
     override fun bindItems(binding: ItemProjectBinding?, item: CateBean.DatasBean, position: Int) {
         binding?.apply {
 
             ivLogo.loadScaleNoCrop(item.envelopePic)
+            
 
             bean  = item
             executePendingBindings()

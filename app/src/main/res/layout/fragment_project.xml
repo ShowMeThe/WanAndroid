@@ -58,7 +58,9 @@
             <showmethe.github.core.widget.common.AutoRecyclerView
                 android:id="@+id/rv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                app:autoFix="true"
+                />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
