@@ -30,16 +30,6 @@ class HomeArticleAdapter(context: Context, data: ObservableArrayList<HomeArticle
        holder.binding.apply {
            bean = item
 
-           if(!item.isShow){
-               holder.holderManager.patchViews(tvTit,tvClass,tvTime)
-               root.postDelayed({
-                   holder.holderManager.clear()
-                   item.isShow = true
-               },500)
-           }else{
-               holder.holderManager.clear()
-           }
-
             like.setLike(item.isCollect,false)
             like.setOnClickListener {
                 if(item.isCollect){
@@ -65,7 +55,6 @@ class HomeArticleAdapter(context: Context, data: ObservableArrayList<HomeArticle
 
     class ViewHolder(binding: ItemHomeArticleBinding) :
         DataBindingViewHolder<ItemHomeArticleBinding>(binding){
-        val holderManager = PlaceHolderManager()
 
     }
 
