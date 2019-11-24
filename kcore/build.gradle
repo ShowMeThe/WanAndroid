@@ -71,7 +71,7 @@ dependencies {
     api "androidx.cardview:cardview:1.0.0"
     api "androidx.legacy:legacy-support-v4:1.0.0"
     api "androidx.recyclerview:recyclerview:${LibV.recyclerview}"
-    api 'com.google.android.material:material:1.2.0-alpha01'
+    api 'com.google.android.material:material:1.2.0-alpha02'
     api 'androidx.multidex:multidex:2.0.1'
     api 'androidx.gridlayout:gridlayout:1.0.0'
     api "androidx.work:work-runtime:${LibV.work_runtime}"
@@ -100,7 +100,7 @@ dependencies {
     api "com.github.bumptech.glide:okhttp3-integration:${LibV.glide}"
 
     //viewpager2
-    api 'androidx.viewpager2:viewpager2:1.0.0-rc01'
+    api 'androidx.viewpager2:viewpager2:1.0.0'
 
     //高斯模糊
     api 'com.github.Commit451:NativeStackBlur:1.0.5'

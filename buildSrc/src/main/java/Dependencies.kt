@@ -12,7 +12,7 @@ object Versions{
 
 object LibV{
 
-    const val recyclerview ="1.1.0-rc01"
+    const val recyclerview ="1.1.0"
     const val rxlifecycle3 ="3.1.0"
     const val rxjava = "2.2.13"
     const val rxandroid = "2.1.1"
@@ -23,5 +23,5 @@ object LibV{
     const val lifecycle = "2.2.0-rc02"
     const val room = "2.2.1"
     const val gson = "2.8.5"
-    const val work_runtime = "2.3.0-alpha03"
+    const val work_runtime = "2.3.0-beta01"
 }
