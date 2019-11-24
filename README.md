@@ -83,7 +83,7 @@ ___
   #### V1.03 修改时间：2019/11/2
   内容：新增一个FloatActonButton的菜单，实现的效果其实不难，效果如下：  
   <img src ="https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191102234438.jpg" width = 200 alt = "主页"/>  
-  简单说一下步骤吧，之后可能会抽个时间完善一下写成Libray  
+  简单说一下步骤吧，地址：https://github.com/ShowMeThe/SpeedDial
   1、通过自定义的Beahavior 可以很简单地拿到需要依附的View
   ```kotlin
   override fun layoutDependsOn(parent: CoordinatorLayout, child: ExpandMenuChildLayout, dependency: View): Boolean {

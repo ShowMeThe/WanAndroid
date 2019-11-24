@@ -50,11 +50,12 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding, AuthViewModel>() {
     }
 
     override fun onVisible() {
+        reset()
         toAnim(0,500)
     }
 
     override fun onHidden() {
-        reset()
+
     }
 
     override fun initListener() {

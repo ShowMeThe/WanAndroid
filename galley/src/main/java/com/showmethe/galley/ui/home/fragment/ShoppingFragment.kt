@@ -34,6 +34,7 @@ class ShoppingFragment : BaseFragment<FragmentShoppingBinding, MainViewModel>(),
 
 
 
+    private var expand = false
     val refreshing  = MutableLiveData<Boolean>()
     private val pageNumber = MutableLiveData<Int>()
 
@@ -119,7 +120,7 @@ class ShoppingFragment : BaseFragment<FragmentShoppingBinding, MainViewModel>(),
 
         fab.setOnClickListener {
             fab.isExpanded = true
-            fab.hide()
+            expand = true
         }
 
 
@@ -135,9 +136,9 @@ class ShoppingFragment : BaseFragment<FragmentShoppingBinding, MainViewModel>(),
     }
 
     override fun onBackPressed(): Boolean {
-        if(fab.isEnabled){
+        if(expand){
             fab.isExpanded = false
-            fab.show()
+            expand = false
            return true
         }
         return false
