@@ -42,6 +42,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     private val colors = ArrayList<ColorStateList>()
 
+    override fun showCreateReveal(): Boolean = true
+
     override fun setTheme() {
        setFullScreen()
     }

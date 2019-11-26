@@ -62,5 +62,18 @@ inline fun <T : View> T.onGlobalLayout(crossinline  onLayout: T.()->Unit){
     }
 }
 
+inline fun <T : View> T.onPreDrawLayout(crossinline  onLayout: T.()->Unit){
+    if (viewTreeObserver.isAlive) {
+        viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+
+            override fun onPreDraw(): Boolean {
+                onLayout()
+                viewTreeObserver.removeOnPreDrawListener(this)
+                return false
+            }
+        })
+    }
+}
+
 
 

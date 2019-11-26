@@ -2,6 +2,7 @@ package com.showmethe.wanandroid.placeholder
 
 import android.util.ArrayMap
 import android.view.View
+import java.lang.ref.SoftReference
 
 /**
  *  com.example.ken.kmvvm.placeholder
@@ -10,19 +11,19 @@ import android.view.View
  */
 class PlaceHolderManager {
 
-    private val views = ArrayMap<View,PlaceConfig>()
+    private val views = SoftReference<ArrayMap<View,PlaceConfig>>(ArrayMap())
 
     fun patchViews(vararg varView: View){
         for(view in varView){
             val config = PlaceConfig(view)
             config.getHolder()
-            views[view] = config
+            views.get()!![view] = config
         }
     }
 
     fun clear(){
-        if(views.isNotEmpty()){
-            for(it in views){
+        if( views.get()!!.isNotEmpty()){
+            for(it in  views.get()!!){
                 it.value.getHolder()?.clear()
             }
         }

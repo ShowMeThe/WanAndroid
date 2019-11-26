@@ -1,5 +1,6 @@
 package showmethe.github.core.base
 
+import android.animation.Animator
 import android.app.ActivityOptions
 import androidx.lifecycle.*
 import android.content.Intent
@@ -35,7 +36,9 @@ import showmethe.github.core.util.toast.ToastFactory
 import java.util.concurrent.TimeUnit
 import showmethe.github.core.R
 import showmethe.github.core.base.vmpath.VMRouter
+import showmethe.github.core.util.extras.SimpleAnimatorListener
 import showmethe.github.core.util.extras.onGlobalLayout
+import showmethe.github.core.util.extras.onPreDrawLayout
 import showmethe.github.core.util.extras.putValueInBundle
 import showmethe.github.core.util.system.hideSoftKeyboard
 import kotlin.math.hypot
@@ -113,7 +116,7 @@ abstract class BaseActivity<V : ViewDataBinding,VM : BaseViewModel> : AppCompatA
             layout.addView(rootLayout,ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT)
             container.addView(layout)
-            container.onGlobalLayout {
+            container.onPreDrawLayout {
                 circularReveal(layout)
             }
         }
@@ -368,7 +371,7 @@ abstract class BaseActivity<V : ViewDataBinding,VM : BaseViewModel> : AppCompatA
         val circularReveal = CircularRevealCompat.createCircularReveal(rootLayout,centerX,centerY,finalRadius)
         circularReveal.duration = 500
         circularReveal.interpolator = LinearInterpolator()
-        circularReveal.startDelay = 50
+        circularReveal.startDelay = 1
         circularReveal.start()
 
     }
@@ -394,6 +397,7 @@ abstract class BaseActivity<V : ViewDataBinding,VM : BaseViewModel> : AppCompatA
         circularReveal.interpolator = LinearInterpolator()
         rootLayout.postDelayed({
             call.invoke()
+            rootLayout.alpha = 0.8f
         },250)
         circularReveal.start()
     }
