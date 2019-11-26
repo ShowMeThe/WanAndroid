@@ -391,11 +391,10 @@ abstract class BaseActivity<V : ViewDataBinding,VM : BaseViewModel> : AppCompatA
             (rootLayout.height * 0.5).toInt(), finalRadius,0f
         )
         circularReveal.duration = 500
-        circularReveal.interpolator = LinearOutSlowInInterpolator()
-        GlobalScope.launch(Dispatchers.Main) {
-            delay(500)
+        circularReveal.interpolator = LinearInterpolator()
+        rootLayout.postDelayed({
             call.invoke()
-        }
+        },250)
         circularReveal.start()
     }
 

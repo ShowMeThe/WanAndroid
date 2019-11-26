@@ -55,8 +55,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
                        if(WanApplication.lastActivity == null){
                            AppManager.get().finishTarget(LoginActivity::class.java)
                            finishReveal {
+                               finish()
                                startActivity<MainActivity>()
-                               finishAfterTransition()
                            }
                        }else{
                            WanApplication.lastActivity?.apply {
