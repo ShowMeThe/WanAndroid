@@ -28,7 +28,11 @@ import showmethe.github.core.widget.transformer.SpinnerTransformer
  * Update Time: 2019/10/16 10:54
  * Package Name:showmethe.github.core.widget.banner
  */
-class Banner @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : RelativeLayout(context, attrs, defStyleAttr) ,DefaultLifecycleObserver{
+class Banner @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : RelativeLayout(context, attrs, defStyleAttr), DefaultLifecycleObserver {
 
     private val imageList = ObservableArrayList<Any>()
     private var viewPager: ViewPager2? = null
@@ -49,8 +53,8 @@ class Banner @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
     private var transformer: ViewPager2.PageTransformer? = null
     private var transformerType = -1
     private var indicatorGravity = 0
-    private lateinit var factory : BannerFactory
-    private var owner:LifecycleOwner? = null
+    private lateinit var factory: BannerFactory
+    private var owner: LifecycleOwner? = null
     private var scrollType = REPEAT //3循环 4假无限
     private var dotWith = 10
     private var dotType = 0
@@ -81,13 +85,13 @@ class Banner @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
         viewPager = view.findViewById(R.id.viewPager)
         dotTabView = view.findViewById(R.id.dot)
 
-        when(scrollType){
-            REPEAT ->factory = SmoothFactory(viewPager!!)
-            INFINITY ->factory = InfinityFactory(viewPager!!)
+        when (scrollType) {
+            REPEAT -> factory = SmoothFactory(viewPager!!)
+            INFINITY -> factory = InfinityFactory(viewPager!!)
         }
 
 
-        if(showIndicator){
+        if (showIndicator) {
             dotTabView?.visibility = View.VISIBLE
             setIndicatorGravity()
         }
@@ -96,32 +100,36 @@ class Banner @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
         viewPager?.adapter = adapter
         viewPager?.orientation = orientation
 
-        if(scrollType == 3){
-            when(transformerType){
-                0 ->   viewPager?.setPageTransformer(ParallaxTransformer())
-                1 ->   viewPager?.setPageTransformer(SpinnerTransformer())
-                2 ->   viewPager?.setPageTransformer(AlphaScalePageTransformer())
+        if (scrollType == 3) {
+            when (transformerType) {
+                0 -> viewPager?.setPageTransformer(ParallaxTransformer())
+                1 -> viewPager?.setPageTransformer(SpinnerTransformer())
+                2 -> viewPager?.setPageTransformer(AlphaScalePageTransformer())
             }
         }
 
         viewPager?.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
 
             }
 
             override fun onPageSelected(position: Int) {
                 factory.onPageSelected(position)
-                when(scrollType){
-                     REPEAT ->onPageSelect?.invoke(position)
-                     INFINITY ->{
-                         if(position == 0){
-                             onPageSelect?.invoke(factory.count -1)
-                         }else if(position == factory.count - 1){
-                             onPageSelect?.invoke(0)
-                         }else{
-                             onPageSelect?.invoke(position -1)
-                         }
-                     }
+                when (scrollType) {
+                    REPEAT -> onPageSelect?.invoke(position)
+                    INFINITY -> {
+                        if (position == 0) {
+                            onPageSelect?.invoke(factory.count - 1)
+                        } else if (position == factory.count - 1) {
+                            onPageSelect?.invoke(0)
+                        } else {
+                            onPageSelect?.invoke(position - 1)
+                        }
+                    }
                 }
             }
 
@@ -134,7 +142,7 @@ class Banner @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
             override fun display(url: Any, imageView: ImageView) {
                 imageView.maxHeight = mMaxHeight.toInt()
                 imageView.minimumHeight = mMinHeight.toInt()
-                when(scaleType){
+                when (scaleType) {
                     0 -> imageView.scaleType = ImageView.ScaleType.FIT_XY
                     1 -> imageView.scaleType = ImageView.ScaleType.CENTER_CROP
                 }
@@ -145,12 +153,12 @@ class Banner @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
         })
 
         adapter.setOnItemClickListener { view, position ->
-            if(scrollType == 4){
-                if(position>0 && position<factory.count - 1){
-                    onPageClick?.invoke(view,position - 1)
+            if (scrollType == 4) {
+                if (position > 0 && position < factory.count - 1) {
+                    onPageClick?.invoke(view, position - 1)
                 }
-            }else{
-                onPageClick?.invoke(view,position)
+            } else {
+                onPageClick?.invoke(view, position)
             }
         }
 
@@ -160,27 +168,39 @@ class Banner @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
     private fun initType(context: Context, attrs: AttributeSet?) {
         val array = context.obtainStyledAttributes(attrs, R.styleable.Banner)
         autoPlay = array.getBoolean(R.styleable.Banner_autoPlay, true)
-        selectColor = array.getColor(R.styleable.Banner_selected_color, ContextCompat.getColor(context, R.color.colorAccent))
-        unselectColor = array.getColor(R.styleable.Banner_unselected_color, ContextCompat.getColor(context, R.color.white_85))
-        mMinHeight = array.getDimension(R.styleable.Banner_imageMinHeight,resources.getDimension(R.dimen.px600dp))
-        mMaxHeight = array.getDimension(R.styleable.Banner_imageMaxHeight,resources.getDimension(R.dimen.px2500dp))
+        selectColor = array.getColor(
+            R.styleable.Banner_selected_color,
+            ContextCompat.getColor(context, R.color.colorAccent)
+        )
+        unselectColor = array.getColor(
+            R.styleable.Banner_unselected_color,
+            ContextCompat.getColor(context, R.color.white_85)
+        )
+        mMinHeight = array.getDimension(
+            R.styleable.Banner_imageMinHeight,
+            resources.getDimension(R.dimen.px600dp)
+        )
+        mMaxHeight = array.getDimension(
+            R.styleable.Banner_imageMaxHeight,
+            resources.getDimension(R.dimen.px2500dp)
+        )
         selectRadius = array.getDimension(R.styleable.Banner_select_radius, 16f).toInt()
         unSelectRadius = array.getDimension(R.styleable.Banner_unSelect_radius, 15f).toInt()
         delayTime = array.getInt(R.styleable.Banner_delayTime, TIME)
-        scaleType  = array.getInt(R.styleable.Banner_imageScaleType,0)
-        showIndicator = array.getBoolean(R.styleable.Banner_showIndicator,true)
-        orientation = array.getInt(R.styleable.Banner_pageOrientation,RecyclerView.HORIZONTAL)
-        transformerType = array.getInt(R.styleable.Banner_transformer,-1)
-        indicatorGravity = array.getInt(R.styleable.Banner_indicator_gravity,0)
-        scrollType = array.getInt(R.styleable.Banner_scrollType,REPEAT)
-        dotWith = array.getDimension(R.styleable.Banner_dotWith,10f).toInt()
-        dotType = array.getInt(R.styleable.Banner_dotType,0)
-        dotDistant = array.getDimension(R.styleable.Banner_dotDistant,10f).toInt()
+        scaleType = array.getInt(R.styleable.Banner_imageScaleType, 0)
+        showIndicator = array.getBoolean(R.styleable.Banner_showIndicator, true)
+        orientation = array.getInt(R.styleable.Banner_pageOrientation, RecyclerView.HORIZONTAL)
+        transformerType = array.getInt(R.styleable.Banner_transformer, -1)
+        indicatorGravity = array.getInt(R.styleable.Banner_indicator_gravity, 0)
+        scrollType = array.getInt(R.styleable.Banner_scrollType, REPEAT)
+        dotWith = array.getDimension(R.styleable.Banner_dotWith, 10f).toInt()
+        dotType = array.getInt(R.styleable.Banner_dotType, 0)
+        dotDistant = array.getDimension(R.styleable.Banner_dotDistant, 10f).toInt()
         array.recycle()
     }
 
-    private fun setIndicatorGravity(){
-        if(showIndicator){
+    private fun setIndicatorGravity() {
+        if (showIndicator) {
             val params = dotTabView?.layoutParams!! as LayoutParams
             when (indicatorGravity) {
                 0 -> params.addRule(CENTER_IN_PARENT)
@@ -196,46 +216,45 @@ class Banner @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
         }
     }
 
-    fun setPageTransformer(transformer: ViewPager2.PageTransformer){
+    fun setPageTransformer(transformer: ViewPager2.PageTransformer) {
         this.transformer = transformer
         viewPager?.setPageTransformer(transformer)
     }
 
 
-    var onPageSelect: ((position:Int)->Unit)? = null
+    var onPageSelect: ((position: Int) -> Unit)? = null
 
-    fun setOnPageSelectListener(onPageSelect: ((position:Int)->Unit)){
+    fun setOnPageSelectListener(onPageSelect: ((position: Int) -> Unit)) {
         this.onPageSelect = onPageSelect
     }
 
 
+    var onPageClick: ((view: View, position: Int) -> Unit)? = null
 
-    var onPageClick: ((view:View ,position:Int)->Unit)? = null
-
-    fun setOnPageClickListener(onPageClick : ((view:View,position:Int)->Unit)){
+    fun setOnPageClickListener(onPageClick: ((view: View, position: Int) -> Unit)) {
         this.onPageClick = onPageClick
     }
 
 
-    fun setCurrentPosition(position : Int,smooth:Boolean){
+    fun setCurrentPosition(position: Int, smooth: Boolean) {
         viewPager?.post {
-            if(scrollType == INFINITY){
-                if(position>=0 && position<factory.count -1){
-                    factory.toNextPage(position+1,smooth)
+            if (scrollType == INFINITY) {
+                if (position >= 0 && position < factory.count - 1) {
+                    factory.toNextPage(position + 1, smooth)
                 }
-            }else{
-                factory.toNextPage(position,smooth)
+            } else {
+                factory.toNextPage(position, smooth)
             }
         }
     }
 
-    fun  getBannerSize() = imageList.size
+    fun getBannerSize() = imageList.size
 
     fun play() {
         autoPlay = true
         if (imageList.size > 1) {
             factory.clearTask(task)
-            factory.postTask(task,delayTime.toLong())
+            factory.postTask(task, delayTime.toLong())
         }
     }
 
@@ -248,7 +267,7 @@ class Banner @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
     fun resumePlay() {
         factory.count = imageList.size
         factory.clearTask(task)
-        factory.postTask(task,delayTime.toLong())
+        factory.postTask(task, delayTime.toLong())
     }
 
 
@@ -257,7 +276,7 @@ class Banner @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
     }
 
     override fun onResume(owner: LifecycleOwner) {
-        if(autoPlay){
+        if (autoPlay) {
             resumePlay()
         }
     }
@@ -268,19 +287,19 @@ class Banner @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
         this.owner = null
     }
 
-    fun bindToLife(owner: LifecycleOwner){
+    fun bindToLife(owner: LifecycleOwner) {
         this.owner = owner
         this.owner?.lifecycle?.addObserver(this)
     }
 
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
-        if(factory.count == 0) super.dispatchTouchEvent(ev)
+        if (factory.count == 0) super.dispatchTouchEvent(ev)
         factory.dispatchTouchEvent(ev)
-        when(ev.action){
-            MotionEvent.ACTION_UP,MotionEvent.ACTION_CANCEL,MotionEvent.ACTION_OUTSIDE -> {
+        when (ev.action) {
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_OUTSIDE -> {
                 parent.requestDisallowInterceptTouchEvent(false)
-                if(autoPlay){
+                if (autoPlay) {
                     resumePlay()
                 }
             }
@@ -293,10 +312,10 @@ class Banner @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
     }
 
 
-    private var loader :((url: Any, imageView: ImageView)->Unit)? = null
+    private var loader: ((url: Any, imageView: ImageView) -> Unit)? = null
 
 
-    fun setOnImageLoader(loader: (url: Any, imageView: ImageView)->Unit) {
+    fun setOnImageLoader(loader: (url: Any, imageView: ImageView) -> Unit) {
         this.loader = loader
     }
 
@@ -304,34 +323,45 @@ class Banner @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
         stopPlay()
         imageList.clear()
         imageList.addAll(arrayList)
-        if(scrollType == INFINITY){
-            imageList.add(0,arrayList[arrayList.size - 1])
+        if (scrollType == INFINITY) {
+            imageList.add(0, arrayList[arrayList.size - 1])
             imageList.add(arrayList[0])
-            factory.toNextPage(1,false)
-        }else{
-            factory.toNextPage(0,true)
+            factory.toNextPage(1, false)
+        } else {
+            factory.toNextPage(0, true)
         }
         factory.currentItem = 1
 
         factory.count = imageList.size
         viewPager?.offscreenPageLimit = factory.count
         factory.delayTime = delayTime.toLong()
-        if(autoPlay){
+        if (autoPlay) {
             play()
         }
 
 
-        if(showIndicator&& arrayList.size>1){
+        if (showIndicator && arrayList.size > 1) {
             dotTabView!!.setIndicatorRadius(dotWith, dotWith)
-            dotTabView!!.setViewPager2(viewPager, arrayList.size, imageList.size,scrollType,dotDistant, dotType,selectColor, unselectColor)
+            dotTabView!!.setViewPager2(
+                viewPager,
+                arrayList.size,
+                imageList.size,
+                scrollType,
+                dotDistant,
+                dotType,
+                selectColor,
+                unselectColor
+            )
         }
     }
 
     companion object {
 
         private val layoutId = R.layout.banner_layout
-        private val DEFAULT_LAYOUT_PARAMS = LayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.MATCH_PARENT)
+        private val DEFAULT_LAYOUT_PARAMS = LayoutParams(
+            LayoutParams.MATCH_PARENT,
+            LayoutParams.MATCH_PARENT
+        )
         private const val TIME = 3000
         const val REPEAT = 3
         const val INFINITY = 4
