@@ -30,6 +30,7 @@ class HomeArticleAdapter(context: Context, data: ObservableArrayList<HomeArticle
        holder.binding.apply {
            bean = item
 
+
             like.setLike(item.isCollect,false)
             like.setOnClickListener {
                 if(item.isCollect){

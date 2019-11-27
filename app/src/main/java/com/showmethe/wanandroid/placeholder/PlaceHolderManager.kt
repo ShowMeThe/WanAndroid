@@ -21,6 +21,14 @@ class PlaceHolderManager {
         }
     }
 
+
+    fun patchViews(vararg varView: PlaceConfig){
+        for(config in varView){
+            config.getHolder()
+            views.get()!![config.view] = config
+        }
+    }
+
     fun clear(){
         if( views.get()!!.isNotEmpty()){
             for(it in  views.get()!!){
