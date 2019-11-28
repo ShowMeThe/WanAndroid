@@ -5,10 +5,7 @@
     <declare-styleable name="Banner">
         <attr name="selected_color" format="color|reference"/>
         <attr name="unselected_color" format="color|reference"/>
-        <attr name="indicator_distant" format="dimension"/>
         <attr name="autoPlay" format="boolean"/>
-        <attr name="select_radius" format="dimension"/>
-        <attr name="unSelect_radius" format="dimension"/>
         <attr name="dotWith" format="dimension"/>
         <attr name="dotDistant" format="dimension"/>
         <attr name="dotType" format="enum">

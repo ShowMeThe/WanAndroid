@@ -21,7 +21,7 @@ object LibV{
     const val okhttp3 = "4.2.1"
     const val retrofit = "2.6.2"
     const val lifecycle = "2.2.0-rc02"
-    const val room = "2.2.1"
+    const val room = "2.2.2"
     const val gson = "2.8.5"
     const val work_runtime = "2.3.0-beta01"
 }

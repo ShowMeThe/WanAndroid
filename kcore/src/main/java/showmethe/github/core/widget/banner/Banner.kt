@@ -43,8 +43,7 @@ class Banner @JvmOverloads constructor(
     private var smoothType = true
     private var selectColor: Int = 0
     private var unselectColor: Int = 0
-    private var selectRadius: Int = 0
-    private var unSelectRadius: Int = 0
+
     private var delayTime = TIME
     private var showIndicator = true
     private var mMinHeight = 0f
@@ -184,8 +183,7 @@ class Banner @JvmOverloads constructor(
             R.styleable.Banner_imageMaxHeight,
             resources.getDimension(R.dimen.px2500dp)
         )
-        selectRadius = array.getDimension(R.styleable.Banner_select_radius, 16f).toInt()
-        unSelectRadius = array.getDimension(R.styleable.Banner_unSelect_radius, 15f).toInt()
+
         delayTime = array.getInt(R.styleable.Banner_delayTime, TIME)
         scaleType = array.getInt(R.styleable.Banner_imageScaleType, 0)
         showIndicator = array.getBoolean(R.styleable.Banner_showIndicator, true)
