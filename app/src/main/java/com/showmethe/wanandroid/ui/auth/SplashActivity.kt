@@ -8,9 +8,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.animation.AnticipateOvershootInterpolator
 import android.view.animation.LinearInterpolator
+import androidx.activity.viewModels
 import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.showmethe.galley.database.DataSourceBuilder
 import com.showmethe.galley.database.Source
@@ -53,9 +55,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, AuthViewModel>() {
 
     override fun getViewId(): Int = R.layout.activity_splash
 
-    override fun initViewModel(): AuthViewModel = createViewModel(AuthViewModel::class.java)
+    override fun initViewModel(): AuthViewModel = createViewModel()
 
     override fun onBundle(bundle: Bundle) {
+
 
 
     }

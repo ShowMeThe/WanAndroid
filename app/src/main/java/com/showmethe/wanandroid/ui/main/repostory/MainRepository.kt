@@ -26,6 +26,7 @@ class MainRepository  : BaseRepository() {
     }
 
     fun getBanner(call:MutableLiveData<Result<ArrayList<Banner>>>){
+
         CallResult<ArrayList<Banner>>(owner)
             .success { result, message ->
                 call.value = result

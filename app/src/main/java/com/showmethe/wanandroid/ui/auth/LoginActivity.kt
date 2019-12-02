@@ -36,7 +36,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>() {
 
     override fun showFinishReveal(): Boolean  = true
     override fun getViewId(): Int = R.layout.activity_login
-    override fun initViewModel(): AuthViewModel = createViewModel(AuthViewModel::class.java)
+    override fun initViewModel(): AuthViewModel = createViewModel()
 
     override fun onBundle(bundle: Bundle) {
 

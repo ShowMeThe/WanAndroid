@@ -29,7 +29,7 @@ class PhotoFragment : BaseFragment<FragmentPhotoBinding, MainViewModel>() {
 
     val list = ObservableArrayList<PhotoWallDto>()
     lateinit var adapter : PhotoAdapter
-    override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
+    override fun initViewModel(): MainViewModel = createViewModel()
     override fun getViewId(): Int = R.layout.fragment_photo
 
     override fun onBundle(bundle: Bundle) {

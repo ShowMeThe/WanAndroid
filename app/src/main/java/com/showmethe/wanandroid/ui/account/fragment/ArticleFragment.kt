@@ -48,7 +48,7 @@ class ArticleFragment : LazyFragment<FragmentArticleBinding, MainViewModel>() {
     private val article  = MutableLiveData<Result<Article>>()
     private var accountId = 0
 
-    override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
+    override fun initViewModel(): MainViewModel = createViewModel()
     override fun getViewId(): Int = R.layout.fragment_article
 
 

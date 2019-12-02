@@ -17,7 +17,7 @@ import showmethe.github.core.util.extras.SimpleTextWatcher
  */
 class InputUserFragment  : BaseFragment<FragmentInputBinding, AuthViewModel>() {
 
-    override fun initViewModel(): AuthViewModel = createViewModel(AuthViewModel::class.java)
+    override fun initViewModel(): AuthViewModel = createViewModel()
 
     override fun getViewId(): Int = R.layout.fragment_input
 

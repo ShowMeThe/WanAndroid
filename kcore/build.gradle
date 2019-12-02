@@ -12,6 +12,7 @@ android {
         enabled = true
     }
 
+
     defaultConfig {
         minSdkVersion Versions.minSdkVersion
         targetSdkVersion Versions.targetSdkVersion
@@ -30,6 +31,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    kotlinOptions{
+        jvmTarget = "1.8"
     }
 
     compileOptions {
@@ -76,7 +81,7 @@ dependencies {
     api 'androidx.gridlayout:gridlayout:1.0.0'
     api "androidx.work:work-runtime:${LibV.work_runtime}"
     api "androidx.work:work-runtime-ktx:${LibV.work_runtime}"
-
+    api "androidx.fragment:fragment-ktx:1.2.0-rc02"
 
     //rx
     api "com.trello.rxlifecycle3:rxlifecycle:${LibV.rxlifecycle3}"

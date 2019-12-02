@@ -19,7 +19,7 @@ class ArticleDetailActivity : BaseActivity<ViewDataBinding, MainViewModel>() {
 
     override fun getViewId(): Int  = R.layout.activity_article_detail
 
-    override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
+    override fun initViewModel(): MainViewModel = createViewModel()
 
     override fun onBundle(bundle: Bundle) {
         link = bundle.getString("link","")

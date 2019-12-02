@@ -33,7 +33,7 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding,MainViewModel>() {
     private val verList = ObservableArrayList<String>()
 
     override fun getViewId(): Int = R.layout.activity_welcome
-    override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
+    override fun initViewModel(): MainViewModel = createViewModel()
 
     override fun onBundle(bundle: Bundle) {
     }

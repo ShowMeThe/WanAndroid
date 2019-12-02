@@ -38,7 +38,7 @@ class AccountFragment : LazyFragment<FragmentAccuntBinding, MainViewModel>() {
     private val fragments = ArrayList<Fragment>()
     private val titles = ArrayList<TabItem>()
 
-    override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
+    override fun initViewModel(): MainViewModel = createViewModel()
     override fun getViewId(): Int = R.layout.fragment_accunt
 
 

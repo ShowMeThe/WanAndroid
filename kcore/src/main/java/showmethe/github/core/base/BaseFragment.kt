@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.*
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle
@@ -102,8 +103,8 @@ abstract class BaseFragment<V : ViewDataBinding,VM : BaseViewModel> : Fragment()
     }
 
 
-    fun createViewModel(aClass : Class<VM>) : VM{
-        return  ViewModelProvider(activity!!, ViewModelProvider.AndroidViewModelFactory(activity!!.application)).get(aClass)
+    inline fun <reified VM :ViewModel>createViewModel() : VM{
+        return activityViewModels<VM>{ViewModelProvider.AndroidViewModelFactory(activity!!.application)}.value
     }
 
     fun <T> applySchedulers(): ObservableTransformer<T, T> {

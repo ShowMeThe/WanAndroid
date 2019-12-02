@@ -30,7 +30,7 @@ class NavFragment : LazyFragment<FragmentNavBinding, MainViewModel>() {
     private lateinit var adapter : TreeAdapter
     private val pagerNumber = MutableLiveData<Int>()
 
-    override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
+    override fun initViewModel(): MainViewModel = createViewModel()
     override fun getViewId(): Int = R.layout.fragment_nav
 
     override fun onBundle(bundle: Bundle) {

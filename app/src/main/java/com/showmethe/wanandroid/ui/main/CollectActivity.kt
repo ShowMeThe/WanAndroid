@@ -33,7 +33,7 @@ class CollectActivity : BaseActivity<ActivityCollectBinding, CollectViewModel>()
 
 
     override fun getViewId(): Int = R.layout.activity_collect
-    override fun initViewModel(): CollectViewModel = createViewModel(CollectViewModel::class.java)
+    override fun initViewModel(): CollectViewModel = createViewModel()
     override fun onBundle(bundle: Bundle) {
 
     }

@@ -33,8 +33,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding, SearchViewModel>() {
 
     override fun getViewId(): Int = R.layout.activity_search
 
-    override fun initViewModel(): SearchViewModel = createViewModel(
-        SearchViewModel::class.java)
+    override fun initViewModel(): SearchViewModel = createViewModel()
 
     override fun onBundle(bundle: Bundle) {
 

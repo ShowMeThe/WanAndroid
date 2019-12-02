@@ -31,7 +31,7 @@ import kotlin.math.hypot
 class WelcomeFragment : BaseFragment<FragmentWelcomeBinding, AuthViewModel>() {
 
     private val hasLogin = RDEN.get(HAS_LOGIN,false)
-    override fun initViewModel(): AuthViewModel = createViewModel(AuthViewModel::class.java)
+    override fun initViewModel(): AuthViewModel = createViewModel()
 
     override fun getViewId(): Int = R.layout.fragment_welcome
 

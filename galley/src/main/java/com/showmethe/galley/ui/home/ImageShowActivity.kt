@@ -28,7 +28,7 @@ class ImageShowActivity : BaseActivity<ActivityImageBinding, MainViewModel>() {
     private var url = ""
 
     override fun getViewId(): Int = R.layout.activity_image
-    override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
+    override fun initViewModel(): MainViewModel = createViewModel()
 
     override fun onBundle(bundle: Bundle) {
         url = bundle.getString("url","")

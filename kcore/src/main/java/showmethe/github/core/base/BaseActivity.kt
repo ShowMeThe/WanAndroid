@@ -12,6 +12,7 @@ import android.view.*
 import android.view.animation.LinearInterpolator
 import android.widget.EditText
 import android.widget.FrameLayout
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import com.google.android.material.circularreveal.CircularRevealCompat
@@ -48,7 +49,7 @@ import kotlin.math.hypot
  * Update Time: 2019/10/16 10:58
  * Package Name:showmethe.github.core.base
  */
-abstract class BaseActivity<V : ViewDataBinding,VM : BaseViewModel> : AppCompatActivity() {
+abstract class BaseActivity<V : ViewDataBinding,  VM : BaseViewModel> : AppCompatActivity() {
 
     lateinit var router : VMRouter
     private val loadingDialog = DialogLoading()
@@ -178,8 +179,9 @@ abstract class BaseActivity<V : ViewDataBinding,VM : BaseViewModel> : AppCompatA
 
 
 
-    fun createViewModel(aClass : Class<VM>) : VM{
-        return  ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory(application)).get(aClass)
+    inline fun <reified VM:ViewModel>createViewModel() : VM{
+       // return  ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory(application)).get(aClass)
+        return viewModels<VM> { ViewModelProvider.AndroidViewModelFactory(application) }.value
     }
 
 

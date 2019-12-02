@@ -44,7 +44,7 @@ class ShoppingFragment : BaseFragment<FragmentShoppingBinding, MainViewModel>(),
     private lateinit var cartAdapter : CartListAdapter
     private val cart = ObservableArrayList<CartListBean>()
 
-    override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
+    override fun initViewModel(): MainViewModel = createViewModel()
 
     override fun getViewId(): Int = R.layout.fragment_shopping
 

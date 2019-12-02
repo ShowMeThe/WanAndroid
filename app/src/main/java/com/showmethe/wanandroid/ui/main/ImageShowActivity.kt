@@ -50,7 +50,7 @@ class ImageShowActivity : BaseActivity<ViewDataBinding, MainViewModel>() {
     private val list = ObservableArrayList<String>()
 
     override fun getViewId(): Int = R.layout.activity_image_show
-    override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
+    override fun initViewModel(): MainViewModel = createViewModel()
 
     override fun onBundle(bundle: Bundle) {
         type = bundle.getInt("type",1)

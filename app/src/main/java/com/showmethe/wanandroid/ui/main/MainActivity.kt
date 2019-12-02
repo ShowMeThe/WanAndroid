@@ -51,7 +51,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     private val fragments = ArrayList<Fragment>()
     private lateinit var adapter: MainAdapter
     override fun getViewId(): Int = R.layout.activity_main
-    override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
+    override fun initViewModel(): MainViewModel = createViewModel()
 
     override fun onBundle(bundle: Bundle) {
 

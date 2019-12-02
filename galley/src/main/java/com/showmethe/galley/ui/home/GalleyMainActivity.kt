@@ -5,6 +5,9 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.add
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.lifecycle.Lifecycle
 import com.google.android.material.tabs.TabLayout
 import com.showmethe.galley.R
@@ -23,10 +26,10 @@ import showmethe.github.core.widget.slideback.annotation.SlideBackBinder
 class GalleyMainActivity : BaseActivity<ActivityGalleyMainBinding, MainViewModel>() {
 
 
-    val shopFragment = PhotoFragment()
-
     override fun getViewId(): Int  = R.layout.activity_galley_main
-    override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
+    override fun initViewModel(): MainViewModel = createViewModel()
+
+
     override fun onBundle(bundle: Bundle) {
 
     }
@@ -42,7 +45,7 @@ class GalleyMainActivity : BaseActivity<ActivityGalleyMainBinding, MainViewModel
 
         initTab()
 
-        replaceFragment(PhotoFragment::class.java.name)
+        switchFragment(PhotoFragment::class.java.name)
 
 
     }
@@ -67,22 +70,17 @@ class GalleyMainActivity : BaseActivity<ActivityGalleyMainBinding, MainViewModel
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                val pos = tab!!.position
-                switchFragment(pos)
+                when(tab!!.position){
+                     0 -> switchFragment(PhotoFragment::class.java.name)
+                     1 -> switchFragment(ShoppingFragment::class.java.name)
+                }
             }
         })
     }
 
 
-   private fun switchFragment(position: Int) {
-        when (position) {
-            0 -> {
-                replaceFragment(shopFragment::class.java.name)
-            }
-            1 ->{
-                replaceFragment(ShoppingFragment::class.java.name)
-            }
-        }
+   private  fun switchFragment(tag: String) {
+        replaceFragment(tag)
     }
 
 
@@ -107,9 +105,9 @@ class GalleyMainActivity : BaseActivity<ActivityGalleyMainBinding, MainViewModel
             try {
                 tempFragment = Class.forName(tag).newInstance() as Fragment
                 transaction.setCustomAnimations(
-                    R.anim.slide_right_in,
-                    R.anim.slide_left_out,
                     R.anim.slide_left_in,
+                    R.anim.slide_left_out,
+                    R.anim.slide_right_in,
                     R.anim.slide_right_out
                 )
 
@@ -127,17 +125,17 @@ class GalleyMainActivity : BaseActivity<ActivityGalleyMainBinding, MainViewModel
                 val fragment = fragments!![i]
                 if (fragment.tag == tag) {
                     transaction.setCustomAnimations(
-                        R.anim.slide_right_in,
-                        R.anim.slide_left_out,
                         R.anim.slide_left_in,
+                        R.anim.slide_left_out,
+                        R.anim.slide_right_in,
                         R.anim.slide_right_out
                     )
                     transaction.show(fragment)
                 } else {
                     transaction.setCustomAnimations(
-                        R.anim.slide_right_in,
-                        R.anim.slide_left_out,
                         R.anim.slide_left_in,
+                        R.anim.slide_left_out,
+                        R.anim.slide_right_in,
                         R.anim.slide_right_out
                     )
                     transaction.hide(fragment)

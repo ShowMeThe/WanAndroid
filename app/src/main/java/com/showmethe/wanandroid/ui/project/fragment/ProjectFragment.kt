@@ -42,7 +42,7 @@ class ProjectFragment : LazyFragment<FragmentProjectBinding, MainViewModel>() {
     private lateinit var adapter: ProjectAdapter
     private val  list = ObservableArrayList<CateBean.DatasBean>()
 
-    override fun initViewModel(): MainViewModel = createViewModel(MainViewModel::class.java)
+    override fun initViewModel(): MainViewModel = createViewModel()
     override fun getViewId(): Int = R.layout.fragment_project
 
     override fun onBundle(bundle: Bundle) {
