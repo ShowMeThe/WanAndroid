@@ -42,6 +42,8 @@ import showmethe.github.core.glide.TGlide
 import showmethe.github.core.http.coroutines.Result.Companion.OutTime
 import showmethe.github.core.http.coroutines.Result.Companion.Success
 import showmethe.github.core.livebus.LiveBusHelper
+import showmethe.github.core.util.extras.plus
+import showmethe.github.core.util.extras.post
 import showmethe.github.core.util.widget.StatusBarUtil
 import showmethe.github.core.util.widget.StatusBarUtil.fixToolbar
 import showmethe.github.core.util.widget.setOnSingleClickListener
@@ -139,7 +141,7 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
         rv.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
 
 
-        pagerNumber.value = 0
+        pagerNumber post 0
     }
 
 
@@ -158,11 +160,11 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
 
 
     fun loadMore(){
-        pagerNumber.value =  pagerNumber.value!! + 1
+        pagerNumber plus 1
     }
 
     fun loadRefresh(){
-        pagerNumber.value = 0
+        pagerNumber post 0
     }
 
 

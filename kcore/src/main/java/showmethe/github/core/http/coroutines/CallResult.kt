@@ -6,7 +6,8 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.*
 import retrofit2.Response
 import showmethe.github.core.http.JsonResult
-import showmethe.github.core.http.JsonUtil
+
+import showmethe.github.core.http.fromJson
 
 /**
  * Author: showMeThe
@@ -28,22 +29,20 @@ class CallResult<T> constructor(private var owner: LifecycleOwner?) {
                         result.invoke()
                     }
                 }
-                if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
-                    withContext(Dispatchers.Main) {
-                        if (response != null) {
-                            response?.run {
-                                if(code() != 200){
-                                    loadingOutTime?.invoke(Result(Result.OutTime))
-                                }else{
-                                    build(response)
-                                }
+                withContext(Dispatchers.Main) {
+                    if (response != null) {
+                        response?.run {
+                            if(code() != 200){
+                                loadingOutTime?.invoke(Result(Result.OutTime))
+                                netJob?.cancel()
+                            }else{
+                                build(response)
                             }
-                        } else {
-                            loadingOutTime?.invoke(Result(Result.OutTime))
                         }
+                    } else {
+                        loadingOutTime?.invoke(Result(Result.OutTime))
+                        netJob?.cancel()
                     }
-                } else {
-                    netJob?.cancel()
                 }
             }
         }
@@ -54,7 +53,7 @@ class CallResult<T> constructor(private var owner: LifecycleOwner?) {
         response?.apply {
             if (!isSuccessful) {
                 try {
-                    val result = JsonUtil.fromJson<JsonResult<T>>(errorBody().toString())
+                    val result = errorBody().toString().fromJson<JsonResult<T>>()
                     if (result != null) {
                         val errorMessage = result.errorMsg!!
                         onError?.invoke(Result(Result.Failure, null, -1, errorMessage), -1, errorMessage)

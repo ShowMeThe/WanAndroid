@@ -10,6 +10,7 @@ import showmethe.github.core.base.BaseRepository
 import showmethe.github.core.http.RetroHttp
 import showmethe.github.core.http.coroutines.CallResult
 import showmethe.github.core.http.coroutines.Result
+import showmethe.github.core.util.extras.set
 
 
 class MainRepository  : BaseRepository() {
@@ -29,7 +30,7 @@ class MainRepository  : BaseRepository() {
 
         CallResult<ArrayList<Banner>>(owner)
             .success { result, message ->
-                call.value = result
+                call set result
             }.hold {
                 api.banner()
             }
@@ -41,7 +42,6 @@ class MainRepository  : BaseRepository() {
             .success { result, message ->
                 call.value = result
             }.outTime {
-                //增加一处超时
                 call.value = it
             }.hold {
                 api.getHomeArticle(pager)

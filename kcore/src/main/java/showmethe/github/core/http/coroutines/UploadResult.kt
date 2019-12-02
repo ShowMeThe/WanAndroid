@@ -11,7 +11,8 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Response
 import showmethe.github.core.http.JsonResult
-import showmethe.github.core.http.JsonUtil
+
+import showmethe.github.core.http.fromJson
 import java.io.File
 
 
@@ -51,7 +52,7 @@ class UploadResult<T> constructor(private var owner: LifecycleOwner?,private var
         response?.apply {
             if (!isSuccessful) {
                 try {
-                    val result = JsonUtil.fromJson<JsonResult<T>>(errorBody().toString())
+                    val result = errorBody().toString().fromJson<JsonResult<T>>()
                     if (result != null) {
                         val errorMessage = result.errorMsg!!
                         onError?.invoke(Result(Result.Failure, null, -1, errorMessage), -1, errorMessage)
