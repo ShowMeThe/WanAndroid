@@ -44,6 +44,7 @@ import showmethe.github.core.http.coroutines.Result.Companion.Success
 import showmethe.github.core.livebus.LiveBusHelper
 import showmethe.github.core.util.extras.plus
 import showmethe.github.core.util.extras.post
+import showmethe.github.core.util.extras.sameAs
 import showmethe.github.core.util.widget.StatusBarUtil
 import showmethe.github.core.util.widget.StatusBarUtil.fixToolbar
 import showmethe.github.core.util.widget.setOnSingleClickListener
@@ -91,7 +92,7 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
                 when(status){
                     Success ->{
                         response?.apply {
-                            if(pagerNumber.value!! == 1){
+                            if(pagerNumber sameAs 1){
                                 list.clear()
                             }
                             this.datas?.apply {

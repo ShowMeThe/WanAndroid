@@ -1,5 +1,6 @@
 package showmethe.github.core.util.extras
 
+import androidx.annotation.CheckResult
 import androidx.lifecycle.MutableLiveData
 import showmethe.github.core.util.match.isNotNull
 
@@ -45,4 +46,11 @@ infix fun <T:Any> MutableLiveData<T>.set(newValue:T){
     this.value = newValue
 }
 
+infix fun <T:Any>MutableLiveData<T>.sameAs( equals : T) : Boolean{
+    return if(value == null){
+        false
+    }else{
+        value!!  ==  equals
+    }
+}
 
