@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import showmethe.github.core.base.vmpath.VMRouter
 import showmethe.github.core.util.toast.ToastFactory
 import java.lang.Exception
 
@@ -18,8 +19,8 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
     lateinit var owner: LifecycleOwner
 
 
-    fun initOwner(owner: LifecycleOwner){
-        this.owner = owner
+    fun initOwner(vmRouter: VMRouter){
+        owner = vmRouter.owner
         val fields = this::class.java.declaredFields
         for(field in fields){
             if(field.isAnnotationPresent(InjectOwner::class.java)){
@@ -27,7 +28,7 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
                try {
                    val member = field.get(this)
                    if(member is BaseRepository){
-                       member.init(owner)
+                       member.init(vmRouter)
                    }
                }catch (e:Exception){
                    continue

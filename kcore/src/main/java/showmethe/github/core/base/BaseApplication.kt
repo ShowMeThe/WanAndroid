@@ -27,17 +27,10 @@ import java.lang.ref.WeakReference
 @Keep
 open class BaseApplication : MultiDexApplication() {
 
-    companion object {
-       @SuppressLint("StaticFieldLeak")
-       lateinit var context : Context
-        var ctx: WeakReference<AppCompatActivity>? = null
-    }
-
     override fun onCreate() {
         super.onCreate()
-        context = this
         GlobalScope.launch(Dispatchers.IO) {
-            startLocalForIp(context)
+            startLocalForIp(this@BaseApplication)
             RetroHttp.get()
             RDEN.build(this@BaseApplication)
             CrashHandler.get(this@BaseApplication)
@@ -45,25 +38,18 @@ open class BaseApplication : MultiDexApplication() {
         registerActivityLifecycleCallbacks(object : SimpleLifecycleCallbacks(){
             override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
                 if(activity is AppCompatActivity){
-                    ctx = WeakReference(activity)
+                    ContextProvider.get().attach(activity)
                 }
             }
             override fun onActivityResumed(activity: Activity?) {
                 if(activity is AppCompatActivity){
-                    ctx = WeakReference(activity)
+                    ContextProvider.get().attach(activity)
                 }
             }
             override fun onActivityDestroyed(activity: Activity?) {
 
             }
         })
-    }
-
-    override fun onTrimMemory(level: Int) {
-        if(ctx!=null){
-            ctx = null
-        }
-        super.onTrimMemory(level)
     }
 
 }

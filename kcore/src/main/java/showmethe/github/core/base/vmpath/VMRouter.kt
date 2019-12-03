@@ -2,6 +2,7 @@ package showmethe.github.core.base.vmpath
 
 import android.util.ArrayMap
 import android.util.Log
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -11,15 +12,12 @@ import kotlin.reflect.KCallable
 import kotlin.reflect.full.findAnnotation
 
 
-class VMRouter(private var viewModel: ViewModel) {
+class VMRouter(private var viewModel: ViewModel,var owner: LifecycleOwner) {
 
     companion object{
 
         val  callMap = ArrayMap<String,KCallable<*>>()
 
-        fun init(viewModel: ViewModel) : VMRouter{
-            return VMRouter(viewModel)
-        }
     }
 
     fun toTarget(path: String,vararg args: Any?){

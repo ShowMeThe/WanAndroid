@@ -70,8 +70,8 @@ abstract class BaseActivity<V : ViewDataBinding,  VM : BaseViewModel> : AppCompa
         context = this
         binding?.lifecycleOwner = this
         viewModel = initViewModel()
-        router = VMRouter(viewModel)
-        viewModel.initOwner(this)
+        router = VMRouter(viewModel,this)
+        viewModel.initOwner(router)
         lifecycle.addObserver(viewModel)
 
 

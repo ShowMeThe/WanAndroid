@@ -10,6 +10,7 @@ import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import showmethe.github.core.base.vmpath.VMRouter
 import showmethe.github.core.util.toast.ToastFactory
 import java.io.IOException
 import java.lang.ref.WeakReference
@@ -20,36 +21,20 @@ import java.util.concurrent.TimeUnit
  * Update Time: 2019/10/16 10:58
  * Package Name:showmethe.github.core.base
  */
-/**
- * 仓库持有了 Activity 对象 需要在viewModel里释放 执行onClear() 否则viewModel 会出现暂时性内存泄露
- */
-open class BaseRepository(var owner: LifecycleOwner? = null) :  DefaultLifecycleObserver {
-
-    private var currentRetryCount = 0
+open class BaseRepository :  DefaultLifecycleObserver {
 
     private  var refresh : WeakReference<SwipeRefreshLayout>? = null
-
-    private var weakOwner :WeakReference<LifecycleOwner>? = null
-
-
-
-
-    companion object {
-        private const val maxConnectCount = 15
-        private const val waitRetryTime = 3000
-    }
-
-
+    lateinit var owner : LifecycleOwner
+    private lateinit var router: VMRouter
 
 
     override fun onDestroy(owner: LifecycleOwner) {
         onClear()
     }
 
-    fun init(owner: LifecycleOwner) : BaseRepository{
-        weakOwner = WeakReference(owner)
-        this.owner = weakOwner?.get()
-        this.owner?.lifecycle?.addObserver(this)
+    fun init(router: VMRouter) : BaseRepository{
+        this.owner = router.owner
+        this.router.owner.lifecycle.addObserver(this)
         return this
     }
 
@@ -61,6 +46,7 @@ open class BaseRepository(var owner: LifecycleOwner? = null) :  DefaultLifecycle
         return this
     }
 
+
     fun showRefresh(isLoading : Boolean){
         refresh?.apply {
             get()?.apply {
@@ -69,8 +55,9 @@ open class BaseRepository(var owner: LifecycleOwner? = null) :  DefaultLifecycle
         }
     }
 
+
     fun showLoading(){
-        BaseApplication.ctx?.get()?.apply {
+        ContextProvider.get().getActivity().apply {
             if(this is BaseActivity<*,*>){
                 this.showLoading()
             }
@@ -78,7 +65,7 @@ open class BaseRepository(var owner: LifecycleOwner? = null) :  DefaultLifecycle
     }
 
     fun dismissLoading(){
-        BaseApplication.ctx?.get()?.apply {
+        ContextProvider.get().getActivity().apply {
             if(this is BaseActivity<*,*>){
                 this.dismissLoading()
             }
@@ -90,48 +77,6 @@ open class BaseRepository(var owner: LifecycleOwner? = null) :  DefaultLifecycle
             ToastFactory.createToast(message)
         }
 
-        fun filterOwner() : Boolean{
-            return owner!=null
-        }
-
-
-        fun <T> applySchedulers(event: Lifecycle.Event = Lifecycle.Event.ON_STOP): ObservableTransformer<T, T> {
-            val provider : LifecycleProvider<Lifecycle.Event> =
-                AndroidLifecycle.createLifecycleProvider(owner)
-            return ObservableTransformer {
-                it.retryWhen { throwableObservable ->
-                    throwableObservable.flatMap { throwable ->
-                        if (throwable is IOException) {
-                            currentRetryCount++
-                            if (currentRetryCount < maxConnectCount) {
-                                Observable.just(1).delay((waitRetryTime + currentRetryCount * 500).toLong(), TimeUnit.MILLISECONDS)
-                            } else {
-                                Observable.error<Any>(Throwable("Connection time out"))
-                            }
-                        } else {
-                            Observable.error(throwable)
-                        }
-                    }
-                }.filter { t -> t != null }.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread()).compose(provider.bindUntilEvent<T>(event))
-            }
-        }
-
-
-        fun <T> applyLongSchedulers(interval: Long = 15000): ObservableTransformer<T, T> {
-            val inter = if (interval < 15000) 15000 else interval
-            val provider : LifecycleProvider<Lifecycle.Event> =
-                AndroidLifecycle.createLifecycleProvider(owner)
-            return ObservableTransformer {
-                it.repeatWhen { objectObservable ->
-                    objectObservable.flatMap {
-                        Observable.just(1).delay(inter, TimeUnit.MILLISECONDS)
-                    }
-                }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                        .compose(provider.bindUntilEvent<T>(Lifecycle.Event.ON_DESTROY))
-            }
-        }
-
 
         /**
          * 适当使用避免造成内存泄漏
@@ -140,11 +85,7 @@ open class BaseRepository(var owner: LifecycleOwner? = null) :  DefaultLifecycle
             if(refresh!=null){
                 refresh = null
             }
-            if(owner!=null){
-                owner?.lifecycle?.removeObserver(this)
-                owner = null
-                weakOwner = null
-            }
+            owner.lifecycle.removeObserver(this)
         }
 
 }
