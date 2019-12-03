@@ -29,6 +29,12 @@
 				android:resource="@xml/file_paths" />
 		</provider>
 
+		<provider
+			android:authorities="showmethe.github.core.contextprovider"
+			android:name=".base.AppProvider"
+			android:exported="false"
+			/>
+
     </application>
 
 </manifest>

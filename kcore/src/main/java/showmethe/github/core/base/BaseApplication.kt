@@ -38,7 +38,6 @@ open class BaseApplication : MultiDexApplication() {
         context = this
         GlobalScope.launch(Dispatchers.IO) {
             startLocalForIp(context)
-            TGlide.init(this@BaseApplication)
             RetroHttp.get()
             RDEN.build(this@BaseApplication)
             CrashHandler.get(this@BaseApplication)

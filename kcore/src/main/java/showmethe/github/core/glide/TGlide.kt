@@ -17,6 +17,8 @@ import com.bumptech.glide.request.transition.Transition
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import showmethe.github.core.base.AppProvider
+import showmethe.github.core.base.ContextProvider
 import showmethe.github.core.widget.common.ProgressImageView
 import java.io.*
 import java.lang.ref.WeakReference
@@ -38,12 +40,9 @@ class TGlide private constructor(private var context: Context) {
     companion object {
 
         val interceptor = ProgressInterceptor()
-        @SuppressLint("StaticFieldLeak")
-        private lateinit var INSTANT: TGlide
 
-        fun init(context: Context) {
-            INSTANT = TGlide(context)
-        }
+        private  val INSTANT by lazy { TGlide(ContextProvider.get().context) }
+
 
         fun get() : TGlide = INSTANT
 
