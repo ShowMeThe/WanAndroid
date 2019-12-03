@@ -3,7 +3,7 @@ package showmethe.github.core.http.interceptor
 import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.Response
-import showmethe.github.core.base.BaseApplication.Companion.context
+import showmethe.github.core.base.ContextProvider
 import showmethe.github.core.util.system.Network
 import showmethe.github.core.util.system.checkConnection
 import java.io.IOException
@@ -19,7 +19,7 @@ class ReadWriteCacheInterceptor : Interceptor {
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
-        if (checkConnection(context) && Network.get().networkState) {
+        if (checkConnection(ContextProvider.get().context) && Network.get().networkState) {
             val response = chain.proceed(request)
             // read from cache for 30 s  有网络不会使用缓存数据
             val maxAge = 0

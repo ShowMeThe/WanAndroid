@@ -8,7 +8,7 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import showmethe.github.core.base.BaseApplication
-import showmethe.github.core.base.BaseApplication.Companion.context
+import showmethe.github.core.base.ContextProvider
 
 import java.io.File
 import java.io.FileOutputStream
@@ -66,7 +66,7 @@ private constructor() : Thread.UncaughtExceptionHandler {
 
 
     private fun getActivityPair(): Pair<Activity?, Intent?> {
-        val activity = BaseApplication.ctx?.get()
+        val activity = ContextProvider.get().getActivity()
         val intent = if (activity?.intent?.action == "android.intent.action.MAIN")
             Intent(activity, activity.javaClass)
         else
@@ -118,8 +118,8 @@ private constructor() : Thread.UncaughtExceptionHandler {
      * 通过filter从包里拉起actitvity
      */
     private  fun  getRestartActivityClassWithIntentFilter() : Class<out Activity>?{
-        val searchedIntent = Intent().setAction(restartAction).setPackage(context.packageName)
-        val resolveInfos = context.packageManager.queryIntentActivities(searchedIntent,
+        val searchedIntent = Intent().setAction(restartAction).setPackage(ContextProvider.get().context.packageName)
+        val resolveInfos = ContextProvider.get().context.packageManager.queryIntentActivities(searchedIntent,
             PackageManager.MATCH_DEFAULT_ONLY)
         if (resolveInfos != null && resolveInfos.size > 0) {
             val resolveInfo = resolveInfos[0]

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.AssetManager
 
 import showmethe.github.core.base.BaseApplication
+import showmethe.github.core.base.ContextProvider
 
 
 import java.io.*
@@ -33,7 +34,7 @@ class AssetFile(private val assetPath: String) {
     init {
         val index = assetPath.lastIndexOf(File.separatorChar.toString())
         this.fileName = assetPath.substring(index + 1, assetPath.length)
-        manager = BaseApplication.context.assets
+        manager = ContextProvider.get().context.assets
     }
 
     /**

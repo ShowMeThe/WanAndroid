@@ -20,6 +20,7 @@ import android.widget.Toast
 
 import showmethe.github.core.R
 import showmethe.github.core.base.BaseApplication
+import showmethe.github.core.base.ContextProvider
 
 /**
  * Author: showMeThe
@@ -36,8 +37,8 @@ object ToastFactory {
 
 
     fun createToast(message: Any) {
-        BaseApplication.ctx?.get()?.runOnUiThread {
-            if (isNotificationEnabled(BaseApplication.context)) {
+        ContextProvider.get().getActivity()?.runOnUiThread {
+            if (isNotificationEnabled(ContextProvider.get().context)) {
                 createNormalToast(message)
             } else {
                 createViewToast(message)
@@ -47,12 +48,12 @@ object ToastFactory {
 
 
     private fun createViewToast(message: Any) {
-        if (BaseApplication.ctx == null) {
+        if ( ContextProvider.get().getActivity() == null) {
             return
         }
-        val container = BaseApplication.ctx!!.get()!!
+        val container =  ContextProvider.get().getActivity()!!
                 .findViewById<ViewGroup>(android.R.id.content)
-        val mView = View.inflate(BaseApplication.context, R.layout.view_toast_draw, null)
+        val mView = View.inflate( ContextProvider.get().getActivity(), R.layout.view_toast_draw, null)
         container.addView(mView)
 
         val title = mView.findViewById<TextView>(R.id.text)
@@ -88,14 +89,14 @@ object ToastFactory {
         val title: TextView
         val layout: View
         if (toast == null) {
-            layout = View.inflate(BaseApplication.context, R.layout.view_toast_draw, null)
+            layout = View.inflate(ContextProvider.get().context, R.layout.view_toast_draw, null)
         } else {
             toast?.cancel()
             layout = toast!!.view
         }
         title = layout.findViewById(R.id.text)
         title.text = message.toString()
-        toast = Toast.makeText(BaseApplication.context, "", Toast.LENGTH_SHORT)
+        toast = Toast.makeText( ContextProvider.get().context, "", Toast.LENGTH_SHORT)
         toast?.apply {
             setGravity(Gravity.TOP, 0, 100)
             duration = Toast.LENGTH_SHORT
@@ -110,7 +111,7 @@ object ToastFactory {
         val title: TextView
 
         val layout: View = if (imgToast == null) {
-            View.inflate(BaseApplication.context, R.layout.view_img_toast, null)
+            View.inflate(ContextProvider.get().context, R.layout.view_img_toast, null)
         } else {
             imgToast?.cancel()
             imgToast!!.view
@@ -125,7 +126,7 @@ object ToastFactory {
 
         }
         title.text = message.toString()
-        imgToast = Toast.makeText(BaseApplication.context, "", Toast.LENGTH_SHORT)
+        imgToast = Toast.makeText(ContextProvider.get().context, "", Toast.LENGTH_SHORT)
         imgToast?.apply {
             setGravity(Gravity.TOP, 0, 0)
             duration = Toast.LENGTH_SHORT

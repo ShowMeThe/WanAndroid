@@ -17,6 +17,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import showmethe.github.core.base.BaseApplication
+import showmethe.github.core.base.ContextProvider
 import showmethe.github.core.http.interceptor.ReadCookieInterceptor
 import showmethe.github.core.http.interceptor.ReadWriteCacheInterceptor
 import showmethe.github.core.http.interceptor.RequestHeaderInterceptor
@@ -41,7 +42,7 @@ class RetroHttp  private constructor() : SessionObservable{
     val headerInterceptor = RequestHeaderInterceptor()
 
     init {
-        val httpCacheDirectory = File(BaseApplication.context.externalCacheDir, "NetworkCache")
+        val httpCacheDirectory = File(ContextProvider.get().context.externalCacheDir, "NetworkCache")
         val cacheSize = 50 * 1024 * 1024 // 15 MiB
         val cache = Cache(httpCacheDirectory, cacheSize.toLong())
         val client = OkHttpClient.Builder()

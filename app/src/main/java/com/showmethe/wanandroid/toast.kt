@@ -6,6 +6,7 @@ import com.showmethe.wanandroid.ui.auth.LoginActivity
 import showmethe.github.core.base.AppManager
 import showmethe.github.core.base.BaseActivity
 import showmethe.github.core.base.BaseApplication
+import showmethe.github.core.base.ContextProvider
 import showmethe.github.core.http.RetroHttp
 import showmethe.github.core.util.rden.RDEN
 import showmethe.github.core.util.toast.ToastFactory
@@ -26,10 +27,10 @@ fun toast(error: Int, message:String){
 
 fun offline(){
     AppManager.get().finishTarget(LoginActivity::class.java)
-    val activity = BaseApplication.ctx?.get() as BaseActivity<*, *>
+    val activity = ContextProvider.get().getActivity() as BaseActivity<*, *>
     if(WanApplication.lastActivity == null){
-        WanApplication.lastActivity = BaseApplication.ctx?.get()?.javaClass
-        WanApplication.lastBundle = BaseApplication.ctx?.get()?.intent?.extras
+        WanApplication.lastActivity = ContextProvider.get().getActivity()?.javaClass
+        WanApplication.lastBundle = ContextProvider.get().getActivity()?.intent?.extras
     }
     activity.startActivity(null, LoginActivity::class.java)
     RDEN.put("sessionId","")
