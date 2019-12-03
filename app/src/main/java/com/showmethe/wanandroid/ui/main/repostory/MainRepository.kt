@@ -10,12 +10,14 @@ import showmethe.github.core.base.BaseRepository
 import showmethe.github.core.http.RetroHttp
 import showmethe.github.core.http.coroutines.CallResult
 import showmethe.github.core.http.coroutines.Result
+import showmethe.github.core.kinit.get
+import showmethe.github.core.kinit.inject
 import showmethe.github.core.util.extras.set
 
 
 class MainRepository  : BaseRepository() {
 
-    val api = RetroHttp.createApi(main::class.java)
+    val api : main by inject()
 
 
     fun logout(){

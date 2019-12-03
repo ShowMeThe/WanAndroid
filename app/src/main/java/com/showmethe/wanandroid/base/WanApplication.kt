@@ -3,8 +3,14 @@ package com.showmethe.wanandroid.base
 import android.os.Bundle
 import androidx.annotation.Keep
 import com.showmethe.galley.database.DataSourceBuilder
+import com.showmethe.wanandroid.api.auth
+import com.showmethe.wanandroid.api.main
+
+import com.showmethe.wanandroid.modules.AuthModules
+import com.showmethe.wanandroid.modules.MainModules
 
 import showmethe.github.core.base.BaseApplication
+import showmethe.github.core.kinit.startInit
 import showmethe.github.core.widget.slideback.SlideBackRegister
 
 
@@ -27,6 +33,13 @@ class WanApplication : BaseApplication() {
         super.onCreate()
         DataSourceBuilder.build(this)
         registerActivityLifecycleCallbacks(SlideBackRegister())
+        startInit {
+            modules(
+                AuthModules(auth::class.java),
+                MainModules(main::class.java)
+            )
+        }
+
     }
 
 }

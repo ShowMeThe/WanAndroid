@@ -13,12 +13,14 @@ import showmethe.github.core.base.BaseRepository
 import showmethe.github.core.http.RetroHttp
 import showmethe.github.core.http.coroutines.CallResult
 import showmethe.github.core.http.coroutines.Result
+import showmethe.github.core.kinit.get
+import showmethe.github.core.kinit.inject
 import showmethe.github.core.util.rden.RDEN
 
 
 class AuthRepository : BaseRepository() {
 
-    val api = RetroHttp.createApi(auth::class.java)
+    val api : auth by inject()
     val userDao = DataSourceBuilder.getUser()
 
 
