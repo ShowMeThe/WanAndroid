@@ -11,56 +11,53 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
  */
 
 
-
-fun startInit(component: Component.()->Unit){
-    component.invoke(Component.get())
+fun startInit(component: Components.()->Unit){
+    component.invoke(Components.get())
 }
 
-
-class Component {
+class Components {
 
     companion object{
 
-        private val entry = ArrayMap<String,Lazy<Any?>>()
+        private val entry = ArrayMap<String,Any?>()
 
-        private val instant by lazy { Component() }
+        private val instant by lazy { Components() }
 
         fun get() = instant
 
         fun getEntry() = entry
+
+
+    }
+}
+
+inline fun <reified T> get(name: String = T::class.java.name) : T{
+   return Components.getEntry()[name] as T
+}
+
+inline fun <reified T> inject(name: String = T::class.java.name) : Lazy<T> {
+    return lazy { Components.getEntry()[name]  as T }
+}
+
+
+class Module(component: Component.() -> Unit){
+
+    init {
+        component.invoke(Component(""))
+    }
+}
+
+class Component(var name:String){
+
+    inline fun <reified T>single(single: Single<T>.()->T){
+        name = T::class.java.name
+        Components.getEntry()[name] = single.invoke(Single())
     }
 
-
-
-    fun modules(vararg module: Module<*>){
-        module.forEach {
-            inject(it)
-        }
+    inner class Single<T>(){
     }
-
-
-    private fun inject(module: Module<*>){
-        entry[module.moduleName()] = module.injectModule()
-    }
-
 }
 
-inline fun <reified T> get() : T{
-   return Component.getEntry()[T::class.java.name]!!.value as T
-}
 
-inline fun <reified T> inject() : Lazy<T> {
-    return Component.getEntry()[T::class.java.name] as Lazy<T>
-}
-
-abstract class Module<T>{
-
-
-     open fun moduleName() = ""
-
-     abstract fun injectModule() : Lazy<T>
-}
-
-inline fun<reified T> getClassName() : String = T::class.java.name
 
 

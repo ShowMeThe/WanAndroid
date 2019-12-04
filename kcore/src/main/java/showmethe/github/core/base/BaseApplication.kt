@@ -33,7 +33,7 @@ open class BaseApplication : MultiDexApplication() {
             startLocalForIp(this@BaseApplication)
             RetroHttp.get()
             RDEN.build(this@BaseApplication)
-            CrashHandler.get(this@BaseApplication)
+          //  CrashHandler.get(this@BaseApplication)
         }
         registerActivityLifecycleCallbacks(object : SimpleLifecycleCallbacks(){
             override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
