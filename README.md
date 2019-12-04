@@ -42,6 +42,7 @@ ___
  
   ```
   使用方式如下：
+  
   ```kotlin
     fun login(username:String,password:String,call:MutableLiveData<Result<Auth>>){
         CallResult<Auth>(owner)
@@ -72,6 +73,52 @@ ___
   #### 增加了快捷标签的入口
   
   ### 更新日志  
+  #### V1.05 修改时间：2019/12/4
+  内容：逐步进行DSL化,并把Retrofit的接口进行单例</br>
+  ##### 一、Retrofit的接口进行单例（—————其实这种单例是很简单，我都不知道我当时写的时候为啥搞得那么复杂——————）  
+  例子：</br>
+  ```kotlin
+     ___________________初始化_______________
+    startInit {
+            modules(Module{
+                single{ RetroHttp.createApi(auth::class.java) }
+            },
+                Module{
+                single{  RetroHttp.createApi(main::class.java) }
+            })
+        }
+     ————————————————调用得地方————————————
+     
+     val api: main by inject() //获取main.class的实例
+
+ ```
+  ##### 二、修改了TextWatcher
+  ```kotlin
+   fun EditText.textWatcher(textWatch: SimpleTextWatcher.()->Unit){
+    val simpleTextWatcher = SimpleTextWatcher()
+    textWatch.invoke(simpleTextWatcher)
+    addTextChangedListener(object :TextWatcher{
+        override fun afterTextChanged(s: Editable?) {
+            simpleTextWatcher.afterText?.invoke(s,s)  }
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            simpleTextWatcher.beforeText?.invoke(s, start, count, after) }
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            simpleTextWatcher.onTextChanged?.invoke(s, start, before, count) }
+       })
+   }
+
+ class  SimpleTextWatcher() {
+     var afterText: (Editable?.(s: Editable?)->Unit)? = null
+     fun afterTextChanged(afterText: (Editable?.(s: Editable?)->Unit)){
+         this.afterText = afterText }
+     var beforeText:((s: CharSequence?, start: Int, count: Int, after: Int)->Unit)? = null
+     fun beforeTextChanged(beforeText:((s: CharSequence?, start: Int, count: Int, after: Int)->Unit)){
+         this.beforeText = beforeText }
+     var  onTextChanged : ((s: CharSequence?, start: Int, before: Int, count: Int)->Unit)? = null
+     fun onTextChanged(onTextChanged : ((s: CharSequence?, start: Int, before: Int, count: Int)->Unit)){
+         this.onTextChanged = onTextChanged}
+}
+  ```
   #### V1.05 修改时间：2019/11/14
   内容：重构了登录和注册UI
   #### V1.03 修改时间：2019/11/10
