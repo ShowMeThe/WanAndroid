@@ -32,12 +32,12 @@ class WanApplication : BaseApplication() {
         DataSourceBuilder.build(this)
         registerActivityLifecycleCallbacks(SlideBackRegister())
         startInit {
-            Module{
-                single<auth>{ RetroHttp.createApi(auth::class.java) }
-            }
-            Module{
-                single<main> {  RetroHttp.createApi(main::class.java) }
-            }
+            modules(Module{
+                single{ RetroHttp.createApi(auth::class.java) }
+            },
+                Module{
+                single{  RetroHttp.createApi(main::class.java) }
+            })
         }
 
     }

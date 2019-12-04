@@ -20,15 +20,19 @@ class Components {
     companion object{
 
         private val entry = ArrayMap<String,Any?>()
+        private val module = ArrayList<Module>()
 
         private val instant by lazy { Components() }
 
         fun get() = instant
 
         fun getEntry() = entry
-
-
     }
+
+    fun modules(vararg modules: Module){
+        module.addAll(modules)
+    }
+
 }
 
 inline fun <reified T> get(name: String = T::class.java.name) : T{
@@ -36,6 +40,7 @@ inline fun <reified T> get(name: String = T::class.java.name) : T{
 }
 
 inline fun <reified T> inject(name: String = T::class.java.name) : Lazy<T> {
+
     return lazy { Components.getEntry()[name]  as T }
 }
 
