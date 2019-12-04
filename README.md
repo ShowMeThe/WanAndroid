@@ -45,8 +45,8 @@ ___
   
   ```kotlin
     fun login(username:String,password:String,call:MutableLiveData<Result<Auth>>){
-        CallResult<Auth>(owner)
-            .loading {
+        CallResult<Auth>(owner){
+             loading {
                  __________ 处理读取————————————————
             }.success { result, message ->
                 __________ 处理成功————————————————
@@ -60,6 +60,9 @@ ___
             }.hold {
                 api.login(username, password)//登录
             }
+      
+        }
+          
     }
    ```
   该项目使用: LiveData、ViewModel、Room 、Databinding 、WorkManager 、Lifecycles  
