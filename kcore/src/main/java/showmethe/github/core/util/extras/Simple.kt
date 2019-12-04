@@ -20,36 +20,41 @@ import com.google.android.material.tabs.TabLayout
  */
 
 fun EditText.textWatcher(textWatch: SimpleTextWatcher.()->Unit){
-    val simpleTextWatcher = SimpleTextWatcher()
+    val simpleTextWatcher = SimpleTextWatcher(this)
     textWatch.invoke(simpleTextWatcher)
-    addTextChangedListener(object :TextWatcher{
-        override fun afterTextChanged(s: Editable?) {
-            simpleTextWatcher.afterText?.invoke(s,s)
-        }
-
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            simpleTextWatcher.beforeText?.invoke(s, start, count, after)
-        }
-
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            simpleTextWatcher.onTextChanged?.invoke(s, start, before, count)
-        }
-    })
 }
 
- class  SimpleTextWatcher() {
-     var afterText: (Editable?.(s: Editable?)->Unit)? = null
+ class  SimpleTextWatcher(var view:EditText) {
+
+     private var afterText: (Editable?.(s: Editable?)->Unit)? = null
      fun afterTextChanged(afterText: (Editable?.(s: Editable?)->Unit)){
          this.afterText = afterText
      }
-     var beforeText:((s: CharSequence?, start: Int, count: Int, after: Int)->Unit)? = null
+     private var beforeText:((s: CharSequence?, start: Int, count: Int, after: Int)->Unit)? = null
      fun beforeTextChanged(beforeText:((s: CharSequence?, start: Int, count: Int, after: Int)->Unit)){
          this.beforeText = beforeText
      }
-     var  onTextChanged : ((s: CharSequence?, start: Int, before: Int, count: Int)->Unit)? = null
+     private var  onTextChanged : ((s: CharSequence?, start: Int, before: Int, count: Int)->Unit)? = null
      fun onTextChanged(onTextChanged : ((s: CharSequence?, start: Int, before: Int, count: Int)->Unit)){
          this.onTextChanged = onTextChanged
      }
+
+     init {
+         view.addTextChangedListener(object :TextWatcher{
+             override fun afterTextChanged(s: Editable?) {
+                 afterText?.invoke(s,s)
+             }
+
+             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                 beforeText?.invoke(s, start, count, after)
+             }
+
+             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                onTextChanged?.invoke(s, start, before, count)
+             }
+         })
+     }
+
 
 }
 
