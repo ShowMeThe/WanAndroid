@@ -14,9 +14,13 @@ import showmethe.github.core.http.fromJson
  * Update Time: 2019/10/16
  * Package Name:showmethe.github.core.http.coroutines
  */
-class CallResult<T> constructor(private var owner: LifecycleOwner?) {
+class CallResult<T> constructor(private var owner: LifecycleOwner?,callResult: CallResult<T>.()->Unit) {
 
-    fun hold(result: suspend () -> Response<JsonResult<T>>): CallResult<T> {
+    init {
+        callResult()
+    }
+
+    fun hold(result: suspend () -> Response<JsonResult<T>>){
         var response: Response<JsonResult<T>>?
         var netJob: Job? = null
         owner?.apply {
@@ -46,7 +50,6 @@ class CallResult<T> constructor(private var owner: LifecycleOwner?) {
                 }
             }
         }
-        return this
     }
 
     private fun build(response: Response<JsonResult<T>>?) {

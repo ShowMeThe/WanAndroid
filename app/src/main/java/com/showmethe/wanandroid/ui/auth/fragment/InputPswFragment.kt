@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.fragment_input_psw.*
 import showmethe.github.core.base.BaseFragment
 import showmethe.github.core.util.extras.Interval
 import showmethe.github.core.util.extras.SimpleTextWatcher
+import showmethe.github.core.util.extras.textWatcher
 
 /**
  * com.showmethe.wanandroid.ui.auth.fragment
@@ -55,7 +56,7 @@ class InputPswFragment : BaseFragment<FragmentInputPswBinding, AuthViewModel>() 
 
     override fun initListener() {
 
-        edPswd.addTextChangedListener(object : SimpleTextWatcher(){
+        /*edPswd.addTextChangedListener(object : SimpleTextWatcher(){
             override fun afterTextChanged(p0: Editable?) {
                 if(!p0.isNullOrEmpty()){
                     btnReg.visibility  = View.VISIBLE
@@ -63,7 +64,16 @@ class InputPswFragment : BaseFragment<FragmentInputPswBinding, AuthViewModel>() 
                     btnReg.visibility  = View.INVISIBLE
                 }
             }
-        })
+        })*/
+        edPswd.textWatcher {
+            afterTextChanged {
+                if(!isNullOrEmpty()){
+                    btnReg.visibility  = View.VISIBLE
+                }else{
+                    btnReg.visibility  = View.INVISIBLE
+                }
+            }
+        }
 
     }
 

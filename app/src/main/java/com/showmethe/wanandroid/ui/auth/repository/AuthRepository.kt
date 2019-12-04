@@ -25,8 +25,8 @@ class AuthRepository : BaseRepository() {
 
 
     fun login(username:String,password:String,call:MutableLiveData<Result<Auth>>){
-        CallResult<Auth>(owner)
-            .loading {
+        CallResult<Auth>(owner){
+            loading {
                 showLoading()
             }.success { result, message ->
                 dismissLoading()
@@ -42,11 +42,13 @@ class AuthRepository : BaseRepository() {
             }.hold {
                 api.login(username, password)
             }
+        }
+
     }
 
     fun register(username:String,password:String,call:MutableLiveData<Result<Empty>>){
-        CallResult<Empty>(owner)
-            .loading {
+        CallResult<Empty>(owner){
+            loading {
                 showLoading()
             }.success { result, message ->
                 dismissLoading()
@@ -60,6 +62,8 @@ class AuthRepository : BaseRepository() {
             }.hold {
                 api.register(username, password,password)
             }
+        }
+
     }
 
     private fun saveInDB(username: String,password: String){

@@ -7,6 +7,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.animation.Animation
+import android.widget.EditText
+import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
+import androidx.databinding.adapters.TextViewBindingAdapter
 import com.google.android.material.tabs.TabLayout
 
 /**
@@ -14,15 +18,38 @@ import com.google.android.material.tabs.TabLayout
  * Update Time: 2019/10/16 10:55
  * Package Name:showmethe.github.core.util.extras
  */
-open class  SimpleTextWatcher : TextWatcher{
-    override fun afterTextChanged(p0: Editable?) {
-    }
 
-    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-    }
+fun EditText.textWatcher(textWatch: SimpleTextWatcher.()->Unit){
+    val simpleTextWatcher = SimpleTextWatcher()
+    textWatch.invoke(simpleTextWatcher)
+    addTextChangedListener(object :TextWatcher{
+        override fun afterTextChanged(s: Editable?) {
+            simpleTextWatcher.afterText?.invoke(s,s)
+        }
 
-    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-    }
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            simpleTextWatcher.beforeText?.invoke(s, start, count, after)
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            simpleTextWatcher.onTextChanged?.invoke(s, start, before, count)
+        }
+    })
+}
+
+ class  SimpleTextWatcher() {
+     var afterText: (Editable?.(s: Editable?)->Unit)? = null
+     fun afterTextChanged(afterText: (Editable?.(s: Editable?)->Unit)){
+         this.afterText = afterText
+     }
+     var beforeText:((s: CharSequence?, start: Int, count: Int, after: Int)->Unit)? = null
+     fun beforeTextChanged(beforeText:((s: CharSequence?, start: Int, count: Int, after: Int)->Unit)){
+         this.beforeText = beforeText
+     }
+     var  onTextChanged : ((s: CharSequence?, start: Int, before: Int, count: Int)->Unit)? = null
+     fun onTextChanged(onTextChanged : ((s: CharSequence?, start: Int, before: Int, count: Int)->Unit)){
+         this.onTextChanged = onTextChanged
+     }
 
 }
 

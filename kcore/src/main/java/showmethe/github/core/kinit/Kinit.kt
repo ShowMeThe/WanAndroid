@@ -49,12 +49,9 @@ class Module(component: Component.() -> Unit){
 
 class Component(var name:String){
 
-    inline fun <reified T>single(single: Single<T>.()->T){
+    inline fun <reified T>single(noinline single: Component.()->T){
         name = T::class.java.name
-        Components.getEntry()[name] = single.invoke(Single())
-    }
-
-    inner class Single<T>(){
+        Components.getEntry()[name] = single()
     }
 }
 

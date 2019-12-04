@@ -9,6 +9,7 @@ import com.showmethe.wanandroid.databinding.FragmentInputBinding
 import kotlinx.android.synthetic.main.fragment_input.*
 import showmethe.github.core.base.BaseFragment
 import showmethe.github.core.util.extras.SimpleTextWatcher
+import showmethe.github.core.util.extras.textWatcher
 
 /**
  * Author: showMeThe
@@ -40,13 +41,17 @@ class InputUserFragment  : BaseFragment<FragmentInputBinding, AuthViewModel>() {
 
     override fun initListener() {
 
-        edName.addTextChangedListener(object : SimpleTextWatcher() {
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                p0?.apply {
-                    tvNumber.text = "${p0.length}/10"
+
+        edName.textWatcher {
+            onTextChanged { s, start, before, count ->
+                s?.apply {
+                    tvNumber.text = "${s.length}/10"
                 }
+
             }
-        })
+        }
+
+
     }
 
 
