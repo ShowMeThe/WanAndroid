@@ -42,9 +42,7 @@ import showmethe.github.core.glide.TGlide
 import showmethe.github.core.http.coroutines.Result.Companion.OutTime
 import showmethe.github.core.http.coroutines.Result.Companion.Success
 import showmethe.github.core.livebus.LiveBusHelper
-import showmethe.github.core.util.extras.plus
-import showmethe.github.core.util.extras.post
-import showmethe.github.core.util.extras.sameAs
+import showmethe.github.core.util.extras.*
 import showmethe.github.core.util.widget.StatusBarUtil
 import showmethe.github.core.util.widget.StatusBarUtil.fixToolbar
 import showmethe.github.core.util.widget.setOnSingleClickListener
@@ -57,7 +55,7 @@ class HomeFragment : LazyFragment<FragmentHomeBinding, MainViewModel>() {
     val refreshing = MutableLiveData<Boolean>()
     private val pagerNumber = MutableLiveData<Int>()
     private lateinit var adapter: HomeArticleAdapter
-    private val list = ObservableArrayList<HomeArticle.DatasBean>()
+    private val list = obArrayList<HomeArticle.DatasBean>()
     private  val bannerList  = ArrayList<String>()
     override fun initViewModel(): MainViewModel = createViewModel()
     override fun getViewId(): Int = R.layout.fragment_home

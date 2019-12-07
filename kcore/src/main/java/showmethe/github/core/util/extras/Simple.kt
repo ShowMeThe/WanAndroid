@@ -19,46 +19,91 @@ import com.google.android.material.tabs.TabLayout
  * Package Name:showmethe.github.core.util.extras
  */
 
-fun EditText.textWatcher(textWatch: SimpleTextWatcher.()->Unit){
+fun EditText.textWatcher(textWatch: SimpleTextWatcher.() -> Unit) {
     val simpleTextWatcher = SimpleTextWatcher(this)
     textWatch.invoke(simpleTextWatcher)
 }
 
- class  SimpleTextWatcher(var view:EditText) {
+class SimpleTextWatcher(var view: EditText) {
 
-     private var afterText: (Editable?.(s: Editable?)->Unit)? = null
-     fun afterTextChanged(afterText: (Editable?.(s: Editable?)->Unit)){
-         this.afterText = afterText
-     }
-     private var beforeText:((s: CharSequence?, start: Int, count: Int, after: Int)->Unit)? = null
-     fun beforeTextChanged(beforeText:((s: CharSequence?, start: Int, count: Int, after: Int)->Unit)){
-         this.beforeText = beforeText
-     }
-     private var  onTextChanged : ((s: CharSequence?, start: Int, before: Int, count: Int)->Unit)? = null
-     fun onTextChanged(onTextChanged : ((s: CharSequence?, start: Int, before: Int, count: Int)->Unit)){
-         this.onTextChanged = onTextChanged
-     }
+    private var afterText: (Editable?.() -> Unit)? = null
+    fun afterTextChanged(afterText: (Editable?.() -> Unit)) {
+        this.afterText = afterText
+    }
 
-     init {
-         view.addTextChangedListener(object :TextWatcher{
-             override fun afterTextChanged(s: Editable?) {
-                 afterText?.invoke(s,s)
-             }
+    private var beforeText: ((s: CharSequence?, start: Int, count: Int, after: Int) -> Unit)? = null
+    fun beforeTextChanged(beforeText: ((s: CharSequence?, start: Int, count: Int, after: Int) -> Unit)) {
+        this.beforeText = beforeText
+    }
 
-             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                 beforeText?.invoke(s, start, count, after)
-             }
+    private var onTextChanged: ((s: CharSequence?, start: Int, before: Int, count: Int) -> Unit)? =
+        null
 
-             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+    fun onTextChanged(onTextChanged: ((s: CharSequence?, start: Int, before: Int, count: Int) -> Unit)) {
+        this.onTextChanged = onTextChanged
+    }
+
+    init {
+        view.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                afterText?.invoke(s)
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                beforeText?.invoke(s, start, count, after)
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 onTextChanged?.invoke(s, start, before, count)
-             }
-         })
-     }
+            }
+        })
+    }
+}
 
+fun TabLayout.onTabSelected(tabSelect: TabSelect.() -> Unit) {
+    tabSelect.invoke(TabSelect(this))
+}
+
+class TabSelect(tab: TabLayout) {
+    private var tabReselected: ((tab: TabLayout.Tab) -> Unit)? = null
+    private var tabUnselected: ((tab: TabLayout.Tab) -> Unit)? = null
+    private var tabSelected: ((tab: TabLayout.Tab) -> Unit)? = null
+
+    fun onTabReselected(tabReselected: (TabLayout.Tab.() -> Unit)) {
+        this.tabReselected = tabReselected
+    }
+
+    fun onTabUnselected(tabUnselected: (TabLayout.Tab.() -> Unit)) {
+        this.tabUnselected = tabUnselected
+    }
+
+    fun onTabSelected(tabSelected: (TabLayout.Tab.() -> Unit)) {
+        this.tabSelected = tabSelected
+    }
+
+    init {
+        tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                tab?.apply { tabReselected?.invoke(tab) }
+
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                tab?.apply { tabUnselected?.invoke(tab) }
+
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                tab?.apply { tabSelected?.invoke(tab) }
+            }
+
+        })
+    }
 
 }
 
-open class SimpleAnimatorListener : Animator.AnimatorListener{
+
+open class SimpleAnimatorListener : Animator.AnimatorListener {
     override fun onAnimationRepeat(p0: Animator?) {
     }
 
@@ -74,7 +119,7 @@ open class SimpleAnimatorListener : Animator.AnimatorListener{
 }
 
 
-open class SimpleAnimationListener : Animation.AnimationListener{
+open class SimpleAnimationListener : Animation.AnimationListener {
     override fun onAnimationRepeat(p0: Animation?) {
     }
 
@@ -82,18 +127,6 @@ open class SimpleAnimationListener : Animation.AnimationListener{
     }
 
     override fun onAnimationStart(p0: Animation?) {
-    }
-
-}
-
-open class SimpleTabSelectedListener  : TabLayout.OnTabSelectedListener{
-    override fun onTabReselected(tab: TabLayout.Tab?) {
-    }
-
-    override fun onTabUnselected(tab: TabLayout.Tab?) {
-    }
-
-    override fun onTabSelected(tab: TabLayout.Tab?) {
     }
 
 }

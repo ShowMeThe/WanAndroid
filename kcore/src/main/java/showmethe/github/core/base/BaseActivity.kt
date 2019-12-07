@@ -1,48 +1,39 @@
 package showmethe.github.core.base
 
-import android.animation.Animator
 import android.app.ActivityOptions
-import androidx.lifecycle.*
 import android.content.Intent
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import android.os.Bundle
 import android.util.SparseArray
-import android.view.*
-import android.view.animation.LinearInterpolator
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.FrameLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
-import com.google.android.material.circularreveal.CircularRevealCompat
-import com.google.android.material.circularreveal.CircularRevealFrameLayout
-import com.google.android.material.circularreveal.CircularRevealWidget
-
+import androidx.core.util.isNotEmpty
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.jeremyliao.liveeventbus.LiveEventBus
-import showmethe.github.core.util.widget.ScreenSizeUtil
 import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle
-
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import showmethe.github.core.dialog.DialogLoading
-import showmethe.github.core.livebus.LiveBusHelper
-import showmethe.github.core.util.toast.ToastFactory
-import java.util.concurrent.TimeUnit
 import showmethe.github.core.R
 import showmethe.github.core.base.vmpath.VMRouter
-import showmethe.github.core.util.extras.SimpleAnimatorListener
-import showmethe.github.core.util.extras.onGlobalLayout
-import showmethe.github.core.util.extras.onPreDrawLayout
+import showmethe.github.core.dialog.DialogLoading
+import showmethe.github.core.livebus.LiveBusHelper
+import showmethe.github.core.util.extras.circularReveal
 import showmethe.github.core.util.extras.putValueInBundle
+import showmethe.github.core.util.extras.setReveal
 import showmethe.github.core.util.system.hideSoftKeyboard
-import kotlin.math.hypot
+import showmethe.github.core.util.toast.ToastFactory
+import showmethe.github.core.util.widget.ScreenSizeUtil
+import java.util.concurrent.TimeUnit
 
 /**
  * Author: showMeThe
@@ -59,7 +50,7 @@ abstract class BaseActivity<V : ViewDataBinding,  VM : BaseViewModel> : AppCompa
     var  binding : V? = null
     lateinit var viewModel : VM
     lateinit var root : View
-    private val resultMap =  lazy { SparseArray<(((requestCode: Int, resultCode: Int, data: Intent?)->Unit))>() }
+    private val resultMap by lazy { SparseArray<(((requestCode: Int, resultCode: Int, data: Intent?)->Unit))>() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,18 +100,7 @@ abstract class BaseActivity<V : ViewDataBinding,  VM : BaseViewModel> : AppCompa
      * 创建Reveal
      */
     private fun setUpReveal(savedInstanceState: Bundle?) {
-        if (savedInstanceState == null) {
-            val container = window.decorView as FrameLayout
-            val rootLayout = container.getChildAt(0) // 取出根布局
-            container.removeView(rootLayout) // 先移除根布局
-            val layout  = CircularRevealFrameLayout(this)
-            layout.addView(rootLayout,ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT)
-            container.addView(layout)
-            container.onPreDrawLayout {
-                circularReveal(layout)
-            }
-        }
+        setReveal(savedInstanceState)
     }
 
 
@@ -329,7 +309,7 @@ abstract class BaseActivity<V : ViewDataBinding,  VM : BaseViewModel> : AppCompa
        if (bundle != null) {
            intent.putExtras(bundle)
        }
-       resultMap.value.append(requestCode,onResult)
+       resultMap.append(requestCode,onResult)
        startActivityForResult(intent,requestCode)
        overridePendingTransition(R.anim.alpha_in,R.anim.alpha_out)
    }
@@ -337,9 +317,9 @@ abstract class BaseActivity<V : ViewDataBinding,  VM : BaseViewModel> : AppCompa
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         data?.apply {
-            resultMap.value.get(requestCode)?.apply {
+            resultMap.get(requestCode)?.apply {
                 invoke(requestCode, resultCode, data)
-                resultMap.value.remove(requestCode)
+                resultMap.remove(requestCode)
             }
         }
     }
@@ -351,31 +331,9 @@ abstract class BaseActivity<V : ViewDataBinding,  VM : BaseViewModel> : AppCompa
         dismissLoading()
         lifecycle.removeObserver(viewModel)
         LiveEventBus.get("LiveData", LiveBusHelper::class.java).removeObserver(observer)
-        if(resultMap.isInitialized()){
-            resultMap.value.clear()
+        if(resultMap.isNotEmpty()){
+            resultMap.clear()
         }
-    }
-
-
-
-    /**
-     * 水波纹覆盖显示动画
-     * @param rootLayout
-     */
-    private fun circularReveal(rootLayout: CircularRevealFrameLayout) {
-        val centerX = rootLayout.width.toFloat() /2
-        val centerY = rootLayout.height.toFloat() /2
-        val finalRadius = hypot(
-            centerX.coerceAtLeast(rootLayout.width - centerX),
-            centerY.coerceAtLeast(rootLayout.height - centerY)
-        )
-        rootLayout.revealInfo = CircularRevealWidget.RevealInfo(centerX,centerY,0f)
-        val circularReveal = CircularRevealCompat.createCircularReveal(rootLayout,centerX,centerY,finalRadius)
-        circularReveal.duration = 500
-        circularReveal.interpolator = LinearInterpolator()
-        circularReveal.startDelay = 1
-        circularReveal.start()
-
     }
 
 
@@ -384,24 +342,7 @@ abstract class BaseActivity<V : ViewDataBinding,  VM : BaseViewModel> : AppCompa
      * @param rootLayout
      */
     private fun circularFinishReveal(rootLayout: View,call : ()->Unit) {
-        val centerX = rootLayout.width.toFloat() /2
-        val centerY = rootLayout.height.toFloat() /2
-        val finalRadius = hypot(
-            centerX.coerceAtLeast(rootLayout.width - centerX),
-            centerY.coerceAtLeast(rootLayout.height - centerY)
-        )
-        val circularReveal = ViewAnimationUtils.createCircularReveal(
-            rootLayout,
-            (rootLayout.width * 0.5).toInt(),
-            (rootLayout.height * 0.5).toInt(), finalRadius,0f
-        )
-        circularReveal.duration = 500
-        circularReveal.interpolator = LinearInterpolator()
-        rootLayout.postDelayed({
-            call.invoke()
-            rootLayout.alpha = 0.8f
-        },250)
-        circularReveal.start()
+        circularReveal(rootLayout,call)
     }
 
 }

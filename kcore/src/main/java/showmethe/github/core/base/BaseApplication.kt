@@ -46,9 +46,6 @@ open class BaseApplication : MultiDexApplication() {
                     ContextProvider.get().attach(activity)
                 }
             }
-            override fun onActivityDestroyed(activity: Activity?) {
-
-            }
         })
     }
 

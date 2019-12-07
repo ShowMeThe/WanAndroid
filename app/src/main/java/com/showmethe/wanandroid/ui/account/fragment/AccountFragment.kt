@@ -4,29 +4,21 @@ package com.showmethe.wanandroid.ui.account.fragment
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
-
-import com.showmethe.wanandroid.dialog.TextJumpDialog
 import com.ken.materialwanandroid.entity.TabItem
-
 import com.showmethe.wanandroid.R
 import com.showmethe.wanandroid.databinding.FragmentAccuntBinding
+import com.showmethe.wanandroid.dialog.TextJumpDialog
 import com.showmethe.wanandroid.ui.account.adapter.TabArticleAdapter
 import com.showmethe.wanandroid.ui.main.vm.MainViewModel
-
 import kotlinx.android.synthetic.main.fragment_accunt.*
-import kotlinx.android.synthetic.main.fragment_article.*
 import showmethe.github.core.base.LazyFragment
-import showmethe.github.core.util.extras.SimpleTabSelectedListener
-import showmethe.github.core.util.widget.StatusBarUtil
+import showmethe.github.core.util.extras.onTabSelected
 import showmethe.github.core.util.widget.StatusBarUtil.fixToolbar
-import showmethe.github.core.widget.common.SmartRelativeLayout
 
 
 class AccountFragment : LazyFragment<FragmentAccuntBinding, MainViewModel>() {
@@ -81,16 +73,11 @@ class AccountFragment : LazyFragment<FragmentAccuntBinding, MainViewModel>() {
 
     override fun initListener() {
 
-
-
-        tab.addOnTabSelectedListener(object : SimpleTabSelectedListener(){
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                tab?.apply {
-                    pos = position
-
-                }
+        tab.onTabSelected {
+            onTabSelected {
+                pos = position
             }
-        })
+        }
 
 
     }
