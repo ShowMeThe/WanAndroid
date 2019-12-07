@@ -3,11 +3,14 @@ package com.showmethe.wanandroid.ui.main
 import android.animation.Animator
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewAnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
@@ -82,6 +85,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun init(savedInstanceState: Bundle?) {
         preload()
+        drawer.setScrimColor(Color.TRANSPARENT)
+        val param = container.layoutParams
+        param.width = screenWidth
+        container.layoutParams = param
 
         colors.add(resources.getColorStateList(R.color.tab_color,null))
         colors.add(resources.getColorStateList(R.color.tab_color_1,null))
@@ -169,6 +176,25 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                  startActivity<WelcomeActivity>()
              }
         }
+
+        drawer.addDrawerListener(object : DrawerLayout.DrawerListener{
+            override fun onDrawerStateChanged(newState: Int) {
+
+            }
+
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+                val width = drawerView.width
+                main.translationX = width * slideOffset
+
+            }
+
+            override fun onDrawerClosed(drawerView: View) {
+            }
+
+            override fun onDrawerOpened(drawerView: View) {
+            }
+
+        })
 
     }
 

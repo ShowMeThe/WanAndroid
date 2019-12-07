@@ -9,6 +9,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -39,9 +40,10 @@
 
         <LinearLayout
             android:clickable="true"
+            android:focusable="true"
             android:id="@+id/container"
             android:background="@color/white"
-            android:layout_width="@dimen/px650dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:orientation="vertical"
