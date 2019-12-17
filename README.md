@@ -1,4 +1,7 @@
 #### 简书地址：https://www.jianshu.com/p/03e7446ff512
+#### 项目中用到的FloatActionButton和Banner:</br>
+Banner: https://github.com/ShowMeThe/BannerView </br>
+FloationActionButtonExpandMenu:https://github.com/ShowMeThe/SpeedDial</br>
 #### 新的UI</br>
 <img src= "https://github.com/ShowMeThe/WanAndroid/blob/master/jpg/20191114.gif" width = 200 alt= "ui"/></br>
 #### 基于AAC架构玩安卓客户端</br>
