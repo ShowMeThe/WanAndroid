@@ -48,14 +48,14 @@ inline fun <reified T> inject(name: String = T::class.java.name) : Lazy<T> {
 class Module(component: Component.() -> Unit){
 
     init {
-        component.invoke(Component(""))
+        component.invoke(Component())
     }
 }
 
-class Component(var name:String){
+class Component{
 
     inline fun <reified T>single(noinline single: Component.()->T){
-        name = T::class.java.name
+        val name = T::class.java.name
         Components.getEntry()[name] = single()
     }
 }
