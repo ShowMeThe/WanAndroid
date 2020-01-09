@@ -2,12 +2,15 @@ package showmethe.github.core.http.coroutines
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.*
+import retrofit2.Call
 import retrofit2.Response
 import showmethe.github.core.http.JsonResult
 
 import showmethe.github.core.http.fromJson
+import showmethe.github.core.util.extras.post
 
 /**
  * Author: showMeThe
@@ -18,6 +21,10 @@ class CallResult<T> constructor(private var owner: LifecycleOwner?,callResult: C
 
     init {
         callResult()
+    }
+    private var data : MutableLiveData<Result<T>>? = null
+    fun post(data : MutableLiveData<Result<T>>){
+        this.data = data
     }
 
     fun hold(result: suspend () -> Response<JsonResult<T>>){
@@ -59,26 +66,26 @@ class CallResult<T> constructor(private var owner: LifecycleOwner?,callResult: C
                     val result = errorBody().toString().fromJson<JsonResult<T>>()
                     if (result != null) {
                         val errorMessage = result.errorMsg!!
-                        onError?.invoke(Result(Result.Failure, null, -1, errorMessage), -1, errorMessage)
+                        onError?.invoke(makeCall(Result<T>(Result.Failure, null, -1, errorMessage)), -1, errorMessage)
                     }
 
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    onError?.invoke(Result(Result.Failure, null, -1, e.message.toString()), -1, e.message.toString())
+                    onError?.invoke(makeCall(Result(Result.Failure, null, -1, e.message.toString())), -1, e.message.toString())
                 }
             } else {
                 try {
                     if (body() == null) {
-                        onError?.invoke(Result(Result.Failure, null, -1, ""), -1, "")
+                        onError?.invoke(makeCall(Result(Result.Failure, null, -1, "")), -1, "")
                     } else {
                         if (body()?.errorCode == 0) { // 正确errorCode 返回成功
                             onSuccess?.invoke(
-                                Result(Result.Success, body()?.data, body()?.errorCode!!, body()?.errorMsg!!),
+                                makeCall(Result(Result.Success, body()?.data, body()?.errorCode!!, body()?.errorMsg!!)),
                                 body()?.errorMsg!!
                             )
                         } else {
                             onError?.invoke(
-                                Result(Result.Failure, null, body()?.errorCode!!, body()?.errorMsg!!),
+                                makeCall(Result(Result.Failure, null, body()?.errorCode!!, body()?.errorMsg!!)),
                                 body()?.errorCode!!,
                                 body()?.errorMsg!!
                             )
@@ -91,6 +98,10 @@ class CallResult<T> constructor(private var owner: LifecycleOwner?,callResult: C
         }
     }
 
+    private fun makeCall(call: Result<T>) : Result<T>{
+        data post  call
+        return call
+    }
 
     private var onLoading: (() -> Unit)? = null
 
