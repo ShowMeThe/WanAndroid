@@ -1,3 +1,8 @@
+### 记录：2020/3/11
+该版本玩安卓客户端将在未来一段时间内进行重置，包括UI和交互动画，将无关紧要花里胡哨的效果去掉
+将以MaterialTransition+Fragment为主，修改以前没发现一些Bug，把png替换成VectorDrawable，重置完成时间不定
+暂定项目地址为：https://github.com/ShowMeThe/MaterialWanAndroid
+
 #### 简书地址：https://www.jianshu.com/p/03e7446ff512
 #### 项目中用到的FloatActionButton和Banner:</br>
 Banner: https://github.com/ShowMeThe/BannerView </br>
