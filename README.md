@@ -10,8 +10,8 @@ VMRouter这个类中
 router = VMRouter(viewModel,activity)
 
 ```
-此时这个VMRouter(private var viewModel: ViewModel,var owner: LifecycleOwner?) 此时owner会因为被替换了导致使用了CallResult的必定出错
-类似场景如下：
+此时这个VMRouter(private var viewModel: ViewModel,var owner: LifecycleOwner?) 此时owner会因为被替换了导致使用了CallResult的必定出错  
+类似场景如下：  
 Activity + ViewPager ,此时 ViewPager里有两个Fragment,FragmentA(index = 0),FragmentB(index = 1)，然后默认进入看到FragmentB,在FragmentB中加载一个子Fragment共享同一个VM，然后popback推出栈,再滑动到FragmentA 就会导致出错。
 ### 记录：2020/3/11
 该版本玩安卓客户端将在未来一段时间内进行重置，包括UI和交互动画，将无关紧要花里胡哨的效果去掉
