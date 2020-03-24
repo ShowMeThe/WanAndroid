@@ -1,3 +1,12 @@
+### 记录：2020/3/24 修复严重bug,会导致利用VMRouter这个类请求VM方法，如果是带了网络请求，并用了CallResult，某种场景下必定会错
+VMRouter这个类中
+在Fragment下原代码初始化
+···
+   router = VMRouter(viewModel,this)
+···
+此时这个VMRouter(private var viewModel: ViewModel,var owner: LifecycleOwner?) 此时owner会因为被替换了导致使用了CallResult的必定出错
+类似场景如下：
+Activity + ViewPager ,此时 ViewPager里有两个Fragment,FragmentA(index = 0),FragmentB(index = 1)，然后默认进入看到FragmentB,在FragmentB中加载一个子Fragment共享同一个VM，然后popback推出栈,再滑动到FragmentA 就会导致出错。
 ### 记录：2020/3/11
 该版本玩安卓客户端将在未来一段时间内进行重置，包括UI和交互动画，将无关紧要花里胡哨的效果去掉
 将以MaterialTransition+Fragment为主，修改以前没发现一些Bug，把png替换成VectorDrawable，重置完成时间不定
