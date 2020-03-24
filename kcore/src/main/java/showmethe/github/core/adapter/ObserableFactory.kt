@@ -40,7 +40,7 @@ fun <D> ObservableArrayList<D>.addCallback(adapter: RecyclerView.Adapter<*>){
         }
 
         override fun onItemRangeChanged(sender: ObservableArrayList<D>?, positionStart: Int, itemCount: Int) {
-            adapter. notifyItemRangeChanged(positionStart, itemCount)
+           // adapter. notifyItemRangeChanged(positionStart, itemCount)
         }
 
     })

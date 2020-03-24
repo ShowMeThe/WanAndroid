@@ -2,6 +2,7 @@ package showmethe.github.core.base.vmpath
 
 import android.util.ArrayMap
 import android.util.Log
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,7 +13,7 @@ import kotlin.reflect.KCallable
 import kotlin.reflect.full.findAnnotation
 
 
-class VMRouter(private var viewModel: ViewModel,var owner: LifecycleOwner) {
+class VMRouter(private var viewModel: ViewModel,var owner: FragmentActivity?) {
 
     companion object{
 

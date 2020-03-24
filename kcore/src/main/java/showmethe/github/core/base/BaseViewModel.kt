@@ -20,7 +20,9 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
 
 
     fun initOwner(vmRouter: VMRouter){
-        owner = vmRouter.owner
+            vmRouter.owner?.apply {
+                owner = this
+            }
         val fields = this::class.java.declaredFields
         for(field in fields){
             if(field.isAnnotationPresent(InjectOwner::class.java)){

@@ -33,8 +33,10 @@ open class BaseRepository :  DefaultLifecycleObserver {
     }
 
     fun init(router: VMRouter) : BaseRepository{
-        this.owner = router.owner
-        this.router.owner.lifecycle.addObserver(this)
+        router.owner?.apply {
+            owner = this
+            owner.lifecycle.addObserver(this@BaseRepository)
+        }
         return this
     }
 

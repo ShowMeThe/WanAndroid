@@ -46,7 +46,7 @@ abstract class BaseFragment<V : ViewDataBinding,VM : BaseViewModel> : Fragment()
             LiveEventBus.get("LiveData",LiveBusHelper::class.java).observe(this,observer)
         }
         viewModel = initViewModel()
-        router = VMRouter(viewModel,this)
+        router = VMRouter(viewModel,activity)
         viewModel.initOwner(router)
         lifecycle.addObserver(viewModel)
 

@@ -166,7 +166,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         }
 
         tvCollect.setOnClickListener {
-            startActivity<CollectActivity>(null)
+            startActivity<CollectActivity>()
         }
 
         tvGalley.setOnClickListener {
