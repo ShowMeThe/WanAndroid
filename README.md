@@ -1,5 +1,5 @@
 ### 记录：2020/3/29 WanAndroid客户端也重置了不少内容，包括页面等等，并加入了无缝切换控件颜色，换肤功能，基于DataBinding下进行统一管理，并且支持自定义的控件，先看看图，那边的READ.MD等我写得差不多后再更新。大致图如下：  
-<img src="https://s1.ax1x.com/2020/03/29/GZA9mT.md.gif" width = 300 alt ="theme"/>
+<img src="https://imgchr.com/i/GZA9mT" width = 300 alt ="theme"/>
 
 ### 记录：2020/3/24 (暂定的临时解决方案，还是存在使用上的不便，这时最好方法是不要用这个VMRouter)修复严重bug,会导致利用VMRouter这个类请求VM方法，如果是带了网络请求，并用了CallResult，某种场景下必定会错
 VMRouter这个类中
