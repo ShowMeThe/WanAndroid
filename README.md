@@ -1,4 +1,5 @@
-### 重置的项目地址为：https://github.com/ShowMeThe/MaterialWanAndroid
+### 重置的项目地址为：https://github.com/ShowMeThe/MaterialWanAndroid 
+#### (基本上的功能都完成了，有问题的留下issue, 改了UI,多了个皮肤切换，和修复部分bug)
 
 ### 记录：2020/3/29 WanAndroid客户端也重置了不少内容，包括页面等等，并加入了无缝切换控件颜色，换肤功能，基于DataBinding下进行统一管理，并且支持自定义的控件，先看看图，那边的READ.MD等我写得差不多后再更新。大致图如下：  
 <img src="https://github.com/ShowMeThe/WanAndroid/blob/master/theme.gif" width ="200" alt="GZA9mT.gif" border="0" />
